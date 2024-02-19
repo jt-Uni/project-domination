@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dpiy0rtegnra5"]
+
+[ext_resource type="Script" path="res://scenes/gameplay/region_area.gd" id="1_q2ara"]
+
+[node name="RegionArea" type="Area2D"]
+script = ExtResource("1_q2ara")
