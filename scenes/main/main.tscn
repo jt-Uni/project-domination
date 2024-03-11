@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://xke805spa83l"]
+
+[ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://assets/graphics/icons/Map Background.png" id="1_52u84"]
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fce8s"]
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fce8s")
+
+[node name="MapBackground" type="Sprite2D" parent="."]
+position = Vector2(80.8168, 87.9841)
+scale = Vector2(1.152, 0.971514)
+texture = ExtResource("1_52u84")
+offset = Vector2(429.847, 242.936)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Headers" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_constants/separation = 75
+
+[node name="title" type="Label" parent="MarginContainer/Headers"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Project Domination"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="buttons" type="VBoxContainer" parent="MarginContainer/Headers"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+
+[node name="PlayButton" type="Button" parent="MarginContainer/Headers/buttons"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="OptionsButton" type="Button" parent="MarginContainer/Headers/buttons"]
+layout_mode = 2
+text = "SETTINGS"
+
+[node name="QuitButton" type="Button" parent="MarginContainer/Headers/buttons"]
+layout_mode = 2
+text = "QUIT"
+
+[connection signal="pressed" from="MarginContainer/Headers/buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Headers/buttons/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Headers/buttons/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://3558icfr6kjs"]
+
+[ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://assets/graphics/icons/Map Background.png" id="1_2jfdi"]
+[ext_resource type="Texture2D" uid="uid://3wvl2w4jtnic" path="res://assets/graphics/icons/Game Map.png" id="1_stvb8"]
+[ext_resource type="Script" path="res://scenes/gameplay/Alaska.gd" id="3_nwf48"]
+
+[node name="Game" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(575, 322)
+
+[node name="MapBackground" type="Sprite2D" parent="."]
+position = Vector2(575.5, 321.75)
+scale = Vector2(1.149, 0.972264)
+texture = ExtResource("1_2jfdi")
+
+[node name="GameMap" type="Sprite2D" parent="."]
+position = Vector2(577, 321)
+scale = Vector2(1.00891, 0.875352)
+texture = ExtResource("1_stvb8")
+
+[node name="Alaska" type="Polygon2D" parent="."]
+position = Vector2(-1, 0)
+polygon = PackedVector2Array(191, 193, 196, 193, 201, 190, 206, 185, 210, 180, 212, 179, 212, 182, 216, 183, 219, 180, 221, 178, 222, 175, 226, 177, 230, 179, 234, 179, 236, 183, 238, 185, 242, 187, 245, 188, 245, 193, 248, 197, 249, 200, 253, 198, 256, 194, 257, 192, 256, 189, 253, 187, 253, 184, 254, 181, 254, 178, 252, 176, 250, 173, 250, 171, 247, 171, 243, 170, 242, 168, 242, 163, 242, 159, 242, 154, 242, 151, 244, 149, 244, 145, 244, 141, 244, 138, 241, 137, 238, 136, 234, 134, 230, 134, 225, 133, 221, 131, 216, 129, 212, 131, 207, 132, 205, 134, 203, 135, 202, 138, 202, 139, 200, 139, 197, 137, 194, 138, 192, 139, 194, 142, 197, 145, 199, 148, 195, 147, 192, 146, 187, 147, 186, 150, 186, 154, 189, 156, 196, 155, 197, 158, 193, 158, 187, 158, 183, 161, 182, 165, 183, 169, 186, 174, 187, 177, 189, 179, 192, 179, 197, 184, 196, 187, 192, 189, 190, 191)
+script = ExtResource("3_nwf48")
