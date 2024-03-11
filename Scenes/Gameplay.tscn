@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://6ls3fpklwtrp"]
+
+[ext_resource type="Script" path="res://Scripts/Gameplay.gd" id="1_3ceo5"]
+[ext_resource type="Texture2D" uid="uid://cunshu1xwkhci" path="res://Assets/Graphics/map_data/worldMap.png" id="2_wggx2"]
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource("1_3ceo5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wggx2")
+centered = false
+
+[node name="Regions" type="Node2D" parent="."]

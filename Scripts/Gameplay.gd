@@ -11,10 +11,10 @@ func _process(delta):
 func load_regions():
 	var image = mapImage.get_texture().get_image()
 	var pixel_colour_dict = get_pixel_color_dict(image)
-	var regions_dict = import_file("res://assets/map_data/regions.txt")
+	var regions_dict = import_file("res://Assets/Graphics/map_data/regions.txt")
 	
 	for region_color in regions_dict:
-		var region = load("res://scenes/gameplay/region_area.tscn").instantiate()
+		var region = load("res://Scenes/Map.tscn").instantiate()
 		region.region_name = regions_dict[region_color]
 		region.set_name(region_color)
 		get_node("Regions").add_child(region)

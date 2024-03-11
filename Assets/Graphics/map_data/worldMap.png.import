@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gqfc1h5g4elk"
-path="res://.godot/imported/Guard.png-9f82b8c2ce0cd0e08b01c9a056682ccf.ctex"
+uid="uid://cunshu1xwkhci"
+path="res://.godot/imported/worldMap.png-f75bfcaefd2ba86f8a64a1c272584cac.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphics/icons/Guard.png"
-dest_files=["res://.godot/imported/Guard.png-9f82b8c2ce0cd0e08b01c9a056682ccf.ctex"]
+source_file="res://Assets/Graphics/map_data/worldMap.png"
+dest_files=["res://.godot/imported/worldMap.png-f75bfcaefd2ba86f8a64a1c272584cac.ctex"]
 
 [params]
 

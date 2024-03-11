@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://xke805spa83l"]
 
-[ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://assets/graphics/icons/Map Background.png" id="1_52u84"]
-[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_fce8s"]
+[ext_resource type="Script" path="res://Scripts/Main.gd" id="1_lcuaf"]
+[ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://Assets/Graphics/Units/Map Background.png" id="2_8b2fk"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -10,12 +10,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fce8s")
+script = ExtResource("1_lcuaf")
 
 [node name="MapBackground" type="Sprite2D" parent="."]
 position = Vector2(80.8168, 87.9841)
 scale = Vector2(1.152, 0.971514)
-texture = ExtResource("1_52u84")
+texture = ExtResource("2_8b2fk")
 offset = Vector2(429.847, 242.936)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]

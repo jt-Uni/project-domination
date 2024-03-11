@@ -1,6 +1,6 @@
 extends Control
 
-@onready var load_scene = load("res://scenes/gameplay/gameplay.tscn")
+@onready var load_scene = load("res://Scenes/Gameplay.tscn")
 
 func _on_play_button_pressed() -> void:
 	var this_scene = load_scene.instantiate()
