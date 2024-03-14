@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var mapImage = $Sprite2D
 
+var test = "funtokins"
+
 func _ready():
 	load_regions()
 	
