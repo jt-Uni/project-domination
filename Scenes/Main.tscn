@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://xke805spa83l"]
 
 [ext_resource type="Script" path="res://Scripts/Main.gd" id="1_lcuaf"]
-[ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://Assets/Graphics/Units/Map Background.png" id="2_8b2fk"]
-[ext_resource type="Texture2D" uid="uid://di80c1djwbmv2" path="res://Assets/Graphics/Units/WorldConquestv2.png" id="3_ixvtn"]
+[ext_resource type="Texture2D" uid="uid://6fdnb3yyp12o" path="res://Assets/Graphics/Units/Menu Design-2.png" id="2_oq1hj"]
+[ext_resource type="Texture2D" uid="uid://etu1tdwn62t5" path="res://Assets/Graphics/Units/PLAYBUTTON-2_2_20.png" id="3_tr2ny"]
 
 [node name="main" type="Control"]
 layout_mode = 3
@@ -13,11 +13,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lcuaf")
 
-[node name="MapBackground" type="Sprite2D" parent="."]
-position = Vector2(80.8168, 87.9841)
-scale = Vector2(1.152, 0.971514)
-texture = ExtResource("2_8b2fk")
-offset = Vector2(429.847, 242.936)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(674, 308.5)
+scale = Vector2(0.563361, 0.350303)
+texture = ExtResource("2_oq1hj")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -41,12 +40,6 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 75
 
-[node name="Sprite2D" type="Sprite2D" parent="MarginContainer/Headers"]
-position = Vector2(-199, -341)
-scale = Vector2(0.342708, 0.365741)
-texture = ExtResource("3_ixvtn")
-centered = false
-
 [node name="title" type="Label" parent="MarginContainer/Headers"]
 visible = false
 layout_mode = 2
@@ -66,9 +59,9 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 
-[node name="PlayButton" type="Button" parent="MarginContainer/Headers/buttons"]
+[node name="Play_Button" type="TextureButton" parent="MarginContainer/Headers/buttons"]
 layout_mode = 2
-text = "PLAY"
+texture_normal = ExtResource("3_tr2ny")
 
 [node name="OptionsButton" type="Button" parent="MarginContainer/Headers/buttons"]
 layout_mode = 2
@@ -78,6 +71,6 @@ text = "SETTINGS"
 layout_mode = 2
 text = "QUIT"
 
-[connection signal="pressed" from="MarginContainer/Headers/buttons/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/Headers/buttons/Play_Button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Headers/buttons/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="MarginContainer/Headers/buttons/QuitButton" to="." method="_on_quit_button_pressed"]
