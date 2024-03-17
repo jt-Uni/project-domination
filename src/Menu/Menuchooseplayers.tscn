@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://drpbu34imguim"]
 
+[ext_resource type="Script" path="res://src/Menu/MenuChoosePlayers.gd" id="1_kcnef"]
 [ext_resource type="Texture2D" uid="uid://6fdnb3yyp12o" path="res://Assets/Graphics/Units/Menu Design-2.png" id="1_slh48"]
-[ext_resource type="Script" path="res://Scripts/Menu/Menuchooseplayers.gd" id="2_gtttc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_l4obu"]
 bg_color = Color(0.486275, 0.635294, 0.305882, 1)
@@ -59,12 +59,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_6tvpw")
+script = ExtResource("1_kcnef")
 
 [node name="Sprite2DDD" type="Sprite2D" parent="."]
 position = Vector2(674, 308.5)
 scale = Vector2(0.563361, 0.350303)
 texture = ExtResource("1_slh48")
-script = ExtResource("2_gtttc")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -109,5 +109,6 @@ text = "SIX PLAYER"
 layout_mode = 2
 text = "BACK"
 
-[connection signal="pressed" from="VBoxContainer/One_Player_Button" to="Sprite2DDD" method="_on_one_player_button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Back_Button" to="Sprite2DDD" method="_on_back_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/One_Player_Button" to="." method="_on_one_player_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Two_Player_Button" to="." method="_on_two_player_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Back_Button" to="." method="_on_back_button_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://cdb4hl6k3x6y8"]
+[gd_scene load_steps=21 format=3 uid="uid://cdb4hl6k3x6y8"]
 
-[ext_resource type="Script" path="res://Scripts/Map.gd" id="1_6av3f"]
+[ext_resource type="Script" path="res://src/Gameplay/Game/Game.gd" id="1_4qslv"]
+[ext_resource type="Script" path="res://src/Gameplay/Map/Map.gd" id="1_6av3f"]
 [ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://Assets/Graphics/Units/Map Background.png" id="1_qqs7m"]
 [ext_resource type="Texture2D" uid="uid://di80c1djwbmv2" path="res://Assets/Graphics/Units/WorldConquestv2.png" id="2_mjxke"]
 [ext_resource type="Texture2D" uid="uid://dj4ytj318v20e" path="res://Assets/Graphics/map_data/image.png" id="2_qtqca"]
@@ -21,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://e1xv658ic27h" path="res://Assets/Graphics/map_data/South-America/argentina.png" id="18_bg6bg"]
 
 [node name="Map" type="Node2D"]
+script = ExtResource("1_4qslv")
 
 [node name="background" type="Area2D" parent="."]
 

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bcby1pwl55dvi"]
+
+[ext_resource type="Script" path="res://src/Gameplay/Game/Game.gd" id="1_mpl68"]
+[ext_resource type="PackedScene" uid="uid://cdb4hl6k3x6y8" path="res://src/Gameplay/Map/map.tscn" id="2_2esx0"]
+[ext_resource type="PackedScene" uid="uid://bvdbi5d8146tw" path="res://src/Gameplay/Background/Background.tscn" id="2_jfcpj"]
+[ext_resource type="Script" path="res://src/Gameplay/PlayerQueue/PlayerQueue.gd" id="4_ikb3k"]
+
+[node name="Game" type="Node2D" groups=["game"]]
+script = ExtResource("1_mpl68")
+
+[node name="PlayersQueue" type="Node2D" parent="."]
+script = ExtResource("4_ikb3k")
+
+[node name="background" type="CanvasLayer" parent="."]
+
+[node name="Background" parent="background" instance=ExtResource("2_jfcpj")]
+
+[node name="map" type="CanvasLayer" parent="."]
+
+[node name="Map" parent="map" instance=ExtResource("2_2esx0")]

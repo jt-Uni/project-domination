@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://xke805spa83l"]
 
-[ext_resource type="Script" path="res://Scripts/Menu/Main.gd" id="1_wlcsa"]
-[ext_resource type="Texture2D" uid="uid://6fdnb3yyp12o" path="res://Assets/Graphics/Units/Menu Design-2.png" id="2_x7vrh"]
+[ext_resource type="Script" path="res://src/Menu/MainMenu.gd" id="1_6d2de"]
+[ext_resource type="Texture2D" uid="uid://6fdnb3yyp12o" path="res://Assets/Graphics/Units/Menu Design-2.png" id="2_8f7tl"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w444o"]
 bg_color = Color(0.486275, 0.635294, 0.305882, 1)
@@ -49,12 +49,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = SubResource("Theme_fvbva")
-script = ExtResource("1_wlcsa")
+script = ExtResource("1_6d2de")
 
 [node name="Sprite2DD" type="Sprite2D" parent="."]
 position = Vector2(674, 308.5)
 scale = Vector2(0.563361, 0.350303)
-texture = ExtResource("2_x7vrh")
+texture = ExtResource("2_8f7tl")
 
 [node name="buttons" type="VBoxContainer" parent="."]
 custom_minimum_size = Vector2(300, 0)
