@@ -151,12 +151,18 @@ texture = ExtResource("12_lqp16")
 
 [node name="venuzuela" type="Area2D" parent="south-america"]
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="south-america/venuzuela"]
+polygon = PackedVector2Array(215, 404, 218, 407, 227, 410, 230, 416, 234, 424, 236, 426, 242, 424, 252, 423, 259, 417, 269, 410, 279, 407, 289, 403, 295, 396, 305, 390, 306, 386, 299, 385, 287, 385, 280, 382, 272, 382, 264, 385, 253, 385, 247, 388, 237, 394, 226, 400)
+
 [node name="Sprite2D" type="Sprite2D" parent="south-america/venuzuela"]
 position = Vector2(261, 404)
 scale = Vector2(0.180856, 0.137121)
 texture = ExtResource("14_w2w35")
 
 [node name="bolivia" type="Area2D" parent="south-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="south-america/bolivia"]
+polygon = PackedVector2Array(240, 426, 245, 433, 253, 439, 264, 439, 276, 442, 283, 447, 289, 446, 297, 442, 300, 434, 316, 430, 331, 429, 343, 429, 350, 424, 350, 418, 350, 411, 355, 409, 358, 409, 350, 405, 341, 402, 336, 398, 324, 395, 310, 391, 302, 396, 294, 404, 283, 408, 271, 412, 260, 420, 254, 424)
 
 [node name="Sprite2D" type="Sprite2D" parent="south-america/bolivia"]
 position = Vector2(298, 419)
@@ -165,6 +171,9 @@ texture = ExtResource("15_65ov1")
 
 [node name="brazil" type="Area2D" parent="south-america"]
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="south-america/brazil"]
+polygon = PackedVector2Array(288, 453, 293, 455, 295, 459, 298, 464, 304, 465, 304, 470, 304, 482, 308, 492, 315, 495, 323, 502, 332, 510, 337, 524, 341, 533, 345, 535, 348, 531, 349, 522, 353, 515, 362, 515, 369, 513, 368, 507, 365, 500, 362, 492, 365, 488, 373, 486, 381, 485, 386, 484, 387, 477, 388, 472, 395, 469, 404, 467, 410, 467, 413, 464, 415, 458, 417, 453, 418, 446, 417, 440, 408, 436, 401, 429, 397, 426, 389, 424, 387, 420, 376, 416, 366, 414, 359, 412, 355, 413, 357, 422, 353, 427, 344, 431, 337, 433, 327, 434, 311, 434, 305, 434, 301, 442, 298, 449)
+
 [node name="Sprite2D" type="Sprite2D" parent="south-america/brazil"]
 position = Vector2(353, 473)
 scale = Vector2(0.181129, 0.139723)
@@ -172,12 +181,18 @@ texture = ExtResource("16_yf68p")
 
 [node name="peru" type="Area2D" parent="south-america"]
 
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="south-america/peru"]
+polygon = PackedVector2Array(186, 440, 187, 443, 196, 446, 201, 450, 208, 453, 214, 459, 221, 463, 227, 470, 231, 479, 231, 493, 232, 499, 230, 503, 235, 511, 233, 514, 231, 522, 237, 526, 241, 528, 247, 525, 255, 524, 263, 525, 269, 527, 276, 527, 281, 522, 284, 519, 300, 519, 310, 518, 311, 514, 313, 511, 322, 510, 325, 508, 321, 505, 315, 501, 309, 496, 305, 490, 301, 482, 300, 475, 300, 469, 295, 468, 295, 463, 294, 461, 286, 459, 283, 457, 282, 450, 276, 447, 264, 446, 253, 443, 248, 438, 239, 432, 234, 425, 228, 420, 225, 414, 222, 410, 215, 408, 210, 412, 201, 417, 192, 417, 190, 420, 192, 429, 191, 436)
+
 [node name="Sprite2D" type="Sprite2D" parent="south-america/peru"]
 position = Vector2(256, 468.125)
 scale = Vector2(0.177891, 0.133611)
 texture = ExtResource("17_h7ypw")
 
 [node name="argentina" type="Area2D" parent="south-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="south-america/argentina"]
+polygon = PackedVector2Array(245, 531, 249, 535, 250, 540, 253, 546, 256, 552, 260, 558, 259, 563, 256, 567, 258, 571, 264, 571, 268, 576, 270, 580, 270, 585, 269, 590, 268, 594, 269, 598, 271, 601, 272, 605, 271, 610, 270, 613, 270, 615, 276, 617, 280, 618, 284, 614, 288, 610, 290, 604, 294, 600, 298, 593, 300, 586, 304, 580, 309, 576, 314, 575, 322, 575, 326, 575, 332, 570, 335, 567, 337, 563, 338, 557, 339, 551, 339, 541, 341, 536, 336, 533, 333, 525, 329, 518, 327, 512, 321, 513, 315, 515, 314, 519, 309, 523, 301, 523, 292, 523, 285, 526, 278, 530, 270, 530, 259, 528, 250, 527)
 
 [node name="Sprite2D" type="Sprite2D" parent="south-america/argentina"]
 position = Vector2(292.438, 564.5)
