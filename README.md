@@ -13,4 +13,4 @@ Meet our talented and dedicated team members:
 - Naeem
 - Neel
 - Rafik
-- Max
+  
