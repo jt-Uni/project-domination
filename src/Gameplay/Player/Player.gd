@@ -32,3 +32,8 @@ func set_active(value):
 	
 func setup_reinforcements():
 	reinforcement = randi() % 10 + 3
+
+func set_initial_troops(amount, net_call=false):
+	initial_troops = amount
+	if net_call:
+		return

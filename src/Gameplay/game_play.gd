@@ -1,6 +1,6 @@
 extends Node
 
-var players = 2
+var players = 0
 var colors = {
 	"1": Color.ORANGE,
 	"2": Color.LIGHT_BLUE,
