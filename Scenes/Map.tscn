@@ -1,11 +1,185 @@
-[gd_scene load_steps=2 format=3 uid="uid://dpiy0rtegnra5"]
+[gd_scene load_steps=20 format=3 uid="uid://cdb4hl6k3x6y8"]
 
-[ext_resource type="Script" path="res://Scripts/Map.gd" id="1_q2ara"]
+[ext_resource type="Script" path="res://Scripts/map.gd" id="1_6av3f"]
+[ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://Assets/Graphics/Units/Map Background.png" id="1_qqs7m"]
+[ext_resource type="Texture2D" uid="uid://di80c1djwbmv2" path="res://Assets/Graphics/Units/WorldConquestv2.png" id="2_mjxke"]
+[ext_resource type="Texture2D" uid="uid://dj4ytj318v20e" path="res://Assets/Graphics/map_data/image.png" id="2_qtqca"]
+[ext_resource type="Texture2D" uid="uid://6vg5a37n5yoy" path="res://Assets/Graphics/map_data/North-America/alaska.png" id="3_2wqdb"]
+[ext_resource type="Texture2D" uid="uid://bdhf6g1ohjyfd" path="res://Assets/Graphics/map_data/North-America/northwest territory.png" id="4_vivka"]
+[ext_resource type="Texture2D" uid="uid://0vf1ko4chd0b" path="res://Assets/Graphics/map_data/North-America/greenland.png" id="5_gn707"]
+[ext_resource type="Texture2D" uid="uid://bbqb7jjur8ebo" path="res://Assets/Graphics/map_data/North-America/alberta.png" id="6_534fd"]
+[ext_resource type="Texture2D" uid="uid://jt6ko4qg4uqk" path="res://Assets/Graphics/map_data/North-America/ontario.png" id="7_cqncg"]
+[ext_resource type="Texture2D" uid="uid://cug4r8so73jf4" path="res://Assets/Graphics/map_data/North-America/eastern canada.png" id="8_vd2r8"]
+[ext_resource type="Texture2D" uid="uid://cltwxp4bnx6ex" path="res://Assets/Graphics/map_data/North-America/northern united states.png" id="9_up5yd"]
+[ext_resource type="Texture2D" uid="uid://bft8hdo51s7je" path="res://Assets/Graphics/map_data/North-America/western united states.png" id="10_d8043"]
+[ext_resource type="Texture2D" uid="uid://cer2fb056jsm7" path="res://Assets/Graphics/map_data/North-America/eastern united states.png" id="11_4daff"]
+[ext_resource type="Texture2D" uid="uid://c3bfwlf1c5vqx" path="res://Assets/Graphics/map_data/North-America/central america.png" id="12_lqp16"]
+[ext_resource type="Texture2D" uid="uid://dh2ns1qdlndny" path="res://Assets/Graphics/map_data/South-America/venezuela.png" id="14_w2w35"]
+[ext_resource type="Texture2D" uid="uid://dhlaqby7cxpyu" path="res://Assets/Graphics/map_data/South-America/bolivia.png" id="15_65ov1"]
+[ext_resource type="Texture2D" uid="uid://bldp74cg7kfva" path="res://Assets/Graphics/map_data/South-America/brazil.png" id="16_yf68p"]
+[ext_resource type="Texture2D" uid="uid://bxo6o3d5g3t5e" path="res://Assets/Graphics/map_data/South-America/peru.png" id="17_h7ypw"]
+[ext_resource type="Texture2D" uid="uid://e1xv658ic27h" path="res://Assets/Graphics/map_data/South-America/argentina.png" id="18_bg6bg"]
 
-[node name="RegionArea" type="Area2D"]
-script = ExtResource("1_q2ara")
+[node name="Map" type="Node2D"]
 
-[connection signal="child_entered_tree" from="." to="." method="_on_child_entered_tree"]
-[connection signal="input_event" from="." to="." method="_on_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[node name="background" type="Area2D" parent="."]
+script = ExtResource("1_6av3f")
+
+[node name="imagebackground" type="Sprite2D" parent="background"]
+position = Vector2(576, 323.75)
+scale = Vector2(1.152, 0.972264)
+texture = ExtResource("1_qqs7m")
+
+[node name="logo" type="Sprite2D" parent="background"]
+position = Vector2(133, 102)
+scale = Vector2(0.226042, 0.240741)
+texture = ExtResource("2_mjxke")
+
+[node name="Image" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(564, 325)
+scale = Vector2(0.823955, 0.654143)
+texture = ExtResource("2_qtqca")
+
+[node name="north-america" type="Area2D" parent="."]
+
+[node name="alaska" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/alaska"]
+polygon = PackedVector2Array(139, 203, 143, 204, 146, 203, 152, 201, 158, 200, 161, 198, 168, 196, 173, 196, 176, 199, 178, 204, 179, 212, 181, 215, 185, 218, 189, 222, 195, 225, 199, 231, 202, 233, 206, 239, 208, 245, 203, 250, 203, 255, 206, 258, 209, 257, 212, 251, 215, 246, 219, 243, 220, 238, 218, 234, 220, 230, 221, 227, 225, 226, 227, 223, 228, 220, 229, 215, 229, 208, 229, 203, 227, 199, 222, 200, 214, 200, 206, 200, 200, 200, 196, 198, 196, 196, 195, 193, 193, 188, 192, 186, 191, 183, 190, 180, 187, 174, 185, 165, 183, 154, 180, 149, 168, 149, 163, 150, 160, 147, 154, 145, 149, 143, 144, 145, 142, 151, 142, 157, 139, 161, 135, 169, 131, 174, 133, 179, 138, 186, 141, 194, 137, 201)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/alaska"]
+position = Vector2(180, 201)
+scale = Vector2(0.192982, 0.140415)
+texture = ExtResource("3_2wqdb")
+
+[node name="northwest-territory" type="Area2D" parent="north-america"]
+position = Vector2(184, 201)
+scale = Vector2(0.171053, 0.141331)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/northwest-territory"]
+polygon = PackedVector2Array(0.00012207, -360.855, 11.6924, -332.553, 11.6924, -283.024, 11.6924, -240.57, 23.3848, -219.343, 35.077, -183.965, 46.7694, -141.512, 58.4617, -91.9827, 76.0001, -28.3024, 99.3848, -21.2268, 140.308, -28.3024, 198.769, -35.3779, 251.385, -28.3024, 280.615, -14.1511, 333.231, -14.1511, 391.693, -28.3024, 450.154, -42.4535, 514.462, -42.4535, 561.231, -56.6047, 584.615, -77.8315, 596.308, -127.361, 596.308, -162.739, 578.769, -169.814, 567.077, -198.117, 567.077, -226.419, 543.693, -254.721, 532, -297.175, 502.769, -318.402, 491.077, -367.931, 479.385, -396.233, 432.615, -424.536, 426.769, -495.292, 426.769, -523.594, 397.539, -523.594, 362.462, -495.292, 315.692, -474.065, 280.615, -474.065, 239.692, -495.292, 210.462, -474.065, 181.231, -452.838, 146.154, -417.46, 111.077, -396.233, 70.1539, -382.082)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/northwest-territory"]
+position = Vector2(298.154, -268.873)
+scale = Vector2(1.09633, 1.01535)
+texture = ExtResource("4_vivka")
+
+[node name="greenland" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/greenland"]
+polygon = PackedVector2Array(299, 143, 299, 146, 302, 149, 306, 154, 306, 158, 309, 158, 312, 162, 316, 165, 321, 167, 330, 168, 337, 167, 341, 164, 346, 163, 351, 165, 354, 167, 361, 168, 367, 167, 370, 163, 375, 161, 382, 162, 387, 164, 393, 167, 401, 168, 404, 167, 405, 164, 407, 162, 411, 162, 414, 159, 416, 156, 416, 152, 415, 149, 417, 147, 420, 146, 427, 145, 433, 143, 437, 140, 440, 137, 439, 132, 439, 130, 438, 125, 441, 118, 440, 110, 440, 102, 442, 96, 446, 93, 447, 90, 444, 86, 440, 84, 436, 87, 430, 89, 425, 89, 422, 88, 419, 86, 413, 85, 409, 86, 407, 89, 404, 93, 401, 96, 398, 97, 393, 98, 389, 97, 386, 95, 382, 93, 380, 91, 376, 90, 372, 90, 370, 90, 367, 94, 366, 96, 359, 101, 351, 102, 345, 102, 339, 102, 335, 103, 330, 107, 327, 109, 325, 111, 327, 114, 328, 116, 328, 118, 326, 118, 319, 120, 314, 120, 313, 122, 315, 126, 316, 132, 316, 138, 312, 140, 306, 142)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/greenland"]
+position = Vector2(373, 126)
+scale = Vector2(0.183047, 0.165927)
+texture = ExtResource("5_gn707")
+
+[node name="alberta" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/alberta"]
+polygon = PackedVector2Array(227, 225, 231, 226, 236, 226, 242, 226, 248, 227, 254, 228, 265, 228, 275, 228, 280, 228, 281, 226, 281, 224, 280, 223, 278, 221, 277, 217, 276, 213, 274, 212, 272, 209, 269, 207, 269, 205, 268, 202, 267, 200, 263, 199, 258, 199, 253, 201, 248, 201, 244, 202, 238, 201, 233, 200, 232, 203, 231, 207, 231, 212, 230, 218, 229, 222, 228, 224)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/alberta"]
+position = Vector2(254.5, 213.75)
+scale = Vector2(0.195035, 0.130531)
+texture = ExtResource("6_534fd")
+
+[node name="ontario" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/ontario"]
+polygon = PackedVector2Array(266, 197, 269, 199, 269, 203, 271, 207, 275, 208, 277, 210, 278, 215, 279, 219, 281, 222, 283, 225, 286, 224, 289, 223, 295, 223, 300, 224, 305, 224, 310, 225, 315, 225, 314, 223, 310, 219, 308, 218, 303, 213, 299, 207, 295, 206, 292, 202, 291, 198, 291, 193, 289, 191, 286, 192, 282, 195, 275, 197)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/ontario"]
+position = Vector2(290.5, 207.875)
+scale = Vector2(0.178832, 0.137)
+texture = ExtResource("7_cqncg")
+
+[node name="eastern-canada" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/eastern-canada"]
+polygon = PackedVector2Array(292, 197, 295, 201, 299, 203, 302, 207, 305, 211, 309, 215, 312, 218, 315, 222, 316, 227, 318, 234, 318, 240, 318, 246, 320, 249, 322, 250, 326, 249, 329, 251, 331, 255, 333, 261, 335, 262, 339, 261, 342, 260, 343, 256, 342, 252, 340, 247, 341, 243, 347, 242, 352, 240, 361, 238, 364, 234, 367, 232, 370, 229, 375, 227, 383, 224, 390, 221, 395, 218, 396, 215, 395, 209, 395, 204, 397, 200, 398, 198, 386, 197, 380, 197, 378, 195, 375, 193, 365, 193, 361, 190, 359, 187, 347, 187, 335, 186, 333, 194, 337, 200, 335, 205, 330, 207, 321, 208, 312, 205, 301, 201)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/eastern-canada"]
+position = Vector2(344, 223.875)
+scale = Vector2(0.186955, 0.150098)
+texture = ExtResource("8_vd2r8")
+
+[node name="northern-united-states" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/northern-united-states"]
+polygon = PackedVector2Array(211, 260, 216, 259, 222, 259, 228, 259, 236, 260, 247, 260, 257, 259, 270, 260, 279, 259, 288, 260, 294, 261, 300, 262, 305, 261, 311, 257, 316, 252, 316, 242, 316, 231, 314, 226, 302, 225, 291, 226, 281, 229, 276, 232, 264, 233, 251, 231, 241, 227, 233, 227, 225, 228, 220, 231, 220, 238, 222, 243, 220, 251, 215, 258)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/northern-united-states"]
+position = Vector2(264, 243.5)
+scale = Vector2(0.176373, 0.153527)
+texture = ExtResource("9_up5yd")
+
+[node name="western-united-states" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/western-united-states"]
+polygon = PackedVector2Array(205, 262, 205, 271, 205, 282, 206, 288, 206, 298, 205, 312, 204, 315, 205, 314, 208, 316, 215, 317, 225, 317, 230, 318, 233, 321, 237, 323, 238, 327, 239, 329, 241, 328, 242, 325, 244, 321, 247, 317, 250, 313, 254, 307, 258, 299, 261, 292, 265, 286, 268, 279, 266, 271, 266, 265, 267, 263, 252, 263, 236, 262, 220, 262, 210, 261)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/western-united-states"]
+position = Vector2(235.656, 295.156)
+scale = Vector2(0.197218, 0.144119)
+texture = ExtResource("10_d8043")
+
+[node name="eastern-united-states" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="north-america/eastern-united-states"]
+position = Vector2(1.52588e-05, -3.05176e-05)
+scale = Vector2(1, 1)
+polygon = PackedVector2Array(247, 326, 250, 328, 254, 331, 259, 336, 262, 342, 267, 342, 280, 344, 291, 345, 298, 344, 303, 340, 304, 333, 303, 326, 306, 322, 311, 320, 315, 318, 316, 314, 315, 310, 313, 308, 311, 307, 310, 305, 311, 304, 315, 303, 315, 299, 314, 295, 311, 292, 309, 289, 307, 287, 305, 284, 303, 281, 304, 278, 308, 277, 311, 276, 317, 274, 320, 272, 321, 267, 324, 265, 327, 262, 327, 255, 326, 252, 321, 253, 315, 256, 312, 260, 308, 262, 303, 263, 297, 263, 290, 261, 282, 261, 273, 262, 269, 264, 267, 269, 269, 278, 268, 285, 264, 292, 260, 299, 256, 309, 253, 314, 251, 319, 247, 325)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/eastern-united-states"]
+position = Vector2(287, 298.5)
+scale = Vector2(0.178571, 0.145997)
+texture = ExtResource("11_4daff")
+
+[node name="central-america" type="Area2D" parent="north-america"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="north-america/central-america"]
+polygon = PackedVector2Array(203, 325, 209, 330, 214, 333, 217, 336, 216, 342, 215, 348, 214, 357, 214, 365, 215, 372, 219, 378, 223, 383, 231, 385, 238, 383, 245, 379, 247, 373, 249, 366, 249, 355, 246, 352, 246, 347, 246, 344, 250, 342, 256, 340, 259, 340, 258, 338, 255, 336, 251, 333, 246, 331, 238, 330, 234, 327, 233, 324, 228, 321, 220, 319, 209, 319, 206, 320)
+
+[node name="Sprite2D" type="Sprite2D" parent="north-america/central-america"]
+position = Vector2(231, 352)
+scale = Vector2(0.171923, 0.137029)
+texture = ExtResource("12_lqp16")
+
+[node name="south-america" type="Area2D" parent="."]
+
+[node name="venuzuela" type="Area2D" parent="south-america"]
+
+[node name="Sprite2D" type="Sprite2D" parent="south-america/venuzuela"]
+position = Vector2(261, 404)
+scale = Vector2(0.180856, 0.137121)
+texture = ExtResource("14_w2w35")
+
+[node name="bolivia" type="Area2D" parent="south-america"]
+
+[node name="Sprite2D" type="Sprite2D" parent="south-america/bolivia"]
+position = Vector2(298, 419)
+scale = Vector2(0.18061, 0.130303)
+texture = ExtResource("15_65ov1")
+
+[node name="brazil" type="Area2D" parent="south-america"]
+
+[node name="Sprite2D" type="Sprite2D" parent="south-america/brazil"]
+position = Vector2(353, 473)
+scale = Vector2(0.181129, 0.139723)
+texture = ExtResource("16_yf68p")
+
+[node name="peru" type="Area2D" parent="south-america"]
+
+[node name="Sprite2D" type="Sprite2D" parent="south-america/peru"]
+position = Vector2(256, 468.125)
+scale = Vector2(0.177891, 0.133611)
+texture = ExtResource("17_h7ypw")
+
+[node name="argentina" type="Area2D" parent="south-america"]
+
+[node name="Sprite2D" type="Sprite2D" parent="south-america/argentina"]
+position = Vector2(292.438, 564.5)
+scale = Vector2(0.172557, 0.145333)
+texture = ExtResource("18_bg6bg")

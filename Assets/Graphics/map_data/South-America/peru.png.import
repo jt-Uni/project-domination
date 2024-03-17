@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cunshu1xwkhci"
-path="res://.godot/imported/worldMap.png-f75bfcaefd2ba86f8a64a1c272584cac.ctex"
+uid="uid://bxo6o3d5g3t5e"
+path="res://.godot/imported/peru.png-1eccc97b8d9986cbb66ce63f1b9024e9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Graphics/map_data/worldMap.png"
-dest_files=["res://.godot/imported/worldMap.png-f75bfcaefd2ba86f8a64a1c272584cac.ctex"]
+source_file="res://Assets/Graphics/map_data/South-America/peru.png"
+dest_files=["res://.godot/imported/peru.png-1eccc97b8d9986cbb66ce63f1b9024e9.ctex"]
 
 [params]
 
