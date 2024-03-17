@@ -1,0 +1,137 @@
+[gd_scene load_steps=9 format=3 uid="uid://xke805spa83l"]
+
+[ext_resource type="Script" path="res://src/Menu/MainMenu.gd" id="1_6d2de"]
+[ext_resource type="Texture2D" uid="uid://6fdnb3yyp12o" path="res://Assets/Graphics/Units/Menu Design-2.png" id="2_8f7tl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w444o"]
+bg_color = Color(0.486275, 0.635294, 0.305882, 1)
+border_width_bottom = 5
+border_color = Color(0.266667, 0.333333, 0.168627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 4
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afyku"]
+bg_color = Color(0.376471, 0.498039, 0.227451, 1)
+border_width_bottom = 5
+border_color = Color(0.266667, 0.333333, 0.168627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 4
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dm331"]
+bg_color = Color(0.376471, 0.498039, 0.227451, 1)
+border_width_bottom = 5
+border_color = Color(0.266667, 0.333333, 0.168627, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 4
+shadow_offset = Vector2(2, 2)
+
+[sub_resource type="Theme" id="Theme_fvbva"]
+Button/styles/hover = SubResource("StyleBoxFlat_w444o")
+Button/styles/normal = SubResource("StyleBoxFlat_afyku")
+Button/styles/pressed = SubResource("StyleBoxFlat_dm331")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v2hwr"]
+bg_color = Color(0.631373, 0.643137, 0.682353, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[sub_resource type="Theme" id="Theme_x3606"]
+Label/styles/normal = SubResource("StyleBoxFlat_v2hwr")
+
+[node name="main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_fvbva")
+script = ExtResource("1_6d2de")
+
+[node name="Sprite2DD" type="Sprite2D" parent="."]
+position = Vector2(674, 308.5)
+scale = Vector2(0.563361, 0.350303)
+texture = ExtResource("2_8f7tl")
+
+[node name="FirstPage" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 0
+offset_left = 425.0
+offset_top = 361.0
+offset_right = 725.0
+offset_bottom = 474.0
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="PlayButton" type="Button" parent="FirstPage"]
+layout_mode = 2
+text = "PLAY"
+
+[node name="PlayerSelect" type="Button" parent="FirstPage"]
+layout_mode = 2
+text = "SELECT PLAYERS"
+
+[node name="QuitButton" type="Button" parent="FirstPage"]
+layout_mode = 2
+text = "QUIT"
+
+[node name="ChoosePlayerCount" type="VBoxContainer" parent="."]
+offset_left = 434.0
+offset_top = 327.0
+offset_right = 710.0
+offset_bottom = 616.0
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="ChoosePlayerCount"]
+modulate = Color(0.94902, 0.996078, 0.933333, 1)
+layout_mode = 2
+theme = SubResource("Theme_x3606")
+text = "PLAYERS: "
+horizontal_alignment = 1
+
+[node name="One_Player_Button" type="Button" parent="ChoosePlayerCount"]
+layout_mode = 2
+text = "ONE PLAYER"
+
+[node name="Two_Player_Button" type="Button" parent="ChoosePlayerCount"]
+layout_mode = 2
+text = "TWO PLAYER"
+
+[node name="Three_Player_Button" type="Button" parent="ChoosePlayerCount"]
+layout_mode = 2
+text = "THREE PLAYER"
+
+[node name="Four_Player_Button" type="Button" parent="ChoosePlayerCount"]
+layout_mode = 2
+text = "FOUR PLAYER"
+
+[node name="Five_Player_Button" type="Button" parent="ChoosePlayerCount"]
+layout_mode = 2
+text = "FIVE PLAYER"
+
+[node name="Six_Player_Button" type="Button" parent="ChoosePlayerCount"]
+layout_mode = 2
+text = "SIX PLAYER"
+
+[node name="Back_Button" type="Button" parent="ChoosePlayerCount"]
+layout_mode = 2
+text = "BACK"
+
+[connection signal="pressed" from="FirstPage/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="FirstPage/PlayerSelect" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="FirstPage/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="ChoosePlayerCount/Back_Button" to="." method="_on_back_button_pressed"]
