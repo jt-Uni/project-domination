@@ -1,0 +1,209 @@
+[gd_scene load_steps=9 format=3 uid="uid://dbdcng4rtnjgu"]
+
+[ext_resource type="Texture2D" uid="uid://fk25uqb8dui4" path="res://Assets/Graphics/Units/Playerprofileocons/yellow.png" id="1_snqi1"]
+[ext_resource type="Texture2D" uid="uid://cpnw6wsjhj2da" path="res://Assets/Graphics/Units/army.png" id="2_swssg"]
+[ext_resource type="Texture2D" uid="uid://b3t0fbw3uxrm5" path="res://Assets/Graphics/Units/Playerprofileocons/red.png" id="3_wl27y"]
+[ext_resource type="Texture2D" uid="uid://dc4pai635uiy" path="res://Assets/Graphics/Units/Playerprofileocons/purple.png" id="4_ko8sk"]
+[ext_resource type="Texture2D" uid="uid://du8k1h4yfxvxy" path="res://Assets/Graphics/Units/Playerprofileocons/blue.png" id="5_wo2fb"]
+[ext_resource type="Texture2D" uid="uid://bpyrbnmqovr43" path="res://Assets/Graphics/Units/Playerprofileocons/orange.png" id="6_d6wv4"]
+[ext_resource type="Texture2D" uid="uid://2ifji0cmgguc" path="res://Assets/Graphics/Units/Playerprofileocons/green.png" id="7_b3fbe"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a8r4k"]
+bg_color = Color(0.670588, 0.592157, 0.419608, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+
+[node name="ReinforcementPhase" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 436.0
+offset_top = 117.0
+offset_right = 3007.0
+offset_bottom = 712.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8r4k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 60
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_snqi1")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "REINFORCEMENT"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_swssg")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 442.0
+offset_top = 750.0
+offset_right = 3013.0
+offset_bottom = 1345.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8r4k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 60
+
+[node name="TextureRect" type="TextureRect" parent="Panel2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_wl27y")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "REINFORCEMENT"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_swssg")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 467.0
+offset_top = 1397.0
+offset_right = 3038.0
+offset_bottom = 1992.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8r4k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel3"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 60
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_ko8sk")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel3/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "REINFORCEMENT"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel3/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_swssg")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel4" type="Panel" parent="."]
+offset_left = 465.0
+offset_top = 2017.0
+offset_right = 3036.0
+offset_bottom = 2612.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8r4k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel4"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 60
+
+[node name="TextureRect" type="TextureRect" parent="Panel4/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_wo2fb")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel4/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "REINFORCEMENT"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel4/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_swssg")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel5" type="Panel" parent="."]
+offset_left = 490.0
+offset_top = 2650.0
+offset_right = 3061.0
+offset_bottom = 3245.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8r4k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel5"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 60
+
+[node name="TextureRect" type="TextureRect" parent="Panel5/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_d6wv4")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel5/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "REINFORCEMENT"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel5/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_swssg")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel6" type="Panel" parent="."]
+offset_left = 484.0
+offset_top = 3278.0
+offset_right = 3055.0
+offset_bottom = 3873.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_a8r4k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel6"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 60
+
+[node name="TextureRect" type="TextureRect" parent="Panel6/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_b3fbe")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel6/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "REINFORCEMENT"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel6/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_swssg")
+expand_mode = 3
+stretch_mode = 4

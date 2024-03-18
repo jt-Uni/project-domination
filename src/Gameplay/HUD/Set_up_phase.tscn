@@ -1,0 +1,209 @@
+[gd_scene load_steps=9 format=3 uid="uid://bctplxke61wkv"]
+
+[ext_resource type="Texture2D" uid="uid://fk25uqb8dui4" path="res://Assets/Graphics/Units/Playerprofileocons/yellow.png" id="1_dq828"]
+[ext_resource type="Texture2D" uid="uid://b25yp6duvaw4f" path="res://Assets/Graphics/Units/settings-icon.png" id="2_6f6xx"]
+[ext_resource type="Texture2D" uid="uid://b3t0fbw3uxrm5" path="res://Assets/Graphics/Units/Playerprofileocons/red.png" id="3_dr3os"]
+[ext_resource type="Texture2D" uid="uid://dc4pai635uiy" path="res://Assets/Graphics/Units/Playerprofileocons/purple.png" id="4_fu2wc"]
+[ext_resource type="Texture2D" uid="uid://du8k1h4yfxvxy" path="res://Assets/Graphics/Units/Playerprofileocons/blue.png" id="5_llp48"]
+[ext_resource type="Texture2D" uid="uid://bpyrbnmqovr43" path="res://Assets/Graphics/Units/Playerprofileocons/orange.png" id="6_6e22v"]
+[ext_resource type="Texture2D" uid="uid://2ifji0cmgguc" path="res://Assets/Graphics/Units/Playerprofileocons/green.png" id="7_tgwwp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3l6di"]
+bg_color = Color(0.670588, 0.592157, 0.419608, 1)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 90
+corner_radius_top_right = 90
+corner_radius_bottom_right = 90
+corner_radius_bottom_left = 90
+
+[node name="SetUpPhase" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 823.0
+offset_top = -52.0
+offset_right = 3394.0
+offset_bottom = 543.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 400
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_dq828")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "SET-UP"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_6f6xx")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel2" type="Panel" parent="."]
+offset_left = 825.0
+offset_top = 591.0
+offset_right = 3396.0
+offset_bottom = 1186.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel2"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 400
+
+[node name="TextureRect" type="TextureRect" parent="Panel2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("3_dr3os")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel2/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "SET-UP"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_6f6xx")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel3" type="Panel" parent="."]
+offset_left = 834.0
+offset_top = 1251.0
+offset_right = 3405.0
+offset_bottom = 1846.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel3"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 400
+
+[node name="TextureRect" type="TextureRect" parent="Panel3/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("4_fu2wc")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel3/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "SET-UP"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel3/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_6f6xx")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel4" type="Panel" parent="."]
+offset_left = 845.0
+offset_top = 1902.0
+offset_right = 3416.0
+offset_bottom = 2497.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel4"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 400
+
+[node name="TextureRect" type="TextureRect" parent="Panel4/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("5_llp48")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel4/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "SET-UP"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel4/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_6f6xx")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel5" type="Panel" parent="."]
+offset_left = 842.0
+offset_top = 2542.0
+offset_right = 3413.0
+offset_bottom = 3137.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel5"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 400
+
+[node name="TextureRect" type="TextureRect" parent="Panel5/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_6e22v")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel5/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "SET-UP"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel5/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_6f6xx")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Panel6" type="Panel" parent="."]
+offset_left = 842.0
+offset_top = 3185.0
+offset_right = 3413.0
+offset_bottom = 3780.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel6"]
+offset_left = 80.0
+offset_top = 59.0
+offset_right = 2320.0
+offset_bottom = 543.0
+theme_override_constants/separation = 400
+
+[node name="TextureRect" type="TextureRect" parent="Panel6/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("7_tgwwp")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel6/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 150
+text = "SET-UP"
+
+[node name="TextureRect2" type="TextureRect" parent="Panel6/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_6f6xx")
+expand_mode = 3
+stretch_mode = 4
