@@ -1,0 +1,375 @@
+[gd_scene load_steps=5 format=3 uid="uid://cp46qavj58nct"]
+
+[ext_resource type="Texture2D" uid="uid://gqfc1h5g4elk" path="res://Assets/Graphics/Units/Guard.png" id="1_tlla7"]
+[ext_resource type="Texture2D" uid="uid://dnnnbrx3gxeyh" path="res://Assets/Graphics/Units/location-map.png" id="2_hbjky"]
+[ext_resource type="Texture2D" uid="uid://cpqdyd7ph3tne" path="res://Assets/Graphics/Units/Playerprofileocons/[CITYPNG.COM]Profile User Round Yellow Icon Symbol FREE PNG - 1000x1000.png" id="3_0tlje"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0wun"]
+bg_color = Color(0.670588, 0.592157, 0.419608, 1)
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[node name="PlayerTurn(rhs)" type="Node2D"]
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 4210.0
+offset_top = 596.0
+offset_right = 5547.0
+offset_bottom = 3254.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_x0wun")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+offset_left = 171.0
+offset_top = 179.0
+offset_right = 1197.0
+offset_bottom = 2503.0
+theme_override_constants/separation = 100
+
+[node name="PLAYERONEHBOX" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_direction = 2
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/PLAYERONEHBOX"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/PLAYERONEHBOX/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERONEHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERONEHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_tlla7")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Player1_troopcount" type="Label" parent="Panel/VBoxContainer/PLAYERONEHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "13
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERONEHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERONEHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_hbjky")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="player1_territorycount" type="Label" parent="Panel/VBoxContainer/PLAYERONEHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "10
+"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERONEHBOX"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("3_0tlje")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/PLAYERONEHBOX"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_font_sizes/font_size = 47
+text = "PLAYER 1"
+
+[node name="PLAYERTWOHBOX" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/PLAYERTWOHBOX"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/PLAYERTWOHBOX/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERTWOHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERTWOHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_tlla7")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Player2_troopcount" type="Label" parent="Panel/VBoxContainer/PLAYERTWOHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "13
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERTWOHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERTWOHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_hbjky")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="player2_territorycount" type="Label" parent="Panel/VBoxContainer/PLAYERTWOHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "10
+"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERTWOHBOX"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("3_0tlje")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/PLAYERTWOHBOX"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 47
+text = "PLAYER 2
+"
+
+[node name="PLAYERTHREEHBOX" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/PLAYERTHREEHBOX"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/PLAYERTHREEHBOX/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERTHREEHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERTHREEHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_tlla7")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Player3_troopcount" type="Label" parent="Panel/VBoxContainer/PLAYERTHREEHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.627451, 0.12549, 0.941176, 1)
+theme_override_font_sizes/font_size = 90
+text = "13
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERTHREEHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERTHREEHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_hbjky")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="player3_territorycount" type="Label" parent="Panel/VBoxContainer/PLAYERTHREEHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.627451, 0.12549, 0.941176, 1)
+theme_override_font_sizes/font_size = 90
+text = "10
+"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERTHREEHBOX"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("3_0tlje")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/PLAYERTHREEHBOX"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.627451, 0.12549, 0.941176, 1)
+theme_override_font_sizes/font_size = 47
+text = "PLAYER 3
+"
+
+[node name="PLAYERFOURHBOX" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/PLAYERFOURHBOX"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/PLAYERFOURHBOX/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERFOURHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERFOURHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_tlla7")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Player4_troopcount" type="Label" parent="Panel/VBoxContainer/PLAYERFOURHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.678431, 0.847059, 0.901961, 1)
+theme_override_font_sizes/font_size = 90
+text = "13
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERFOURHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERFOURHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_hbjky")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="player4_territorycount" type="Label" parent="Panel/VBoxContainer/PLAYERFOURHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.678431, 0.847059, 0.901961, 1)
+theme_override_font_sizes/font_size = 90
+text = "10
+"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERFOURHBOX"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("3_0tlje")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/PLAYERFOURHBOX"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.678431, 0.847059, 0.901961, 1)
+theme_override_font_sizes/font_size = 47
+text = "PLAYER 4
+"
+
+[node name="PLAYERFIVEHBOX" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/PLAYERFIVEHBOX"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/PLAYERFIVEHBOX/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERFIVEHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERFIVEHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_tlla7")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Player5_troopcount" type="Label" parent="Panel/VBoxContainer/PLAYERFIVEHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.647059, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "13
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERFIVEHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERFIVEHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_hbjky")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="player5_territorycount" type="Label" parent="Panel/VBoxContainer/PLAYERFIVEHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.647059, 0, 1)
+theme_override_font_sizes/font_size = 90
+text = "10
+"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERFIVEHBOX"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("3_0tlje")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/PLAYERFIVEHBOX"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.647059, 0, 1)
+theme_override_font_sizes/font_size = 47
+text = "PLAYER 5
+"
+
+[node name="PLAYERSIXHBOX" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/VBoxContainer/PLAYERSIXHBOX"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/VBoxContainer/PLAYERSIXHBOX/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERSIXHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERSIXHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("1_tlla7")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Player6_troopcount" type="Label" parent="Panel/VBoxContainer/PLAYERSIXHBOX/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.564706, 0.933333, 0.564706, 1)
+theme_override_font_sizes/font_size = 90
+text = "13
+"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/VBoxContainer/PLAYERSIXHBOX/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERSIXHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+texture = ExtResource("2_hbjky")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="player6_territorycount" type="Label" parent="Panel/VBoxContainer/PLAYERSIXHBOX/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(300, 150)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.564706, 0.933333, 0.564706, 1)
+theme_override_font_sizes/font_size = 90
+text = "10
+"
+
+[node name="TextureRect" type="TextureRect" parent="Panel/VBoxContainer/PLAYERSIXHBOX"]
+custom_minimum_size = Vector2(300, 300)
+layout_mode = 2
+texture = ExtResource("3_0tlje")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="Label" type="Label" parent="Panel/VBoxContainer/PLAYERSIXHBOX"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.564706, 0.933333, 0.564706, 1)
+theme_override_font_sizes/font_size = 47
+text = "PLAYER 6
+"
