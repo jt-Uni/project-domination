@@ -10,11 +10,10 @@ offset_top = 342.0
 offset_right = 1446.0
 offset_bottom = 1033.0
 
-[node name="TextureRect" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureButton" type="TextureButton" parent="VBoxContainer"]
 custom_minimum_size = Vector2(500, 550)
 layout_mode = 2
-texture = ExtResource("1_oq6v5")
-expand_mode = 3
+texture_normal = ExtResource("1_oq6v5")
 stretch_mode = 4
 
 [node name="Label" type="Label" parent="VBoxContainer"]
