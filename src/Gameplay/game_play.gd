@@ -1,6 +1,6 @@
 extends Node
 
-var players = 0
+var players = 2
 var colors = {
 	"1": Color.ORANGE,
 	"2": Color.LIGHT_BLUE,
@@ -28,7 +28,7 @@ var bordering_countries_nodes = {
 
 var game: Game
 var number_of_players: int = 2
-var players_data_template = {
+var players_data = {
 	"0": {
 		"name": "Player 1",
 		"color": Color.ORANGE,
@@ -49,9 +49,4 @@ var players_data_template = {
 		"name": "Player 5",
 		"color": Color.LIGHT_GREEN,
 	},
-	"5": {
-		"name": "Player 6",
-		"color": Color.LIGHT_CORAL,
-	},
 }
-var players_data = players_data_template

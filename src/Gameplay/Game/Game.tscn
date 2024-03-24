@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcby1pwl55dvi"]
+[gd_scene load_steps=6 format=3 uid="uid://bcby1pwl55dvi"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Game/Game.gd" id="1_mpl68"]
 [ext_resource type="PackedScene" uid="uid://cdb4hl6k3x6y8" path="res://src/Gameplay/Map/map.tscn" id="2_2esx0"]
-[ext_resource type="PackedScene" uid="uid://bvdbi5d8146tw" path="res://src/Gameplay/Background/Background.tscn" id="2_jfcpj"]
+[ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://Assets/Graphics/Units/Map Background.png" id="3_1t4p5"]
 [ext_resource type="Script" path="res://src/Gameplay/PlayerQueue/PlayerQueue.gd" id="4_ikb3k"]
+[ext_resource type="Texture2D" uid="uid://di80c1djwbmv2" path="res://Assets/Graphics/Units/WorldConquestv2.png" id="4_ppnfs"]
 
 [node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource("1_mpl68")
@@ -13,7 +14,17 @@ script = ExtResource("4_ikb3k")
 
 [node name="background" type="CanvasLayer" parent="."]
 
-[node name="Background" parent="background" instance=ExtResource("2_jfcpj")]
+[node name="background" type="Area2D" parent="background"]
+
+[node name="imagebackground" type="Sprite2D" parent="background/background"]
+position = Vector2(576, 323.75)
+scale = Vector2(1.152, 0.972264)
+texture = ExtResource("3_1t4p5")
+
+[node name="logo" type="Sprite2D" parent="background/background"]
+position = Vector2(133, 102)
+scale = Vector2(0.226042, 0.240741)
+texture = ExtResource("4_ppnfs")
 
 [node name="map" type="CanvasLayer" parent="."]
 

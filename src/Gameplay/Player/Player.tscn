@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://c41lbivqnkl6d"]
+[gd_scene load_steps=3 format=3 uid="uid://c41lbivqnkl6d"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Player/Player.gd" id="1_epmh5"]
+[ext_resource type="PackedScene" uid="uid://dgh01vbwtjtbg" path="res://src/Gameplay/HUD/name.tscn" id="2_wjc3s"]
 
 [node name="Player" type="Node2D"]
 script = ExtResource("1_epmh5")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="Name" parent="HUD" instance=ExtResource("2_wjc3s")]
