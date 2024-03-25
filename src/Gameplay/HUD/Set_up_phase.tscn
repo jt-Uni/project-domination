@@ -10,10 +10,10 @@
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3l6di"]
 bg_color = Color(0.670588, 0.592157, 0.419608, 1)
-border_width_left = 20
-border_width_top = 20
-border_width_right = 20
-border_width_bottom = 20
+border_width_left = 10
+border_width_top = 10
+border_width_right = 10
+border_width_bottom = 10
 border_color = Color(0, 0, 0, 1)
 corner_radius_top_left = 90
 corner_radius_top_right = 90
@@ -23,19 +23,18 @@ corner_radius_bottom_left = 90
 [node name="SetUpPhase" type="Node2D"]
 
 [node name="Panel" type="Panel" parent="."]
-offset_left = 823.0
-offset_top = -52.0
-offset_right = 3394.0
-offset_bottom = 543.0
+offset_left = 283.0
+offset_top = 468.0
+offset_right = 997.0
+offset_bottom = 643.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 59.0
-offset_right = 2320.0
-offset_bottom = 543.0
-theme_override_constants/separation = 400
+offset_left = 92.0
+offset_top = 23.0
+offset_right = 611.0
+offset_bottom = 139.0
+theme_override_constants/separation = 40
 
 [node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer"]
 layout_mode = 2
@@ -45,7 +44,7 @@ stretch_mode = 4
 
 [node name="Label" type="Label" parent="Panel/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 150
+theme_override_font_sizes/font_size = 50
 text = "SET-UP"
 
 [node name="TextureRect2" type="TextureRect" parent="Panel/HBoxContainer"]
@@ -55,19 +54,18 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Panel2" type="Panel" parent="."]
-offset_left = 825.0
-offset_top = 591.0
-offset_right = 3396.0
-offset_bottom = 1186.0
+offset_left = 283.0
+offset_top = 468.0
+offset_right = 997.0
+offset_bottom = 643.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel2"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 59.0
-offset_right = 2320.0
-offset_bottom = 543.0
-theme_override_constants/separation = 400
+offset_left = 92.0
+offset_top = 23.0
+offset_right = 611.0
+offset_bottom = 139.0
+theme_override_constants/separation = 40
 
 [node name="TextureRect" type="TextureRect" parent="Panel2/HBoxContainer"]
 layout_mode = 2
@@ -77,7 +75,7 @@ stretch_mode = 4
 
 [node name="Label" type="Label" parent="Panel2/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 150
+theme_override_font_sizes/font_size = 50
 text = "SET-UP"
 
 [node name="TextureRect2" type="TextureRect" parent="Panel2/HBoxContainer"]
@@ -87,19 +85,18 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Panel3" type="Panel" parent="."]
-offset_left = 834.0
-offset_top = 1251.0
-offset_right = 3405.0
-offset_bottom = 1846.0
+offset_left = 283.0
+offset_top = 468.0
+offset_right = 997.0
+offset_bottom = 643.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel3"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 59.0
-offset_right = 2320.0
-offset_bottom = 543.0
-theme_override_constants/separation = 400
+offset_left = 92.0
+offset_top = 23.0
+offset_right = 611.0
+offset_bottom = 139.0
+theme_override_constants/separation = 40
 
 [node name="TextureRect" type="TextureRect" parent="Panel3/HBoxContainer"]
 layout_mode = 2
@@ -109,7 +106,7 @@ stretch_mode = 4
 
 [node name="Label" type="Label" parent="Panel3/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 150
+theme_override_font_sizes/font_size = 50
 text = "SET-UP"
 
 [node name="TextureRect2" type="TextureRect" parent="Panel3/HBoxContainer"]
@@ -119,19 +116,18 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Panel4" type="Panel" parent="."]
-offset_left = 845.0
-offset_top = 1902.0
-offset_right = 3416.0
-offset_bottom = 2497.0
+offset_left = 283.0
+offset_top = 468.0
+offset_right = 997.0
+offset_bottom = 643.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel4"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 59.0
-offset_right = 2320.0
-offset_bottom = 543.0
-theme_override_constants/separation = 400
+offset_left = 92.0
+offset_top = 23.0
+offset_right = 611.0
+offset_bottom = 139.0
+theme_override_constants/separation = 40
 
 [node name="TextureRect" type="TextureRect" parent="Panel4/HBoxContainer"]
 layout_mode = 2
@@ -141,7 +137,7 @@ stretch_mode = 4
 
 [node name="Label" type="Label" parent="Panel4/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 150
+theme_override_font_sizes/font_size = 50
 text = "SET-UP"
 
 [node name="TextureRect2" type="TextureRect" parent="Panel4/HBoxContainer"]
@@ -151,19 +147,18 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Panel5" type="Panel" parent="."]
-offset_left = 842.0
-offset_top = 2542.0
-offset_right = 3413.0
-offset_bottom = 3137.0
+offset_left = 283.0
+offset_top = 468.0
+offset_right = 997.0
+offset_bottom = 643.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel5"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 59.0
-offset_right = 2320.0
-offset_bottom = 543.0
-theme_override_constants/separation = 400
+offset_left = 92.0
+offset_top = 23.0
+offset_right = 611.0
+offset_bottom = 139.0
+theme_override_constants/separation = 40
 
 [node name="TextureRect" type="TextureRect" parent="Panel5/HBoxContainer"]
 layout_mode = 2
@@ -173,7 +168,7 @@ stretch_mode = 4
 
 [node name="Label" type="Label" parent="Panel5/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 150
+theme_override_font_sizes/font_size = 50
 text = "SET-UP"
 
 [node name="TextureRect2" type="TextureRect" parent="Panel5/HBoxContainer"]
@@ -183,19 +178,18 @@ expand_mode = 3
 stretch_mode = 4
 
 [node name="Panel6" type="Panel" parent="."]
-offset_left = 842.0
-offset_top = 3185.0
-offset_right = 3413.0
-offset_bottom = 3780.0
+offset_left = 283.0
+offset_top = 468.0
+offset_right = 997.0
+offset_bottom = 643.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_3l6di")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel6"]
-layout_mode = 0
-offset_left = 80.0
-offset_top = 59.0
-offset_right = 2320.0
-offset_bottom = 543.0
-theme_override_constants/separation = 400
+offset_left = 92.0
+offset_top = 23.0
+offset_right = 611.0
+offset_bottom = 139.0
+theme_override_constants/separation = 40
 
 [node name="TextureRect" type="TextureRect" parent="Panel6/HBoxContainer"]
 layout_mode = 2
@@ -205,7 +199,7 @@ stretch_mode = 4
 
 [node name="Label" type="Label" parent="Panel6/HBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 150
+theme_override_font_sizes/font_size = 50
 text = "SET-UP"
 
 [node name="TextureRect2" type="TextureRect" parent="Panel6/HBoxContainer"]
