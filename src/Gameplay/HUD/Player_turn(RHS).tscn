@@ -22,6 +22,8 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="PlayerTurn(rhs)" type="Node2D"]
+position = Vector2(686, -39)
+scale = Vector2(0.08, 0.08)
 
 [node name="Panel" type="Panel" parent="."]
 offset_left = 4210.0

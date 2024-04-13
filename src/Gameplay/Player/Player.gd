@@ -18,6 +18,8 @@ var first_turn = true
 var initial_troops = 9
 var eliminated = false
 
+@onready var hud: hud = find_child("Hud")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	setup()
@@ -25,6 +27,7 @@ func _ready():
 func setup():
 	set_active(false)
 	setup_reinforcements()
+	setup_hud()
 	
 func set_active(value):
 	is_active = value
@@ -32,7 +35,13 @@ func set_active(value):
 	
 func setup_reinforcements():
 	reinforcement = randi() % 10 + 3
-
+	
+func setup_hud():
+	var player_data
+	
+	player_data = GamePlay.players_data[name]
+	hud.set_player_name(player_data.name, int(name))
+	
 func set_initial_troops(amount, net_call=false):
 	initial_troops = amount
 	if net_call:
