@@ -10,6 +10,6 @@ script = ExtResource("1_epmh5")
 
 [node name="Current_Player_Hud" parent="HUD" instance=ExtResource("2_xygva")]
 
-[node name="Activites" type="VBoxContainer" parent="."]
+[node name="Activites" type="VBoxContainer" parent="HUD"]
 offset_right = 40.0
 offset_bottom = 40.0

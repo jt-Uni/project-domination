@@ -27,6 +27,7 @@ func exit(country: Country):
 	set_border_color(country)
 
 func clicked(country: Country):
+	print(country)
 	GamePlay.game.active_player.country_clicked(country)
 
 func active_player_changed(country: Country, new_player: Player):

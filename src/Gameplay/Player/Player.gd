@@ -197,7 +197,7 @@ func country_clicked(country: Country):
 	if state:
 		change_state(state)
 
-func _process(delta):
+func _process(_delta):
 	for country in countries:
 		if not country.troops_label.visible:
 			country.troops_label.visible = true
@@ -220,6 +220,6 @@ func change_player_state(state_name = "", net_call=false):
 	if state:
 		change_state(state, net_call)
 
-func game_over(net_call=false):
+func game_over(_net_call=false):
 	pass
 

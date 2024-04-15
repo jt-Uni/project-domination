@@ -3,10 +3,10 @@ extends StateMachine
 class_name PlayerState
 
 var player_states = {
-	"placement": load("res://Source/Gameplay/StateMachine/PlayerStates/PlacementState.gd"),
-	"attack": load("res://Source/Gameplay/StateMachine/PlayerStates/AttackState.gd"),
-	"draft": load("res://Source/Gameplay/StateMachine/PlayerStates/DraftState.gd"),
-	"fortify": load("res://Source/Gameplay/StateMachine/PlayerStates/FortifyState.gd"),
+	"placement": load("res://src/Gameplay/StateMachine/PlayerStates/PlacementState.gd"),
+	"attack": load("res://src/Gameplay/StateMachine/PlayerStates/AttackState.gd"),
+	"draft": load("res://src/Gameplay/StateMachine/PlayerStates/DraftState.gd"),
+	"fortify": load("res://src/Gameplay/StateMachine/PlayerStates/FortifyState.gd"),
 }
 
 func enter(player: Player):

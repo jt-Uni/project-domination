@@ -42,7 +42,7 @@ func setup_name():
 func setup_state():
 	country_state.enter(self)
 
-func _process(delta):
+func _process(_delta):
 #	if GamePlay.game.active_player:
 #		if Server.my_lobby.players[int(GamePlay.game.active_player.name)].id != Server.player_id:
 #			return
@@ -97,12 +97,12 @@ func _on_input_event(viewport, event, shape_idx):
 
 func country_clicked():
 	var state = country_state.clicked(self)
+	print(state)
 	if state:
 		change_state(state)
 
-func _input(event):
-	if event.is_action_pressed("reveal_country_names"):
-		name_label.visible = !name_label.visible
+func _input(_event):
+	name_label.visible = !name_label.visible
 
 func increment_troops(net_call=false):
 	troops += 1

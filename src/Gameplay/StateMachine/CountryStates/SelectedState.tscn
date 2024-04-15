@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://ds76po4nmqnve"]
+
+[node name="SelectedState" type="Node2D"]

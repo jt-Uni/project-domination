@@ -25,6 +25,7 @@
 script = ExtResource("1_mpl68")
 
 [node name="Background" parent="." instance=ExtResource("3_rsjvo")]
+layer = -2
 
 [node name="hud" type="CanvasLayer" parent="."]
 

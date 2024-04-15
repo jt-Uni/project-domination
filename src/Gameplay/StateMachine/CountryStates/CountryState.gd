@@ -10,9 +10,9 @@ var colors = {
 }
 
 var country_states = {
-	"in_active": load("res://Source/Gameplay/StateMachine/CountryStates/InActiveState.gd"),
-	"active": load("res://Source/Gameplay/StateMachine/CountryStates/ActiveState.gd"),
-	"selected": load("res://Source/Gameplay/StateMachine/CountryStates/SelectedState.gd"),
+	"in_active": load("res://src/Gameplay/StateMachine/CountryStates/InActiveState.gd"),
+	"active": load("res://src/Gameplay/StateMachine/CountryStates/ActiveState.gd"),
+	"selected": load("res://src/Gameplay/StateMachine/CountryStates/SelectedState.gd"),
 }
 
 var color_multiplier = 1
@@ -23,16 +23,16 @@ func enter(country):
 	dim_country_color(country)
 	set_border_color(country)
 
-func handle_input(country, input: InputEvent):
+func handle_input(_country, _input: InputEvent):
 	return null
 
-func update(country):
+func update(_country):
 	pass
 
-func exit(country):
+func exit(_country):
 	pass
 
-func clicked(country):
+func clicked(_country):
 	pass
 
 func get_state_name():

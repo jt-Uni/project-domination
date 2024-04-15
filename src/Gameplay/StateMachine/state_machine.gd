@@ -2,16 +2,16 @@ extends Node
 
 class_name StateMachine
 
-func enter(player):
+func enter(_player):
 	pass
 	#print("New state: ", get_class())
 
-func handle_input(player, input: InputEvent):
+func handle_input(_player, _input: InputEvent):
 	return null
 
-func update(player):
+func update(_player):
 	pass
 
-func exit(player):
+func exit(_player):
 	pass
 	#print("Previous state: ", get_class().)
