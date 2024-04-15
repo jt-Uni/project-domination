@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://b2kh6kl5bho4p"]
+
+[ext_resource type="Texture2D" uid="uid://cer2fb056jsm7" path="res://Assets/Graphics/map_data/North-America/eastern united states.png" id="1_00v1q"]
+[ext_resource type="Script" path="res://src/Gameplay/Map/Country/Country.gd" id="1_fm4ql"]
+
+[node name="Eastern-united-states" type="Area2D"]
+script = ExtResource("1_fm4ql")
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2(-287, -299)
+polygon = PackedVector2Array(247, 326, 250, 328, 254, 331, 259, 336, 262, 342, 267, 342, 280, 344, 291, 345, 298, 344, 303, 340, 304, 333, 303, 326, 306, 322, 311, 320, 315, 318, 316, 314, 315, 310, 313, 308, 311, 307, 310, 305, 311, 304, 315, 303, 315, 299, 314, 295, 311, 292, 309, 289, 307, 287, 305, 284, 303, 281, 304, 278, 308, 277, 311, 276, 317, 274, 320, 272, 321, 267, 324, 265, 327, 262, 327, 255, 326, 252, 321, 253, 315, 256, 312, 260, 308, 262, 303, 263, 297, 263, 290, 261, 282, 261, 273, 262, 269, 264, 267, 269, 269, 278, 268, 285, 264, 292, 260, 299, 256, 309, 253, 314, 251, 319, 247, 325)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.178571, 0.145997)
+texture = ExtResource("1_00v1q")
+
+[node name="Troops" type="Label" parent="."]
+offset_left = 6.0
+offset_right = 46.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="."]
+offset_left = -38.0
+offset_top = -37.0
+offset_right = 2.0
+offset_bottom = -14.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

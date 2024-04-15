@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://beu3fgrt1cixt"]
+
+[ext_resource type="Script" path="res://src/Gameplay/Map/Country/Country.gd" id="1_35jru"]
+[ext_resource type="Texture2D" uid="uid://c3bfwlf1c5vqx" path="res://Assets/Graphics/map_data/North-America/central america.png" id="1_ykcgl"]
+
+[node name="Central-america" type="Area2D"]
+script = ExtResource("1_35jru")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-231, -352)
+polygon = PackedVector2Array(203, 325, 209, 330, 214, 333, 217, 336, 216, 342, 215, 348, 214, 357, 214, 365, 215, 372, 219, 378, 223, 383, 231, 385, 238, 383, 245, 379, 247, 373, 249, 366, 249, 355, 246, 352, 246, 347, 246, 344, 250, 342, 256, 340, 259, 340, 258, 338, 255, 336, 251, 333, 246, 331, 238, 330, 234, 327, 233, 324, 228, 321, 220, 319, 209, 319, 206, 320)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.171923, 0.137029)
+texture = ExtResource("1_ykcgl")
+
+[node name="Troops" type="Label" parent="."]
+offset_left = -19.0
+offset_top = 9.0
+offset_right = 21.0
+offset_bottom = 32.0
+
+[node name="Name" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -27.0
+offset_right = 21.0
+offset_bottom = -4.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

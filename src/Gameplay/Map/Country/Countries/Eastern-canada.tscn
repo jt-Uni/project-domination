@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0l6m12l4pqwp"]
+
+[ext_resource type="Texture2D" uid="uid://cug4r8so73jf4" path="res://Assets/Graphics/map_data/North-America/eastern canada.png" id="1_ms7eo"]
+[ext_resource type="Script" path="res://src/Gameplay/Map/Country/Country.gd" id="1_x4d36"]
+
+[node name="Eastern-canada" type="Area2D"]
+script = ExtResource("1_x4d36")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-344, -225)
+polygon = PackedVector2Array(292, 197, 295, 201, 299, 203, 302, 207, 305, 211, 309, 215, 312, 218, 315, 222, 316, 227, 318, 234, 318, 240, 318, 246, 320, 249, 322, 250, 326, 249, 329, 251, 331, 255, 333, 261, 335, 262, 339, 261, 342, 260, 343, 256, 342, 252, 340, 247, 341, 243, 347, 242, 352, 240, 361, 238, 364, 234, 367, 232, 370, 229, 375, 227, 383, 224, 390, 221, 395, 218, 396, 215, 395, 209, 395, 204, 397, 200, 398, 198, 386, 197, 380, 197, 378, 195, 375, 193, 365, 193, 361, 190, 359, 187, 347, 187, 335, 186, 333, 194, 337, 200, 335, 205, 330, 207, 321, 208, 312, 205, 301, 201)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(7.62939e-06, 0)
+scale = Vector2(0.186955, 0.150098)
+texture = ExtResource("1_ms7eo")
+
+[node name="Troops" type="Label" parent="."]
+offset_left = 6.0
+offset_right = 46.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="."]
+offset_left = -38.0
+offset_top = -37.0
+offset_right = 2.0
+offset_bottom = -14.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

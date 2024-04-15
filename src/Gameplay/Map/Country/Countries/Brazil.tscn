@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://yl48pf2ftdwa"]
+
+[ext_resource type="Script" path="res://src/Gameplay/Map/Country/Country.gd" id="1_0jkqr"]
+[ext_resource type="Texture2D" uid="uid://bldp74cg7kfva" path="res://Assets/Graphics/map_data/South-America/brazil.png" id="1_cp0l8"]
+
+[node name="Brazil" type="Area2D"]
+script = ExtResource("1_0jkqr")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-354, -474)
+polygon = PackedVector2Array(288, 453, 293, 455, 295, 459, 298, 464, 304, 465, 304, 470, 304, 482, 308, 492, 315, 495, 323, 502, 332, 510, 337, 524, 341, 533, 345, 535, 348, 531, 349, 522, 353, 515, 362, 515, 369, 513, 368, 507, 365, 500, 362, 492, 365, 488, 373, 486, 381, 485, 386, 484, 387, 477, 388, 472, 395, 469, 404, 467, 410, 467, 413, 464, 415, 458, 417, 453, 418, 446, 417, 440, 408, 436, 401, 429, 397, 426, 389, 424, 387, 420, 376, 416, 366, 414, 359, 412, 355, 413, 357, 422, 353, 427, 344, 431, 337, 433, 327, 434, 311, 434, 305, 434, 301, 442, 298, 449)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.181129, 0.139723)
+texture = ExtResource("1_cp0l8")
+
+[node name="Troops" type="Label" parent="."]
+offset_left = -32.0
+offset_top = -3.0
+offset_right = 8.0
+offset_bottom = 20.0
+
+[node name="Name" type="Label" parent="."]
+offset_left = -4.0
+offset_top = -41.0
+offset_right = 36.0
+offset_bottom = -18.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

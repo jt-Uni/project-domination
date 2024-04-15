@@ -1,9 +1,7 @@
-[gd_scene load_steps=21 format=3 uid="uid://cdb4hl6k3x6y8"]
+[gd_scene load_steps=19 format=3 uid="uid://cdb4hl6k3x6y8"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Game/Game.gd" id="1_4qslv"]
 [ext_resource type="Script" path="res://src/Gameplay/Map/Map.gd" id="1_6av3f"]
-[ext_resource type="Texture2D" uid="uid://c0frebk8cl3gr" path="res://Assets/Graphics/Units/Map Background.png" id="1_qqs7m"]
-[ext_resource type="Texture2D" uid="uid://di80c1djwbmv2" path="res://Assets/Graphics/Units/WorldConquestv2.png" id="2_mjxke"]
 [ext_resource type="Texture2D" uid="uid://dj4ytj318v20e" path="res://Assets/Graphics/map_data/image.png" id="2_qtqca"]
 [ext_resource type="Texture2D" uid="uid://6vg5a37n5yoy" path="res://Assets/Graphics/map_data/North-America/alaska.png" id="3_2wqdb"]
 [ext_resource type="Texture2D" uid="uid://bdhf6g1ohjyfd" path="res://Assets/Graphics/map_data/North-America/northwest territory.png" id="4_vivka"]
@@ -23,18 +21,6 @@
 
 [node name="Map" type="Node2D"]
 script = ExtResource("1_4qslv")
-
-[node name="background" type="Area2D" parent="."]
-
-[node name="imagebackground" type="Sprite2D" parent="background"]
-position = Vector2(576, 323.75)
-scale = Vector2(1.152, 0.972264)
-texture = ExtResource("1_qqs7m")
-
-[node name="logo" type="Sprite2D" parent="background"]
-position = Vector2(133, 102)
-scale = Vector2(0.226042, 0.240741)
-texture = ExtResource("2_mjxke")
 
 [node name="Image" type="Sprite2D" parent="."]
 visible = false

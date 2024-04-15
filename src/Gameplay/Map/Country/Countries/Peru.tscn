@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bj3l8fxsgvob0"]
+
+[ext_resource type="Texture2D" uid="uid://bxo6o3d5g3t5e" path="res://Assets/Graphics/map_data/South-America/peru.png" id="1_lptku"]
+[ext_resource type="Script" path="res://src/Gameplay/Map/Country/Country.gd" id="1_wl8i6"]
+
+[node name="Peru" type="Area2D"]
+script = ExtResource("1_wl8i6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-257, -469)
+polygon = PackedVector2Array(186, 440, 187, 443, 196, 446, 201, 450, 208, 453, 214, 459, 221, 463, 227, 470, 231, 479, 231, 493, 232, 499, 230, 503, 235, 511, 233, 514, 231, 522, 237, 526, 241, 528, 247, 525, 255, 524, 263, 525, 269, 527, 276, 527, 281, 522, 284, 519, 300, 519, 310, 518, 311, 514, 313, 511, 322, 510, 325, 508, 321, 505, 315, 501, 309, 496, 305, 490, 301, 482, 300, 475, 300, 469, 295, 468, 295, 463, 294, 461, 286, 459, 283, 457, 282, 450, 276, 447, 264, 446, 253, 443, 248, 438, 239, 432, 234, 425, 228, 420, 225, 414, 222, 410, 215, 408, 210, 412, 201, 417, 192, 417, 190, 420, 192, 429, 191, 436)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.177891, 0.133611)
+texture = ExtResource("1_lptku")
+
+[node name="Troops" type="Label" parent="."]
+offset_left = 6.0
+offset_right = 46.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="."]
+offset_left = -38.0
+offset_top = -37.0
+offset_right = 2.0
+offset_bottom = -14.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

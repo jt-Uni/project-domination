@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd8affq2rhhl3"]
+
+[ext_resource type="Texture2D" uid="uid://jt6ko4qg4uqk" path="res://Assets/Graphics/map_data/North-America/ontario.png" id="1_ixwuf"]
+[ext_resource type="Script" path="res://src/Gameplay/Map/Country/Country.gd" id="1_mbjql"]
+
+[node name="Ontario" type="Area2D"]
+script = ExtResource("1_mbjql")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(-290, -208)
+polygon = PackedVector2Array(266, 197, 269, 199, 269, 203, 271, 207, 275, 208, 277, 210, 278, 215, 279, 219, 281, 222, 283, 225, 286, 224, 289, 223, 295, 223, 300, 224, 305, 224, 310, 225, 315, 225, 314, 223, 310, 219, 308, 218, 303, 213, 299, 207, 295, 206, 292, 202, 291, 198, 291, 193, 289, 191, 286, 192, 282, 195, 275, 197)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.178832, 0.137)
+texture = ExtResource("1_ixwuf")
+
+[node name="Troops" type="Label" parent="."]
+offset_left = 6.0
+offset_right = 46.0
+offset_bottom = 23.0
+
+[node name="Name" type="Label" parent="."]
+offset_left = -38.0
+offset_top = -37.0
+offset_right = 2.0
+offset_bottom = -14.0
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

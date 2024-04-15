@@ -6,6 +6,13 @@ class_name Game
 @onready var players_queue: PlayersQueue = get_node("/root/Game/PlayersQueue")
 @onready var quit_menu = get_node("hud/QuitGame")
 
+var active_player: Player = null
+var active_player_index = -1
+var occupied_countries = 0
+var total_countries = 42
+var number_of_players_placed_all_troops = 0
+var auto_place = false
+
 func _ready():
 	initialize_game()
 	
@@ -37,3 +44,7 @@ func setup_game():
 	
 func quit():
 	quit_menu.show()
+	
+func active_player_changed(p_active_index, p_active_player: Player):
+	active_player = p_active_player
+	active_player_index = p_active_index

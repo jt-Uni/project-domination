@@ -1,25 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://bcby1pwl55dvi"]
+[gd_scene load_steps=21 format=3 uid="uid://bcby1pwl55dvi"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Game/Game.gd" id="1_mpl68"]
 [ext_resource type="PackedScene" uid="uid://cdb4hl6k3x6y8" path="res://src/Gameplay/Map/map.tscn" id="2_2esx0"]
-[ext_resource type="PackedScene" uid="uid://bvdbi5d8146tw" path="res://src/Gameplay/Background/Background.tscn" id="2_jfcpj"]
+[ext_resource type="PackedScene" uid="uid://bvdbi5d8146tw" path="res://src/Background/Background.tscn" id="3_rsjvo"]
 [ext_resource type="Script" path="res://src/Gameplay/PlayerQueue/PlayerQueue.gd" id="4_ikb3k"]
 [ext_resource type="PackedScene" uid="uid://d00hww4xtn8h3" path="res://src/Gameplay/HUD/Quit_Game.tscn" id="5_02bcy"]
+[ext_resource type="PackedScene" uid="uid://b771h3ucrgwt5" path="res://src/Gameplay/Map/Country/Countries/Alaska.tscn" id="6_d7ctt"]
+[ext_resource type="PackedScene" uid="uid://diqgme60mvxdj" path="res://src/Gameplay/Map/Country/Countries/Alberta.tscn" id="7_2uaai"]
+[ext_resource type="PackedScene" uid="uid://bw57dohujc5vd" path="res://src/Gameplay/Map/Country/Countries/Argentina.tscn" id="8_suliy"]
+[ext_resource type="PackedScene" uid="uid://cxpr21n487bw1" path="res://src/Gameplay/Map/Country/Countries/Bolivia.tscn" id="9_8qsja"]
+[ext_resource type="PackedScene" uid="uid://yl48pf2ftdwa" path="res://src/Gameplay/Map/Country/Countries/Brazil.tscn" id="10_628jb"]
+[ext_resource type="PackedScene" uid="uid://beu3fgrt1cixt" path="res://src/Gameplay/Map/Country/Countries/Central-america.tscn" id="11_fi30t"]
+[ext_resource type="PackedScene" uid="uid://d0l6m12l4pqwp" path="res://src/Gameplay/Map/Country/Countries/Eastern-canada.tscn" id="12_1xjes"]
+[ext_resource type="PackedScene" uid="uid://b2kh6kl5bho4p" path="res://src/Gameplay/Map/Country/Countries/Eastern-united-states.tscn" id="13_6oxbs"]
+[ext_resource type="PackedScene" uid="uid://bfdvodvlvmmtp" path="res://src/Gameplay/Map/Country/Countries/Greenland.tscn" id="14_wxha0"]
+[ext_resource type="PackedScene" uid="uid://kv0shtvqq2k" path="res://src/Gameplay/Map/Country/Countries/Northern-united-states.tscn" id="15_5aquh"]
+[ext_resource type="PackedScene" uid="uid://cqeeyfu6482rk" path="res://src/Gameplay/Map/Country/Countries/Northwest-territory.tscn" id="16_74kpl"]
+[ext_resource type="PackedScene" uid="uid://dd8affq2rhhl3" path="res://src/Gameplay/Map/Country/Countries/Ontario.tscn" id="17_2m64k"]
+[ext_resource type="PackedScene" uid="uid://bj3l8fxsgvob0" path="res://src/Gameplay/Map/Country/Countries/Peru.tscn" id="18_ov8o5"]
+[ext_resource type="PackedScene" uid="uid://djs6i8morgs3x" path="res://src/Gameplay/Map/Country/Countries/Venuzuela.tscn" id="19_g4d4l"]
+[ext_resource type="PackedScene" uid="uid://bdpomhxdhh4vb" path="res://src/Gameplay/Map/Country/Countries/Western-united-states.tscn" id="20_ngsep"]
 
 [node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource("1_mpl68")
 
-[node name="PlayersQueue" type="Node2D" parent="."]
-script = ExtResource("4_ikb3k")
-
-[node name="background" type="CanvasLayer" parent="."]
-
-[node name="Background" parent="background" instance=ExtResource("2_jfcpj")]
-
-[node name="map" type="CanvasLayer" parent="."]
-
-[node name="Map" parent="map" instance=ExtResource("2_2esx0")]
-script = null
+[node name="Background" parent="." instance=ExtResource("3_rsjvo")]
 
 [node name="hud" type="CanvasLayer" parent="."]
 
@@ -32,4 +37,62 @@ offset_right = 102.0
 offset_bottom = 650.0
 text = "Quit Game?"
 
+[node name="PlayersQueue" type="Node2D" parent="."]
+script = ExtResource("4_ikb3k")
+
+[node name="map" type="CanvasLayer" parent="."]
+
+[node name="Map" parent="map" instance=ExtResource("2_2esx0")]
+visible = false
+script = null
+
+[node name="Countries" type="Node2D" parent="."]
+
+[node name="Alaska" parent="Countries" instance=ExtResource("6_d7ctt")]
+position = Vector2(177, 202)
+
+[node name="Alberta" parent="Countries" instance=ExtResource("7_2uaai")]
+position = Vector2(254, 213)
+
+[node name="Argentina" parent="Countries" instance=ExtResource("8_suliy")]
+position = Vector2(295, 566)
+
+[node name="Bolivia" parent="Countries" instance=ExtResource("9_8qsja")]
+position = Vector2(297, 419)
+
+[node name="Brazil" parent="Countries" instance=ExtResource("10_628jb")]
+position = Vector2(355, 473)
+
+[node name="Central-america" parent="Countries" instance=ExtResource("11_fi30t")]
+position = Vector2(229, 353)
+
+[node name="Eastern-canada" parent="Countries" instance=ExtResource("12_1xjes")]
+position = Vector2(349, 227)
+
+[node name="Eastern-united-states" parent="Countries" instance=ExtResource("13_6oxbs")]
+position = Vector2(290, 302)
+
+[node name="Greenland" parent="Countries" instance=ExtResource("14_wxha0")]
+position = Vector2(374, 127)
+
+[node name="Northern-united-states" parent="Countries" instance=ExtResource("15_5aquh")]
+position = Vector2(265, 244)
+
+[node name="Northwest-territory" parent="Countries" instance=ExtResource("16_74kpl")]
+position = Vector2(226, 158)
+
+[node name="Ontario" parent="Countries" instance=ExtResource("17_2m64k")]
+position = Vector2(292, 208)
+
+[node name="Peru" parent="Countries" instance=ExtResource("18_ov8o5")]
+position = Vector2(255, 468)
+
+[node name="Venuzuela" parent="Countries" instance=ExtResource("19_g4d4l")]
+position = Vector2(260, 403)
+
+[node name="Western-united-states" parent="Countries" instance=ExtResource("20_ngsep")]
+position = Vector2(236, 296)
+
 [connection signal="pressed" from="hud/QuitButton" to="." method="quit"]
+
+[editable path="Background"]
