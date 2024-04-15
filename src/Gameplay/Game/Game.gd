@@ -9,7 +9,6 @@ func _ready():
 	initialize_game()
 	
 func initialize_game():
-	# Set up the map and any other initialization logic
 	spawn_players()
 	set_initial_troops()
 	# setup_game()

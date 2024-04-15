@@ -1,6 +1,6 @@
 extends Node2D
 
-class_name hud
+class_name Current_Player_Hud
 
 @onready var name_label = $ColorRect/Info/Name
 @onready var state_label = $ColorRect/Info/State

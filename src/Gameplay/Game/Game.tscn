@@ -18,3 +18,4 @@ script = ExtResource("4_ikb3k")
 [node name="map" type="CanvasLayer" parent="."]
 
 [node name="Map" parent="map" instance=ExtResource("2_2esx0")]
+script = null
