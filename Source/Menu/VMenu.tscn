@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ph0lcy7ej4o"]
+
+[ext_resource type="Script" path="res://Source/Menu/VMenu.gd" id="1"]
+
+[node name="VMenu" type="VBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 20
+script = ExtResource("1")

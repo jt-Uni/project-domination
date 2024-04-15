@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dw4xmquef7wly"]
+
+[ext_resource type="Script" path="res://Source/Menu/HMenu.gd" id="1"]
+
+[node name="HMenu" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 20
+script = ExtResource("1")
