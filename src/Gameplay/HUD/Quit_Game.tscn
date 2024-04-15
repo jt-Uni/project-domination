@@ -1,0 +1,40 @@
+[gd_scene load_steps=2 format=3 uid="uid://d00hww4xtn8h3"]
+
+[ext_resource type="Script" path="res://src/Gameplay/HUD/Quit_Game.gd" id="1_22k8w"]
+
+[node name="QuitGame" type="Node2D"]
+script = ExtResource("1_22k8w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = 288.0
+offset_top = 111.0
+offset_right = 862.0
+offset_bottom = 432.0
+
+[node name="QuitLabel" type="Label" parent="ColorRect"]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 89.0
+offset_right = 391.0
+offset_bottom = 112.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Are you sure you want to quit?"
+
+[node name="ConfirmButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 98.0
+offset_top = 181.0
+offset_right = 194.0
+offset_bottom = 224.0
+text = "Yes"
+
+[node name="CancelButton" type="Button" parent="ColorRect"]
+layout_mode = 0
+offset_left = 383.0
+offset_top = 181.0
+offset_right = 479.0
+offset_bottom = 224.0
+text = "No"
+
+[connection signal="pressed" from="ColorRect/ConfirmButton" to="." method="quit_game"]
+[connection signal="pressed" from="ColorRect/CancelButton" to="." method="cancel"]

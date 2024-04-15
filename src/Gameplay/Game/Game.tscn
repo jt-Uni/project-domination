@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcby1pwl55dvi"]
+[gd_scene load_steps=6 format=3 uid="uid://bcby1pwl55dvi"]
 
 [ext_resource type="Script" path="res://src/Gameplay/Game/Game.gd" id="1_mpl68"]
 [ext_resource type="PackedScene" uid="uid://cdb4hl6k3x6y8" path="res://src/Gameplay/Map/map.tscn" id="2_2esx0"]
 [ext_resource type="PackedScene" uid="uid://bvdbi5d8146tw" path="res://src/Gameplay/Background/Background.tscn" id="2_jfcpj"]
 [ext_resource type="Script" path="res://src/Gameplay/PlayerQueue/PlayerQueue.gd" id="4_ikb3k"]
+[ext_resource type="PackedScene" uid="uid://d00hww4xtn8h3" path="res://src/Gameplay/HUD/Quit_Game.tscn" id="5_02bcy"]
 
 [node name="Game" type="Node2D" groups=["game"]]
 script = ExtResource("1_mpl68")
@@ -19,3 +20,16 @@ script = ExtResource("4_ikb3k")
 
 [node name="Map" parent="map" instance=ExtResource("2_2esx0")]
 script = null
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+[node name="QuitGame" parent="hud" instance=ExtResource("5_02bcy")]
+
+[node name="QuitButton" type="Button" parent="hud"]
+offset_left = 14.0
+offset_top = 600.0
+offset_right = 102.0
+offset_bottom = 650.0
+text = "Quit Game?"
+
+[connection signal="pressed" from="hud/QuitButton" to="." method="quit"]
