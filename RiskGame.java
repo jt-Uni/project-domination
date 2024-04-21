@@ -12,11 +12,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
-import java.awt.geom.*;
 import java.util.*;
-import javax.imageio.*;
-import java.io.*;
-import java.math.*;
 
 public class RiskGame extends JFrame implements MouseListener, MouseMotionListener{
     boolean isActive, clicked, selected, attack, view, getCard, conquered, fortify, fortified, place, moving, a, v, f, end, done, cash, quit;
@@ -34,17 +30,43 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     StartScreen Start;
     JFrame frame;
 
-    public RiskGame(){
-        super("RiskGame Window");
-        Start = new StartScreen(); //Set up to set up the players and their colors.
-        while(!Start.started()){
-            if(!Start.isVisible()){
+    private static final String WINDOW_TITLE = "RiskGame Window";
+
+    public RiskGame() {
+        super(WINDOW_TITLE);
+        initializeGame();
+    }
+
+    private void initializeGame() {
+        Start = new StartScreen();
+        waitForStartScreen(Start);
+        setupUI();
+        initializeGameState();
+        setupCountries();
+        setupPlayers();
+        setupCards();
+        setupRewards();
+        finalisation();
+        showInitialDialog();
+    }
+
+    private void waitForStartScreen(StartScreen start) {
+        while (!start.started()) {
+            if (!start.isVisible()) {
                 System.exit(0);
             }
-            Thread.yield(); //make sure code doesn't run while startscreen is still on.
+            Thread.yield();
         }
+    }
+
+    private void setupUI() {
         setLayout(new BorderLayout());
-        dim = Toolkit.getDefaultToolkit().getScreenSize(); //getting screen size.
+        dim = Toolkit.getDefaultToolkit().getScreenSize();
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        setUndecorated(true);
+    }
+
+    private void initializeGameState() {
         isActive = false;
         clicked = false;
         attack = false;
@@ -57,8 +79,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         place = true;
         turn = 0;
         reward = 0;
+    }
 
-        //Since im resizing this game for every screen size, you're going to see (int)((dim.getWidth()/1920.0)*int) and (int)((dim.getWidth()/1920.0)*int) alot since I'm scaling everything to my screen size (1080p).
+    private void setupCountries() {
 
         Attack = new Rectangle((int)((dim.getWidth()/1920.0)*1645), (int)((dim.getHeight()/1080.0)*360), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
         View = new Rectangle((int)((dim.getWidth()/1920.0)*1765), (int)((dim.getHeight()/1080.0)*360), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
@@ -69,10 +92,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         CashIn = new Rectangle((int)((dim.getWidth()/1920.0)*760), (int)((dim.getHeight()/1080.0)*900), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
         Done = new Rectangle((int)((dim.getWidth()/1920.0)*1060), (int)((dim.getHeight()/1080.0)*900), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
 
-        setExtendedState(Frame.MAXIMIZED_BOTH); //fullscreen
-        setUndecorated(true); //no taskbars
-
-        Countries = new ArrayList<>(); //list of countries.
+        Countries = new ArrayList<>();
+        
         Countries.add(new Country("Alaska", 0));
         Countries.get(0).setBord(110, 155, 55, 20);
         Countries.add(new Country("Alberta", 0));
@@ -243,7 +264,29 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         Countries.get(40).removeNeighbor(Countries, "Siam");
         Countries.get(40).addNeighbor(Countries, "Western Australia");
         Countries.get(41).addNeighbor(Countries, "New Guinea");
+    }
 
+    private void finalisation() {
+        addMouseListener(this);
+        addMouseMotionListener(this);
+
+        income = Players.get(0).getIncome();
+        fortify1 = -1;
+        fortify2 = -1;
+
+        map = new ImageIcon("./assets/RiskMap.jpg").getImage();
+        map = resize(map, (int)((dim.getWidth()/1920)*1576), (int)((dim.getHeight()/1080)*1050.0));
+        actions = new ImageIcon("./assets/ActionPaneWithInfo.jpg").getImage();
+        actions = resize(actions, (int)((dim.getWidth()/1920)*290), (int)((dim.getHeight()/1080)*1050.0));
+        screen = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_RGB);
+
+        frame = new JFrame();
+
+        buffer();
+        setVisible(true);
+    }
+
+    private void setupPlayers() {
         Players = new ArrayList<>(Start.getPlayers()); //getting players from StartScreen.
 
         ArrayList<Country> temp2 = new ArrayList<>(Countries);
@@ -268,7 +311,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         for (Player player : Players) {
             player.start();
         }
+    }
 
+    private void setupCards() {
         int unit = 0;
         for (int c = 0; c < 42; c++){ //making cards
             Cards.add(new Card(Countries.get(c).getName(), unit, -1));
@@ -279,7 +324,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
         Cards.add(new Card("Wild card", 3, -1));
         Cards.add(new Card("Wild card", 3, -1));
+    }
 
+    private void setupRewards() {
         Rewards = new ArrayList<>(); //setting rewards
         for (int c = 4; c < 13; c += 2){
             Rewards.add(Integer.parseInt(String.valueOf(c)));
@@ -290,29 +337,17 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         for (int c = 35; c < 61; c += 5){
             Rewards.add(Integer.parseInt(String.valueOf(c)));
         }
+    }
 
-        addMouseListener(this);
-        addMouseMotionListener(this);
-
-        income = Players.get(0).getIncome();
-        fortify1 = -1;
-        fortify2 = -1;
-
-        map = new ImageIcon("./assets/RiskMap.jpg").getImage();
-        map = resize(map, (int)((dim.getWidth()/1920)*1576), (int)((dim.getHeight()/1080)*1050.0));
-        actions = new ImageIcon("./assets/ActionPaneWithInfo.jpg").getImage();
-        actions = resize(actions, (int)((dim.getWidth()/1920)*290), (int)((dim.getHeight()/1080)*1050.0));
-        screen = new BufferedImage(dim.width, dim.height, BufferedImage.TYPE_INT_RGB);
-
-        frame = new JFrame();
-
-        buffer();
-        setVisible(true);
-
+    private void showInitialDialog() {
         JOptionPane.showMessageDialog(frame,
             "It is now " + Players.get(turn).getName() + "'s turn.",
             "Information",
             JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    public static void main(String[] args) {
+        RiskGame a = new RiskGame();
     }
 
     public void mousePressed( MouseEvent e ) {
@@ -958,9 +993,5 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         else {
             b.drawString(a, (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
         }
-    }
-
-    public static void main (String [] args){ //starts the game
-        RiskGame a = new RiskGame();
     }
 }
