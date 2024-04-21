@@ -49,7 +49,7 @@ public class Card{
         }
         g2d.drawImage(cardUnit, (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*115), null);
     }
-    
+
     public String getCountry(){
         return country;
     }
