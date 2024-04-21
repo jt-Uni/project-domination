@@ -18,7 +18,7 @@ var active_player_index = -1
 var occupied_countries = 0
 var total_countries = 42
 var number_of_players_placed_all_troops = 0
-var auto_place = true
+var auto_place = false
 
 func _ready():
 	setup()
@@ -27,7 +27,7 @@ func setup():
 	spawn_players()
 	set_initial_troops()
 	setup_hud()
-	setup_music()
+	#setup_music()
 	setup_game()
 	connect_signals()
 

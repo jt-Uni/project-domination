@@ -121,21 +121,6 @@ custom_minimum_size = Vector2(0, 5)
 layout_mode = 2
 color = Color(0, 0, 0, 1)
 
-[node name="Error" type="Label" parent="."]
-layout_mode = 0
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -179.5
-offset_top = -61.0
-offset_right = 179.5
-offset_bottom = -24.0
-grow_horizontal = 2
-theme_override_colors/font_color = Color(0.905882, 0.317647, 0.317647, 1)
-theme_override_fonts/font = SubResource("11")
-text = "SERVER NOT CONNECTED!"
-
 [node name="Success" type="Label" parent="."]
 visible = false
 layout_mode = 0

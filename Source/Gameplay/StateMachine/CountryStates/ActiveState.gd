@@ -29,6 +29,9 @@ func exit(country: Country):
 func clicked(country: Country):
 	if GamePlay.country_sound:
 		country.play_active_click()
+	
+	print("Game instance: ", GamePlay.game)
+	
 	GamePlay.game.active_player.country_clicked(country)
 
 func active_player_changed(country: Country, new_player: Player):

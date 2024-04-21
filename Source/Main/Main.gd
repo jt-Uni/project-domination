@@ -9,7 +9,7 @@ func _ready():
 	setup()
 
 func setup():
-	setup_music()
+	#setup_music()
 	setup_mode()
 
 func setup_music():
