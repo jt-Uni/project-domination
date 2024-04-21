@@ -1,12 +1,10 @@
 /**
  * This basically plays the same way as Risk except you won't be able to see the dice rolls or the miniature armies.
- * 
  * Cool things about this game:
  * Well it's fullscreen and compatible with any screen size.
  * Entirely run on GUI.
  * Used buffered images so it doesn't flicker.
  * Got a method to append text automatically to a custom info box. This methods cuts the text to nice lengths automatically.
- * 
  * So here we go:
  */
 
@@ -39,8 +37,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     public RiskGame(){
         super("RiskGame Window");
         Start = new StartScreen(); //Set up to set up the players and their colors.
-        while(Start.started() == false){
-            if(Start.isVisible() == false){
+        while(!Start.started()){
+            if(!Start.isVisible()){
                 System.exit(0);
             }
             Thread.yield(); //make sure code doesn't run while startscreen is still on.
@@ -74,7 +72,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         setExtendedState(Frame.MAXIMIZED_BOTH); //fullscreen
         setUndecorated(true); //no taskbars
 
-        Countries = new ArrayList(); //list of countries.
+        Countries = new ArrayList<>(); //list of countries.
         Countries.add(new Country("Alaska", 0));
         Countries.get(0).setBord(110, 155, 55, 20);
         Countries.add(new Country("Alberta", 0));
@@ -246,10 +244,10 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         Countries.get(40).addNeighbor(Countries, "Western Australia");
         Countries.get(41).addNeighbor(Countries, "New Guinea");
 
-        Players = new ArrayList(Start.getPlayers()); //getting players from StartScreen.
+        Players = new ArrayList<>(Start.getPlayers()); //getting players from StartScreen.
 
-        ArrayList<Country> temp2 = new ArrayList(Countries);
-        Cards = new ArrayList();
+        ArrayList<Country> temp2 = new ArrayList<>(Countries);
+        Cards = new ArrayList<>();
         r = new Random();
 
         for (int c = 0; c < Players.size(); c++){ //distributing countries randomly
@@ -261,14 +259,14 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
 
         int temp = 0; 
-        while(temp2.size()!=0){ //giving out leftover countries
+        while(!temp2.isEmpty()){ //giving out leftover countries
             Players.get(temp).conquered(temp2.get(0));
             temp2.remove(0);
             temp++;
         }
 
-        for(int c = 0; c <Players.size(); c++){
-            Players.get(c).start();
+        for (Player player : Players) {
+            player.start();
         }
 
         int unit = 0;
@@ -282,7 +280,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         Cards.add(new Card("Wild card", 3, -1));
         Cards.add(new Card("Wild card", 3, -1));
 
-        Rewards = new ArrayList(); //setting rewards
+        Rewards = new ArrayList<>(); //setting rewards
         for (int c = 4; c < 13; c += 2){
             Rewards.add(Integer.parseInt(String.valueOf(c)));
         }
@@ -321,9 +319,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         if(Players.get(turn).getCardsN() > 5){
             view = true;
         }
-        if(isActive == true && view == false){
-            if(selected == true && select != active && Countries.get(select).isNeighbor(Countries.get(active))){ //everything that happens when you attack. Takes note whether you conquered a country, got a card or if you can't attack.
-                if(conquered == true){
+        if(isActive && !view){
+            if(selected && select != active && Countries.get(select).isNeighbor(Countries.get(active))){ //everything that happens when you attack. Takes note whether you conquered a country, got a card or if you can't attack.
+                if(conquered){
                     if((fortify1 == select && fortify2 == active)||(fortify1 == active && fortify2 == select)){
                         if(Countries.get(select).getArmies() > 1){
                             Countries.get(select).lose(1);
@@ -336,7 +334,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                         fortify2 = -1;
                     }
                 }
-                if(attack == true && Countries.get(active).getPossession() != turn && Countries.get(select).getArmies() > 1){
+                if(attack && Countries.get(active).getPossession() != turn && Countries.get(select).getArmies() > 1){
                     Countries.get(select).attack(Countries.get(active));
                     conquered = false;
                     if(Countries.get(active).isEmpty()){
@@ -347,7 +345,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                         while(frame.isVisible()){
                             Thread.yield();
                         }
-                        if (getCard == false){
+                        if (!getCard){
                             getCard = true;
                             int temp = r.nextInt(Cards.size());
                             Players.get(Countries.get(select).getPossession()).gotCard(Cards.get(temp));
@@ -400,21 +398,21 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                         fortify2 = active;
                     }
                 }
-                if(fortify == true && Countries.get(active).getPossession() == turn && Countries.get(select).isNeighbor(Countries.get(active))){ //fortification procedure
-                    if(fortified == false && Countries.get(select).getArmies() > 1){
+                if(fortify && Countries.get(active).getPossession() == turn && Countries.get(select).isNeighbor(Countries.get(active))){ //fortification procedure
+                    if(!fortified && Countries.get(select).getArmies() > 1){
                         fortified = true;
                         fortify1 = select;
                         fortify2 = active;
                     }
                     if((fortify1 == select && fortify2 == active)||(fortify1 == active && fortify2 == select)){
-                        if(Countries.get(select).getArmies() > 1 && fortified == true){
+                        if(Countries.get(select).getArmies() > 1 && fortified){
                             Countries.get(select).lose(1);
                             Countries.get(active).gain(1);
                         }
                     }
                 }
             }
-            else if(selected == true && place == true){ //placing armies
+            else if(selected && place){ //placing armies
                 Countries.get(select).gain(1);
                 income--;
                 if(income == 0){
@@ -430,15 +428,15 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         else{
             selected = false;
         }
-        if (place == false){ //allowing custom buttons to work after you finish placing armies
-            if((a==true)&&(fortified == false)){ //choosing to attack
+        if (!place){ //allowing custom buttons to work after you finish placing armies
+            if((a)&&(!fortified)){ //choosing to attack
                 attack = true;
                 fortify = false;
             }
-            if((f == true) && (fortified == false)){ //choosing to fortify
+            if((f) && (!fortified)){ //choosing to fortify
                 attack = false;
                 fortify = true;
-                if(fortified == false){
+                if(!fortified){
                     fortify1 = -1;
                     fortify2 = -1;
                 }
@@ -487,7 +485,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             cashIn = 1;
             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
-        if (isActive == true && view == true){ //selecting cards
+        if (isActive && view){ //selecting cards
             if (cashIn == 4){
                 cashIn = 1;
             }
@@ -510,7 +508,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                 }
             }
         }
-        if ((cash == true) && (place == true)){ //cashing in
+        if ((cash) && (place)){ //cashing in
             if((cash1 == -1) || (cash2 == -1) || (cash3 == -1)){
             }
             else{
@@ -525,6 +523,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                     view = false;
                 }
                 else{
+                    return ;
                 }
             }
         }
@@ -538,7 +537,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     }
 
     public void mouseMoved(MouseEvent e) {
-        if(view == false){
+        if(!view){
             if (isActive){ 
                 if (!Countries.get(active).giveBorder().contains(e.getX(), e.getY())) { //seeing if the mouse has left the border of a country.
                     if (isActive) {
@@ -625,7 +624,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                 }
             }
         }
-        if (view == true){
+        if (view){
             if (isActive){
                 if (!Players.get(turn).getCards().get(active).giveBorder().contains(e.getX(), e.getY())) { //if mouse has left the border of a card
                     if (isActive) {
@@ -702,11 +701,11 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.black);
         g2.fillRect(0, 0, dim.width, dim.height);
-        if (view == false){
+        if (!view){
             g2.drawImage(map, (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
             g2.drawImage(actions, (int)((dim.getWidth()/1920.0)*1615), (int)((dim.getHeight()/1080.0)*15), null);
-            if (isActive == true){ //drawing the highlight around countries when they're selected
-                if (selected == true){
+            if (isActive){ //drawing the highlight around countries when they're selected
+                if (selected){
                     if (Countries.get(select).isNeighbor(Countries.get(active))){
                         g2.drawImage(Countries.get(active).getSelected(), (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
                     }
@@ -718,7 +717,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                     g2.drawImage(Countries.get(active).getSelected(), (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
                 }
             }
-            else if (selected == true){
+            else if (selected){
                 g2.drawImage(Countries.get(select).getSelected(), (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
             }
             for (int c = 0; c < 42; c++){ //drawing armies and color on each country
@@ -777,42 +776,42 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             if(income != 0){ //posting info onto the info box
                 postInfo(Players.get(turn).getName() + ", the " + Players.get(turn).getColorName() + " player, still has to place: " + income + " armies.", g2);
             }
-            else if((selected == true) && (isActive == true) && (attack == true) && (select != active) && (Countries.get(active).getPossession() != turn) && (Countries.get(select).isNeighbor(Countries.get(active)))){
+            else if((selected) && (isActive) && (attack) && (select != active) && (Countries.get(active).getPossession() != turn) && (Countries.get(select).isNeighbor(Countries.get(active)))){
                 postInfo("Click to attack " + Countries.get(active).getName() + ".", g2);
             }
             else if (moving){
                 postInfo("Selected " + Countries.get(select).getName() + ". You can now move troops between " + Countries.get(fortify1).getName() + " and " + Countries.get(fortify2).getName() + ". Or choose a country to attack.", g2);
             }
-            else if((selected == false) && (fortify == true) && (fortify1 != -1) && (fortify2 != -1)){
+            else if((!selected) && (fortify) && (fortify1 != -1) && (fortify2 != -1)){
                 postInfo("Selected " + Countries.get(select).getName() + ". You can now fortify between " + Countries.get(fortify1).getName() + " and " + Countries.get(fortify2).getName() + " or end your turn.", g2);
             }
-            else if((selected == true) && (isActive == true) && (fortify == true) && (select != active) && (Countries.get(active).getPossession() == turn) && (Countries.get(select).isNeighbor(Countries.get(active)))){
+            else if((selected) && (isActive) && (fortify) && (select != active) && (Countries.get(active).getPossession() == turn) && (Countries.get(select).isNeighbor(Countries.get(active)))){
                 postInfo("Selected " + Countries.get(select).getName() + ". Click to fortify to" + Countries.get(active).getName() + ".", g2);
             }
-            else if((selected == true) && (fortify == true)){
+            else if((selected) && (fortify)){
                 postInfo("Selected " + Countries.get(select).getName() + ". Choose a country to attack.", g2);
             }
-            else if((selected == false) && (fortify == true)){
+            else if((!selected) && (fortify)){
                 postInfo("Select a country to fortify from.", g2);
             }
-            else if((selected == true) && (attack == true)){
+            else if((selected) && (attack)){
                 postInfo("Selected " + Countries.get(select).getName() + ". Choose a country to attack.", g2);
             }
-            else if((selected == false) && (attack == true)){
+            else if((!selected) && (attack)){
                 postInfo("Select a country to attack from.", g2);
             }
-            else if((attack == false) && (fortify == false)){
+            else {
                 postInfo("Choose to attack, fortify or end turn.", g2);
             }
         }
-        if (view == true){
+        if (view){
             if (Players.get(turn).getCardsN() == 0){ //drawing cards, if there are none, then draws "no cards"
                 g2.setColor(Color.white);
                 g2.setFont(new Font("Urbana", Font.PLAIN, 72));
                 g2.drawString("You have no cards", dim.width/2 - 300, dim.height/2 + 50);
             }
             else{
-                if (isActive == true){
+                if (isActive){
                     g2.setColor(Color.yellow);
                     Rectangle temp = new Rectangle (Players.get(turn).getCards().get(active).giveBorder());
                     temp.grow((int)((dim.getWidth()/1920.0)*10), (int)((dim.getWidth()/1920.0)*10));
@@ -874,22 +873,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     }
 
     public static BufferedImage resize(Image image, int width, int height) { //code found from internet. supposedly resizes images
-        BufferedImage resizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        Graphics2D g = resizedImage.createGraphics();
-        g.setComposite(AlphaComposite.Src);
-
-        g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, //don't know
-            RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-
-        g.setRenderingHint(RenderingHints.KEY_RENDERING, //don't know
-            RenderingHints.VALUE_RENDER_QUALITY); 
-
-        g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, //don't know
-            RenderingHints.VALUE_ANTIALIAS_ON);
-
-        g.drawImage(image, 0, 0, width, height, null);
-        g.dispose();
-        return resizedImage;
+        return Card.resize(image, width, height);
     } 
 
     public void postInfo(String a, Graphics2D b){ //custom method made to cut a string into lines so that they fit into the info box
@@ -917,7 +901,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                     b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*875));
                     Line4 = c;
                 }
-                else if((a.charAt(c) == (' ')) && c < 80 && Line5 == 0){
+                else if(a.charAt(c) == ' ' && c < 80){
                     b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*875));
                     Line4 = c;
                 }
@@ -971,7 +955,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                 }
             }
         }
-        else if(a.length() <= 20){
+        else {
             b.drawString(a, (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
         }
     }
