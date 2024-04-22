@@ -1,12 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.*;
-import java.awt.geom.*;
-import java.util.*;
-import javax.imageio.*;
-import java.io.*;
-import java.math.*;
 
 public class Card{
     String country;
