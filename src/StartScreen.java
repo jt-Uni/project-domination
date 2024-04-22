@@ -18,7 +18,7 @@ public class StartScreen extends JFrame implements ActionListener{
         setSize(600, 1000);
         setLayout(new BorderLayout());
         dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width/2 - 140, dim.height/2 - 250);
+        setLocation(dim.width/2 - 390, dim.height/2 - 500);
 
         Colors = new JPanel();
         Colors.setLayout(new GridLayout(7, 1));
