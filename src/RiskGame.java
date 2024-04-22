@@ -96,118 +96,120 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         
         //North america = 10
         Countries.add(new Country("Alaska", 0));
-        Countries.get(0).setBord(0,0,20,20);
+        Countries.get(0).setBord(145,255,75,75);
         Countries.add(new Country("Alberta", 0));
-        Countries.get(1).setBord(0,0,20,20);
-        Countries.add(new Country("Central America", 0));
-        Countries.get(2).setBord(0,0,20,20);
-        Countries.add(new Country("Eastern United States", 0));
-        Countries.get(3).setBord(0,0,20,20);
+        Countries.get(1).setBord(301,325,62,36);
+        Countries.add(new Country("CentralAmerica", 0));
+        Countries.get(2).setBord(269,518,71,69);
+        Countries.add(new Country("EasternUnitedStates", 0));
+        Countries.get(3).setBord(300,416,115,109);
         Countries.add(new Country("Greenland", 0));
-        Countries.get(4).setBord(0,0,20,20);
-        Countries.add(new Country("Northwest Territory", 0));
-        Countries.get(5).setBord(0,0,20,20);
+        Countries.get(4).setBord(449,169,150,100);
+        Countries.add(new Country("NorthwestTerritory", 0));
+        Countries.get(5).setBord(244,225,124,88);
         Countries.add(new Country("Ontario", 0));
-        Countries.get(6).setBord(0,0,20,20);
-        Countries.add(new Country("Northern United States", 0));
-        Countries.get(7).setBord(0,0,20,20);
-        Countries.add(new Country("Western United States", 0));
-        Countries.get(8).setBord(0,0,20,20);
+        Countries.get(6).setBord(342,316,48,45);
+        Countries.add(new Country("NorthernUnitedStates", 0));
+        Countries.get(7).setBord(289,375,158,33);
+        Countries.add(new Country("WesternUnitedStates", 0));
+        Countries.get(8).setBord(265,414,74,78);
 
         // South America = 5
         Countries.add(new Country("Argentina", 1));
-        Countries.get(9).setBord(0,0,20,20);
+        Countries.get(9).setBord(313,815,151,119);
         Countries.add(new Country("Brazil", 1));
-        Countries.get(10).setBord(0,0,20,20);
+        Countries.get(10).setBord(424,669,171,92);
         Countries.add(new Country("Peru", 1));
-        Countries.get(11).setBord(0,0,20,20);
+        Countries.get(11).setBord(274,690,119,106);
         Countries.add(new Country("Bolivia", 1));
-        Countries.get(12).setBord(0,0,20,20);
+        Countries.get(12).setBord(300,650,132,28);
         Countries.add(new Country("Venezuela", 1));
-        Countries.get(12).setBord(0,0,20,20);
+        Countries.get(13).setBord(244,620,115,17);
 
         // Europe = 9
         Countries.add(new Country("Sweden", 2));
-        Countries.get(13).setBord(0,0,20,20);
+        Countries.get(14).setBord(650,231,114,50);
         Countries.add(new Country("Iceland", 2));
-        Countries.get(14).setBord(0,0,20,20);
+        Countries.get(15).setBord(595,200,58,47);
         Countries.add(new Country("Finland", 2));
-        Countries.get(15).setBord(0,0,20,20);
+        Countries.get(16).setBord(792,218,77,50);
         Countries.add(new Country("Poland", 2));
-        Countries.get(16).setBord(0,0,20,20);
-        Countries.add(new Country("Southern Europe", 2));
-        Countries.get(17).setBord(0,0,20,20);
+        Countries.get(17).setBord(833,270,90,22);
+        Countries.add(new Country("SouthernEurope", 2));
+        Countries.get(18).setBord(750,384,87,31);
         Countries.add(new Country("Ukraine", 2));
-        Countries.get(18).setBord(0,0,20,20);
+        Countries.get(19).setBord(880,324,98,54);
         Countries.add(new Country("Spain", 2));
-        Countries.get(19).setBord(0,0,20,20);
+        Countries.get(20).setBord(700,425,98,55);
         Countries.add(new Country("Text", 2));
-        Countries.get(20).setBord(0,0,20,20);
+        Countries.get(21).setBord(935,197,70,48);
         Countries.add(new Country("France", 2));
-        Countries.get(21).setBord(0,0,20,20);
+        Countries.get(22).setBord(722,287,69,47);
 
         // Africa = 7
         Countries.add(new Country("Algeria", 3));
-        Countries.get(22).setBord(0,0,20,20);
+        Countries.get(23).setBord(730,547,114,117);
         Countries.add(new Country("Chad", 3));
-        Countries.get(23).setBord(0,0,20,20);
+        Countries.get(24).setBord(850,634,82,52);
         Countries.add(new Country("Egypt", 3));
-        Countries.get(24).setBord(0,0,20,20);
+        Countries.get(25).setBord(850,600,86,23);
         Countries.add(new Country("Madagascar", 3));
-        Countries.get(25).setBord(0,0,20,20);
+        Countries.get(26).setBord(1000,880,67,42);
         Countries.add(new Country("Sudan", 3));
-        Countries.get(26).setBord(0,0,20,20);
-        Countries.add(new Country("South Africa", 3));
-        Countries.get(25).setBord(0,0,20,20);
+        Countries.get(27).setBord(964,602,97,64);
+        Countries.add(new Country("SouthAfrica", 3));
+        Countries.get(28).setBord(853,800,147,60);
+        Countries.add(new Country("CentralAfrica", 3));
+        Countries.get(29).setBord(853,700,147,60);
 
         // Asia = 12
         Countries.add(new Country("Afghanistan", 4));
-        Countries.get(26).setBord(0,0,20,20);
+        Countries.get(30).setBord(999,380,104,24);
         Countries.add(new Country("China", 4));
-        Countries.get(27).setBord(0,0,20,20);
+        Countries.get(31).setBord(1200,335,84,39);
         Countries.add(new Country("India", 4));
-        Countries.get(28).setBord(0,0,20,20);
+        Countries.get(32).setBord(1120,416,56,56);
         Countries.add(new Country("pakistan", 4));
-        Countries.get(29).setBord(0,0,20,20);
+        Countries.get(33).setBord(1124,345,58,59);
         Countries.add(new Country("Japan", 4));
-        Countries.get(30).setBord(0,0,20,20);
+        Countries.get(34).setBord(1368,305,68,97);
         Countries.add(new Country("Kamchatka", 4));
-        Countries.get(31).setBord(0,0,20,20);
-        Countries.add(new Country("Middle East", 4));
-        Countries.get(32).setBord(0,0,20,20);
+        Countries.get(35).setBord(1281,163,94,68);
+        Countries.add(new Country("MiddleEast", 4));
+        Countries.get(36).setBord(942,419,101,79);
         Countries.add(new Country("Mongolia", 4));
-        Countries.get(33).setBord(0,0,20,20);
-        Countries.add(new Country("South East Asia", 4));
-        Countries.get(34).setBord(0,0,20,20);
+        Countries.get(37).setBord(1147,236,133,60);
+        Countries.add(new Country("SouthEastAsia", 4));
+        Countries.get(38).setBord(1300,380,63,53);
         Countries.add(new Country("Siberia", 4));
-        Countries.get(35).setBord(0,0,20,20);
+        Countries.get(39).setBord(1100,214,83,65);
         Countries.add(new Country("Ural", 4));
-        Countries.get(36).setBord(0,0,20,20);
+        Countries.get(40).setBord(1015,245,83,80);
         Countries.add(new Country("Yakutsk", 4));
-        Countries.get(37).setBord(0,0,20,20);
+        Countries.get(41).setBord(1200,142,117,79);
 
         // Australia = 5
-        Countries.add(new Country("Eastern Australia", 5));
-        Countries.get(38).setBord(0,0,20,20);
+        Countries.add(new Country("EasternAustralia", 5));
+        Countries.get(42).setBord(1340,673,85,114);
         Countries.add(new Country("Indonesia", 5));
-        Countries.get(39).setBord(0,0,20,20);
-        Countries.add(new Country("New Guinea", 5));
-        Countries.get(40).setBord(0,0,20,20);
-        Countries.add(new Country("Western Australia", 5));
-        Countries.get(41).setBord(0,0,20,20);
-        Countries.add(new Country("Central Australia", 5));
-        Countries.get(42).setBord(0,0,20,20);
+        Countries.get(43).setBord(1155,593,127,66);
+        Countries.add(new Country("NewGuinea", 5));
+        Countries.get(44).setBord(1262,531,121,111);
+        Countries.add(new Country("WesternAustralia", 5));
+        Countries.get(45).setBord(1200,718,92,105);
+        Countries.add(new Country("CentralAustralia", 5));
+        Countries.get(46).setBord(1254,711,72,81);
 
-        for (int c = 0; c < 42; c++){ //resizing, relocating and giving a picture and a border to every country.
-            Countries.get(c).selectedImage(new ImageIcon("./assets/countries/" + Countries.get(c).getName() + ".png").getImage());
+        for (int c = 0; c < 47; c++){ //resizing, relocating and giving a picture and a border to every country.
+            Countries.get(c).selectedImage(new ImageIcon("./assets/countries/" + Countries.get(c).getName() + ".jpg").getImage());
             Countries.get(c).selectedImage(resize(Countries.get(c).getSelected(), (int)((dim.getWidth()/1920.0)*1576), (int)((dim.getHeight()/1080.0)*1050)));
             Countries.get(c).setBord((int)((dim.getWidth()/1920.0)*Countries.get(c).giveBorder().x) + (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*Countries.get(c).giveBorder().y) + (int)((dim.getHeight()/1080.0)*15), (int)((dim.getWidth()/1920.0)*Countries.get(c).giveBorder().width), (int)((dim.getHeight()/1080.0)*Countries.get(c).giveBorder().height));
             Rectangle temp = new Rectangle (Countries.get(c).giveBorder().x + (Countries.get(c).giveBorder().width/2) - (int)((dim.getWidth()/1920.0)*150), Countries.get(c).giveBorder().y + (Countries.get(c).giveBorder().height/2) - (int)((dim.getHeight()/1080.0)*150), (int)((dim.getWidth()/1920.0)*300), (int)((dim.getHeight()/1080.0)*300));
         }
 
-        for (int c = 0; c < 42; c++){ //attempting to get all the neighbors for a country.
+        for (int c = 0; c < 47; c++){ //attempting to get all the neighbors for a country.
             Rectangle temp = new Rectangle (Countries.get(c).giveBorder().x + (Countries.get(c).giveBorder().width/2) - (int)((dim.getWidth()/1920.0)*150), Countries.get(c).giveBorder().y + (Countries.get(c).giveBorder().height/2) - (int)((dim.getHeight()/1080.0)*150), (int)((dim.getWidth()/1920.0)*300), (int)((dim.getHeight()/1080.0)*300));
-            for (int c2 = 0; c2 < 42; (c2)++){
+            for (int c2 = 0; c2 < 47; (c2)++){
                 Point p1 = Countries.get(c2).giveBorder().getLocation();
                 Point p2 = Countries.get(c2).giveBorder().getLocation();
                 p2.translate(Countries.get(c2).giveBorder().width, 0);
@@ -224,65 +226,65 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
 
         //manually adding/removing the missing/extra neighbors
-        // Countries.get(0).addNeighbor(Countries, "Kamchatka");
-        // Countries.get(1).removeNeighbor(Countries, "Eastern United States");
-        // Countries.get(3).removeNeighbor(Countries, "Alberta");
-        // Countries.get(4).addNeighbor(Countries, "Northwest Territory");
-        // Countries.get(4).addNeighbor(Countries, "Ontario");
-        // Countries.get(5).removeNeighbor(Countries, "Quebec");
-        // Countries.get(6).addNeighbor(Countries, "Greenland");
-        // Countries.get(7).removeNeighbor(Countries, "Great Britain");
-        // Countries.get(7).removeNeighbor(Countries, "Northwest Territory");
-        // Countries.get(10).addNeighbor(Countries, "North Africa");
-        // Countries.get(13).removeNeighbor(Countries, "Southern Europe");
-        // Countries.get(13).addNeighbor(Countries, "Western Europe");
-        // Countries.get(14).removeNeighbor(Countries, "Northern Europe");
-        // Countries.get(15).addNeighbor(Countries, "Scandinavia");
-        // Countries.get(15).removeNeighbor(Countries, "Iceland");
-        // Countries.get(15).removeNeighbor(Countries, "Middle East");
-        // Countries.get(17).addNeighbor(Countries, "North Africa");
-        // Countries.get(17).addNeighbor(Countries, "Ukraine");
-        // Countries.get(18).addNeighbor(Countries, "Middle East");
-        // Countries.get(19).addNeighbor(Countries, "Great Britain");
-        // Countries.get(20).removeNeighbor(Countries, "Madagascar");
-        // Countries.get(21).addNeighbor(Countries, "North Africa");
-        // Countries.get(21).addNeighbor(Countries, "Middle East");
-        // Countries.get(23).addNeighbor(Countries, "East Africa");
-        // Countries.get(23).removeNeighbor(Countries, "Congo");
-        // Countries.get(24).addNeighbor(Countries, "Southern Europe");
-        // Countries.get(24).addNeighbor(Countries, "Eastern Africa");
-        // Countries.get(24).addNeighbor(Countries, "Brazil");
-        // Countries.get(24).addNeighbor(Countries, "East Africa");
-        // Countries.get(25).addNeighbor(Countries, "East Africa");
-        // Countries.get(26).addNeighbor(Countries, "China");
-        // Countries.get(27).removeNeighbor(Countries, "Japan");
-        // Countries.get(27).addNeighbor(Countries, "Siberia");
-        // Countries.get(27).addNeighbor(Countries, "Ural");
-        // Countries.get(28).removeNeighbor(Countries, "Indonesia");
-        // Countries.get(29).removeNeighbor(Countries, "Japan");
-        // Countries.get(30).removeNeighbor(Countries, "China");
-        // Countries.get(30).removeNeighbor(Countries, "Irkutsk");
-        // Countries.get(30).addNeighbor(Countries, "Kamchatka");
-        // Countries.get(31).addNeighbor(Countries, "Mongolia");
-        // Countries.get(31).addNeighbor(Countries, "Japan");
-        // Countries.get(31).addNeighbor(Countries, "Alaska");
-        // Countries.get(32).removeNeighbor(Countries, "Northern Europe");
-        // Countries.get(32).addNeighbor(Countries, "Ukraine");
-        // Countries.get(32).addNeighbor(Countries, "East Africa");
-        // Countries.get(33).addNeighbor(Countries, "Siberia");
-        // Countries.get(33).addNeighbor(Countries, "Kamchatka");
-        // Countries.get(34).removeNeighbor(Countries, "New Guinea");
-        // Countries.get(35).addNeighbor(Countries, "Mongolia");
-        // Countries.get(35).addNeighbor(Countries, "China");
-        // Countries.get(35).addNeighbor(Countries, "Yakutsk");
-        // Countries.get(35).addNeighbor(Countries, "Ural");
-        // Countries.get(36).removeNeighbor(Countries, "Irkutsk");
-        // Countries.get(36).removeNeighbor(Countries, "Yakutsk");
-        // Countries.get(36).addNeighbor(Countries, "China");
-        // Countries.get(38).addNeighbor(Countries, "New Guinea");
-        // Countries.get(40).removeNeighbor(Countries, "Siam");
-        // Countries.get(40).addNeighbor(Countries, "Western Australia");
-        // Countries.get(41).addNeighbor(Countries, "New Guinea");
+        Countries.get(0).addNeighbor(Countries, "Kamchatka");
+        Countries.get(1).removeNeighbor(Countries, "Eastern United States");
+        Countries.get(3).removeNeighbor(Countries, "Alberta");
+        Countries.get(4).addNeighbor(Countries, "Northwest Territory");
+        Countries.get(4).addNeighbor(Countries, "Ontario");
+        Countries.get(5).removeNeighbor(Countries, "Quebec");
+        Countries.get(6).addNeighbor(Countries, "Greenland");
+        Countries.get(7).removeNeighbor(Countries, "Great Britain");
+        Countries.get(7).removeNeighbor(Countries, "Northwest Territory");
+        Countries.get(10).addNeighbor(Countries, "North Africa");
+        Countries.get(13).removeNeighbor(Countries, "Southern Europe");
+        Countries.get(13).addNeighbor(Countries, "Western Europe");
+        Countries.get(14).removeNeighbor(Countries, "Northern Europe");
+        Countries.get(15).addNeighbor(Countries, "Scandinavia");
+        Countries.get(15).removeNeighbor(Countries, "Iceland");
+        Countries.get(15).removeNeighbor(Countries, "Middle East");
+        Countries.get(17).addNeighbor(Countries, "North Africa");
+        Countries.get(17).addNeighbor(Countries, "Ukraine");
+        Countries.get(18).addNeighbor(Countries, "Middle East");
+        Countries.get(19).addNeighbor(Countries, "Great Britain");
+        Countries.get(20).removeNeighbor(Countries, "Madagascar");
+        Countries.get(21).addNeighbor(Countries, "North Africa");
+        Countries.get(21).addNeighbor(Countries, "Middle East");
+        Countries.get(23).addNeighbor(Countries, "East Africa");
+        Countries.get(23).removeNeighbor(Countries, "Congo");
+        Countries.get(24).addNeighbor(Countries, "Southern Europe");
+        Countries.get(24).addNeighbor(Countries, "Eastern Africa");
+        Countries.get(24).addNeighbor(Countries, "Brazil");
+        Countries.get(24).addNeighbor(Countries, "East Africa");
+        Countries.get(25).addNeighbor(Countries, "East Africa");
+        Countries.get(26).addNeighbor(Countries, "China");
+        Countries.get(27).removeNeighbor(Countries, "Japan");
+        Countries.get(27).addNeighbor(Countries, "Siberia");
+        Countries.get(27).addNeighbor(Countries, "Ural");
+        Countries.get(28).removeNeighbor(Countries, "Indonesia");
+        Countries.get(29).removeNeighbor(Countries, "Japan");
+        Countries.get(30).removeNeighbor(Countries, "China");
+        Countries.get(30).removeNeighbor(Countries, "Irkutsk");
+        Countries.get(30).addNeighbor(Countries, "Kamchatka");
+        Countries.get(31).addNeighbor(Countries, "Mongolia");
+        Countries.get(31).addNeighbor(Countries, "Japan");
+        Countries.get(31).addNeighbor(Countries, "Alaska");
+        Countries.get(32).removeNeighbor(Countries, "Northern Europe");
+        Countries.get(32).addNeighbor(Countries, "Ukraine");
+        Countries.get(32).addNeighbor(Countries, "East Africa");
+        Countries.get(33).addNeighbor(Countries, "Siberia");
+        Countries.get(33).addNeighbor(Countries, "Kamchatka");
+        Countries.get(34).removeNeighbor(Countries, "New Guinea");
+        Countries.get(35).addNeighbor(Countries, "Mongolia");
+        Countries.get(35).addNeighbor(Countries, "China");
+        Countries.get(35).addNeighbor(Countries, "Yakutsk");
+        Countries.get(35).addNeighbor(Countries, "Ural");
+        Countries.get(36).removeNeighbor(Countries, "Irkutsk");
+        Countries.get(36).removeNeighbor(Countries, "Yakutsk");
+        Countries.get(36).addNeighbor(Countries, "China");
+        Countries.get(38).addNeighbor(Countries, "New Guinea");
+        Countries.get(40).removeNeighbor(Countries, "Siam");
+        Countries.get(40).addNeighbor(Countries, "Western Australia");
+        Countries.get(41).addNeighbor(Countries, "New Guinea");
     }
 
     private void finalisation() {
@@ -313,7 +315,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         r = new Random();
 
         for (int c = 0; c < Players.size(); c++){ //distributing countries randomly
-            for (int c2 = 0; c2 < 42/Players.size(); c2++){
+            for (int c2 = 0; c2 < 47/Players.size(); c2++){
                 int temp = r.nextInt(temp2.size());
                 Players.get(c).conquered(temp2.get(temp));
                 temp2.remove(temp);
@@ -334,7 +336,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
     private void setupCards() {
         int unit = 0;
-        for (int c = 0; c < 42; c++){ //making cards
+        for (int c = 0; c < 47; c++){ //making cards
             Cards.add(new Card(Countries.get(c).getName(), unit, -1));
             unit ++;
             if(unit == 3){
@@ -414,7 +416,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                             while(frame.isVisible()){
                                 Thread.yield();
                             }
-                            if(Players.get(turn).getCountries() == 42){
+                            if(Players.get(turn).getCountries() == 47){
                                 JOptionPane.showMessageDialog(frame,
                                     "Congratulations! You have conquered the world!",
                                     "Information",
@@ -602,7 +604,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
                 }
             }
             else{
-                for (int c = 0; c < 42; c++){
+                for (int c = 0; c < 47; c++){
                     if (Countries.get(c).giveBorder().contains(e.getX(), e.getY())){ //seeing if the mouse has entered the border of a country
                         isActive = true;
                         active = c;
@@ -774,7 +776,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             else if (selected){
                 g2.drawImage(Countries.get(select).getSelected(), (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
             }
-            for (int c = 0; c < 42; c++){ //drawing armies and color on each country
+            for (int c = 0; c < 47; c++){ //drawing armies and color on each country
                 g2.setColor(Players.get(Countries.get(c).getPossession()).getColor());
                 g2.fillOval(Countries.get(c).giveBorder().x + (Countries.get(c).giveBorder().width/2) - 10, Countries.get(c).giveBorder().y + Countries.get(c).giveBorder().height, 20, 20);
                 g2.setColor(Color.white);
