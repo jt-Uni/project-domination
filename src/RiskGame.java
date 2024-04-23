@@ -227,66 +227,285 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             }
         }
 
-        //manually adding/removing the missing/extra neighbors
-        // Countries.get(0).addNeighbor(Countries, "Kamchatka");
-        // Countries.get(1).removeNeighbor(Countries, "Eastern United States");
-        // Countries.get(3).removeNeighbor(Countries, "Alberta");
-        // Countries.get(4).addNeighbor(Countries, "Northwest Territory");
-        // Countries.get(4).addNeighbor(Countries, "Ontario");
-        // Countries.get(5).removeNeighbor(Countries, "Quebec");
-        // Countries.get(6).addNeighbor(Countries, "Greenland");
-        // Countries.get(7).removeNeighbor(Countries, "Great Britain");
-        // Countries.get(7).removeNeighbor(Countries, "Northwest Territory");
-        // Countries.get(10).addNeighbor(Countries, "North Africa");
-        // Countries.get(13).removeNeighbor(Countries, "Southern Europe");
-        // Countries.get(13).addNeighbor(Countries, "Western Europe");
-        // Countries.get(14).removeNeighbor(Countries, "Northern Europe");
-        // Countries.get(15).addNeighbor(Countries, "Scandinavia");
-        // Countries.get(15).removeNeighbor(Countries, "Iceland");
-        // Countries.get(15).removeNeighbor(Countries, "Middle East");
-        // Countries.get(17).addNeighbor(Countries, "North Africa");
-        // Countries.get(17).addNeighbor(Countries, "Ukraine");
-        // Countries.get(18).addNeighbor(Countries, "Middle East");
-        // Countries.get(19).addNeighbor(Countries, "Great Britain");
-        // Countries.get(20).removeNeighbor(Countries, "Madagascar");
-        // Countries.get(21).addNeighbor(Countries, "North Africa");
-        // Countries.get(21).addNeighbor(Countries, "Middle East");
-        // Countries.get(23).addNeighbor(Countries, "East Africa");
-        // Countries.get(23).removeNeighbor(Countries, "Congo");
-        // Countries.get(24).addNeighbor(Countries, "Southern Europe");
-        // Countries.get(24).addNeighbor(Countries, "Eastern Africa");
-        // Countries.get(24).addNeighbor(Countries, "Brazil");
-        // Countries.get(24).addNeighbor(Countries, "East Africa");
-        // Countries.get(25).addNeighbor(Countries, "East Africa");
-        // Countries.get(26).addNeighbor(Countries, "China");
-        // Countries.get(27).removeNeighbor(Countries, "Japan");
-        // Countries.get(27).addNeighbor(Countries, "Siberia");
-        // Countries.get(27).addNeighbor(Countries, "Ural");
-        // Countries.get(28).removeNeighbor(Countries, "Indonesia");
-        // Countries.get(29).removeNeighbor(Countries, "Japan");
-        // Countries.get(30).removeNeighbor(Countries, "China");
-        // Countries.get(30).removeNeighbor(Countries, "Irkutsk");
-        // Countries.get(30).addNeighbor(Countries, "Kamchatka");
-        // Countries.get(31).addNeighbor(Countries, "Mongolia");
-        // Countries.get(31).addNeighbor(Countries, "Japan");
-        // Countries.get(31).addNeighbor(Countries, "Alaska");
-        // Countries.get(32).removeNeighbor(Countries, "Northern Europe");
-        // Countries.get(32).addNeighbor(Countries, "Ukraine");
-        // Countries.get(32).addNeighbor(Countries, "East Africa");
-        // Countries.get(33).addNeighbor(Countries, "Siberia");
-        // Countries.get(33).addNeighbor(Countries, "Kamchatka");
-        // Countries.get(34).removeNeighbor(Countries, "New Guinea");
-        // Countries.get(35).addNeighbor(Countries, "Mongolia");
-        // Countries.get(35).addNeighbor(Countries, "China");
-        // Countries.get(35).addNeighbor(Countries, "Yakutsk");
-        // Countries.get(35).addNeighbor(Countries, "Ural");
-        // Countries.get(36).removeNeighbor(Countries, "Irkutsk");
-        // Countries.get(36).removeNeighbor(Countries, "Yakutsk");
-        // Countries.get(36).addNeighbor(Countries, "China");
-        // Countries.get(38).addNeighbor(Countries, "New Guinea");
-        // Countries.get(40).removeNeighbor(Countries, "Siam");
-        // Countries.get(40).addNeighbor(Countries, "Western Australia");
-        // Countries.get(41).addNeighbor(Countries, "New Guinea");
+        //North America
+
+        // Alaska
+        Countries.get(0).addNeighbor(Countries, "Alberta");
+        Countries.get(0).addNeighbor(Countries, "NorthwestTerritory");
+        Countries.get(0).addNeighbor(Countries, "NorthernUnitedStates");
+
+        // Alberta
+        Countries.get(1).addNeighbor(Countries, "Alaska");
+        Countries.get(1).addNeighbor(Countries, "NorthwestTerritory");
+        Countries.get(1).addNeighbor(Countries, "Ontario");
+        Countries.get(1).addNeighbor(Countries, "NorthernUnitedStates");
+
+        // CentralAmerica
+        Countries.get(2).addNeighbor(Countries, "Venezuela");
+        Countries.get(2).addNeighbor(Countries, "WesternUnitedStates");
+        Countries.get(2).addNeighbor(Countries, "EasternUnitedStates");
+
+        // EasternUnitedStates
+        Countries.get(3).addNeighbor(Countries, "WesternUnitedStates");
+        Countries.get(3).addNeighbor(Countries, "CentralAmerica");
+        Countries.get(3).addNeighbor(Countries, "NorthernUnitedStates");
+        Countries.get(3).addNeighbor(Countries, "EasternUnitedStates");
+
+        // Greenland
+        Countries.get(4).addNeighbor(Countries, "Iceland");
+        Countries.get(4).addNeighbor(Countries, "EasternCanada");
+        Countries.get(4).addNeighbor(Countries, "Ontario");
+        Countries.get(4).addNeighbor(Countries, "NorthwestTerritory");
+
+        // NorthwestTerritory
+        Countries.get(5).addNeighbor(Countries, "Alaska");
+        Countries.get(5).addNeighbor(Countries, "Alberta");
+        Countries.get(5).addNeighbor(Countries, "Ontario");
+        Countries.get(5).addNeighbor(Countries, "Greenland");
+
+        // Ontario
+        Countries.get(6).addNeighbor(Countries, "Alberta");
+        Countries.get(6).addNeighbor(Countries, "EasternCanada");
+        Countries.get(6).addNeighbor(Countries, "NorthernUnitedStates");
+        Countries.get(6).addNeighbor(Countries, "NorthwestTerritory");
+        Countries.get(6).addNeighbor(Countries, "Greenland");
+
+        // NorthernUnitedStates
+        Countries.get(7).addNeighbor(Countries, "Ontario");
+        Countries.get(7).addNeighbor(Countries, "Alberta");
+        Countries.get(7).addNeighbor(Countries, "EasternCanada");
+        Countries.get(7).addNeighbor(Countries, "WesternUnitedStates");
+        Countries.get(7).addNeighbor(Countries, "EasternUnitedStates");
+        Countries.get(7).addNeighbor(Countries, "Alaska");
+
+        // WesternUnitedStates
+        Countries.get(8).addNeighbor(Countries, "NorthernUnitedStates");
+        Countries.get(8).addNeighbor(Countries, "EasternUnitedStates");
+        Countries.get(8).addNeighbor(Countries, "CentralAmerica");    
+
+        // EasternCanada
+        Countries.get(9).addNeighbor(Countries, "Greenland");
+        Countries.get(9).addNeighbor(Countries, "Ontario");
+        Countries.get(9).addNeighbor(Countries, "NorthernUnitedStates");
+        Countries.get(9).addNeighbor(Countries, "EasternUnitedStates");
+
+        // South America
+
+        // Argentina
+        Countries.get(10).addNeighbor(Countries, "Peru");
+        Countries.get(10).addNeighbor(Countries, "Brazil");
+
+        // Brazil
+        Countries.get(11).addNeighbor(Countries, "Bolivia");
+        Countries.get(11).addNeighbor(Countries, "Peru");
+        Countries.get(11).addNeighbor(Countries, "Argentina");
+
+        // Peru
+        Countries.get(12).addNeighbor(Countries, "Venezuela");
+        Countries.get(12).addNeighbor(Countries, "Boliva");
+        Countries.get(12).addNeighbor(Countries, "Brazil");
+        Countries.get(12).addNeighbor(Countries, "Argentina");
+
+        // Boliva
+        Countries.get(13).addNeighbor(Countries, "Peru");
+        Countries.get(13).addNeighbor(Countries, "Brazil");
+        Countries.get(13).addNeighbor(Countries, "Venezuela");
+
+        // Venezuela
+        Countries.get(14).addNeighbor(Countries, "CentralAmerica");
+        Countries.get(14).addNeighbor(Countries, "Bolivia");
+        Countries.get(14).addNeighbor(Countries, "Peru");
+
+        // Europe
+
+        // Sweden
+        Countries.get(15).addNeighbor(Countries, "Finland");
+        Countries.get(15).addNeighbor(Countries, "France");
+        Countries.get(15).addNeighbor(Countries, "Iceland");
+
+        // Iceland
+        Countries.get(16).addNeighbor(Countries, "Greenland");
+        Countries.get(16).addNeighbor(Countries, "Sweden");
+
+        // Finland
+        Countries.get(17).addNeighbor(Countries, "Sweden");
+        Countries.get(17).addNeighbor(Countries, "France");
+        Countries.get(17).addNeighbor(Countries, "Poland");
+        Countries.get(17).addNeighbor(Countries, "Text");
+
+        // Poland
+        Countries.get(18).addNeighbor(Countries, "Finland");
+        Countries.get(18).addNeighbor(Countries, "France");
+        Countries.get(18).addNeighbor(Countries, "Ukraine");
+        Countries.get(18).addNeighbor(Countries, "Text");
+
+        // SouthernEurope
+        Countries.get(19).addNeighbor(Countries, "France");
+        Countries.get(19).addNeighbor(Countries, "Ukraine");
+        Countries.get(19).addNeighbor(Countries, "MiddleEast");
+        Countries.get(19).addNeighbor(Countries, "Spain");
+
+        // Ukraine
+        Countries.get(20).addNeighbor(Countries, "Poland");
+        Countries.get(20).addNeighbor(Countries, "France");
+        Countries.get(20).addNeighbor(Countries, "MiddleEast");
+        Countries.get(20).addNeighbor(Countries, "SouthernEurope");
+        Countries.get(20).addNeighbor(Countries, "Text");
+        Countries.get(20).addNeighbor(Countries, "Ural");
+        Countries.get(20).addNeighbor(Countries, "Afghanistan");
+
+        // Spain
+        Countries.get(21).addNeighbor(Countries, "SouthernEurope");
+        Countries.get(21).addNeighbor(Countries, "Algeria");
+
+        // Text
+        Countries.get(22).addNeighbor(Countries, "Poland");
+        Countries.get(22).addNeighbor(Countries, "Ukraine");
+        Countries.get(22).addNeighbor(Countries, "Ural");
+        Countries.get(22).addNeighbor(Countries, "Finland");
+
+        // France
+        Countries.get(23).addNeighbor(Countries, "SouthernEurope");
+        Countries.get(23).addNeighbor(Countries, "Ukraine");
+        Countries.get(23).addNeighbor(Countries, "Finland");
+        Countries.get(23).addNeighbor(Countries, "Sweden");
+        Countries.get(23).addNeighbor(Countries, "Finland");
+
+        // Africa
+
+        // Algeria
+        Countries.get(24).addNeighbor(Countries, "Spain");
+        Countries.get(24).addNeighbor(Countries, "Egypt");
+        Countries.get(24).addNeighbor(Countries, "Chad");
+
+        // Chad
+        Countries.get(25).addNeighbor(Countries, "Algeria");
+        Countries.get(25).addNeighbor(Countries, "Sudan");
+        Countries.get(25).addNeighbor(Countries, "CentralAfrica");
+        Countries.get(25).addNeighbor(Countries, "Egypt");
+
+        // Egypt
+        Countries.get(26).addNeighbor(Countries, "Algeria");
+        Countries.get(26).addNeighbor(Countries, "Sudan");
+        Countries.get(26).addNeighbor(Countries, "MiddleEast");
+        Countries.get(26).addNeighbor(Countries, "Chad");
+
+        // Madagascar
+        Countries.get(26).addNeighbor(Countries, "MiddleEast");
+
+        // Sudan
+        Countries.get(28).addNeighbor(Countries, "Chad");
+        Countries.get(28).addNeighbor(Countries, "Egypt");
+        Countries.get(28).addNeighbor(Countries, "CentralAfrica");
+
+        // SouthAfrica
+        Countries.get(29).addNeighbor(Countries, "CentralAfrica");
+        Countries.get(29).addNeighbor(Countries, "Madagascar");
+
+        // CentralAfrica
+        Countries.get(30).addNeighbor(Countries, "Chad");
+        Countries.get(30).addNeighbor(Countries, "Sudan");
+        Countries.get(30).addNeighbor(Countries, "SouthAfrica");
+
+        // Asia
+
+        // Afghanistan
+        Countries.get(31).addNeighbor(Countries, "Ural");
+        Countries.get(31).addNeighbor(Countries, "Ukraine");
+        Countries.get(31).addNeighbor(Countries, "MiddleEast");
+        Countries.get(31).addNeighbor(Countries, "Pakistan");
+        Countries.get(31).addNeighbor(Countries, "India");
+
+        // China
+        Countries.get(32).addNeighbor(Countries, "Mongolia");
+        Countries.get(32).addNeighbor(Countries, "Pakistan");
+        Countries.get(32).addNeighbor(Countries, "India");
+        Countries.get(32).addNeighbor(Countries, "SouthEastAsia");
+        Countries.get(38).addNeighbor(Countries, "NewGuinea"); 
+
+        // India
+        Countries.get(33).addNeighbor(Countries, "China");
+        Countries.get(33).addNeighbor(Countries, "Pakistan");
+        Countries.get(33).addNeighbor(Countries, "Afghanistan");
+        Countries.get(33).addNeighbor(Countries, "Indonesia");
+
+        // Pakistan
+        Countries.get(34).addNeighbor(Countries, "Afghanistan");
+        Countries.get(34).addNeighbor(Countries, "India");
+        Countries.get(34).addNeighbor(Countries, "China");
+        Countries.get(34).addNeighbor(Countries, "Siberia");
+
+        // Japan
+        Countries.get(35).addNeighbor(Countries, "Mongolia");
+        Countries.get(35).addNeighbor(Countries, "SouthEastAsia");
+
+        // Kamchatka
+        Countries.get(36).addNeighbor(Countries, "Mongolia");
+        Countries.get(36).addNeighbor(Countries, "Japan");
+        Countries.get(36).addNeighbor(Countries, "Yakutsk");
+
+        // MiddleEast
+        Countries.get(37).addNeighbor(Countries, "Ukraine");
+        Countries.get(37).addNeighbor(Countries, "Afghanistan");
+        Countries.get(37).addNeighbor(Countries, "SouthernEurope");
+
+        // Mongolia
+        Countries.get(38).addNeighbor(Countries, "China");
+        Countries.get(38).addNeighbor(Countries, "Japan");
+        Countries.get(38).addNeighbor(Countries, "Kamchatka");
+        Countries.get(38).addNeighbor(Countries, "Siberia");
+        Countries.get(38).addNeighbor(Countries, "Yakutsk");
+        Countries.get(38).addNeighbor(Countries, "SouthEastAsia");
+
+        // SouthEastAsia
+        Countries.get(39).addNeighbor(Countries, "China");
+        Countries.get(39).addNeighbor(Countries, "Japan");
+        Countries.get(39).addNeighbor(Countries, "Mongolia");
+
+        // Siberia
+        Countries.get(40).addNeighbor(Countries, "Ural");
+        Countries.get(40).addNeighbor(Countries, "Pakistan");
+        Countries.get(40).addNeighbor(Countries, "Yakutsk");
+        Countries.get(40).addNeighbor(Countries, "Mongolia");
+
+        // Ural
+        Countries.get(41).addNeighbor(Countries, "Ukraine");
+        Countries.get(41).addNeighbor(Countries, "Afghanistan");
+        Countries.get(41).addNeighbor(Countries, "Siberia");
+        Countries.get(41).addNeighbor(Countries, "Text");
+
+        // Yakutsk
+        Countries.get(42).addNeighbor(Countries, "Kamchatka");
+        Countries.get(42).addNeighbor(Countries, "Mongolia");
+        Countries.get(42).addNeighbor(Countries, "Siberia");
+
+        // Australia
+
+        // EasternAustralia
+        Countries.get(43).addNeighbor(Countries, "NewGuinea");
+        Countries.get(43).addNeighbor(Countries, "CentralAustralia");
+
+        // Indonesia
+        Countries.get(44).addNeighbor(Countries, "NewGuinea");
+        Countries.get(44).addNeighbor(Countries, "WesternAustralia");
+        Countries.get(44).addNeighbor(Countries, "India");
+        Countries.get(44).addNeighbor(Countries, "CentralAustralia");
+
+        // NewGuinea
+        Countries.get(45).addNeighbor(Countries, "EasternAustralia");
+        Countries.get(45).addNeighbor(Countries, "CentralAustralia");
+        Countries.get(45).addNeighbor(Countries, "Indonesia");
+        Countries.get(45).addNeighbor(Countries, "SouthEastAsia");
+
+        // WesternAustralia
+        Countries.get(46).addNeighbor(Countries, "CentralAustralia");
+        Countries.get(46).addNeighbor(Countries, "Indonesia");
+
+        // CentralAustralia
+        Countries.get(47).addNeighbor(Countries, "EasternAustralia");
+        Countries.get(47).addNeighbor(Countries, "NewGuinea");
+        Countries.get(47).addNeighbor(Countries, "Indonesia");
+        Countries.get(47).addNeighbor(Countries, "WesternAustralia");
     }
 
     private void finalisation() {
