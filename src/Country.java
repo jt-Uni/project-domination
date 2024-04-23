@@ -17,7 +17,7 @@ public class Country{ //everything is pretty clear
         country = a;
         continent = b;
         diceRoll = new Random();
-        neighbors = new ArrayList();
+        neighbors = new ArrayList<>();
         empty = true;
     }
 
