@@ -33,9 +33,9 @@ public class Player{
         if(c.equals(Color.gray)){
             colorname = "gray";
         }
-        countries = new ArrayList();
-        cards = new ArrayList();
-        cardsCashed = new ArrayList();
+        countries = new ArrayList<>();
+        cards = new ArrayList<>();
+        cardsCashed = new ArrayList<>();
     }
 
     public void start(){ //starts up all of the player's countries
@@ -132,7 +132,7 @@ public class Player{
     }
 
     public ArrayList<Card> lostCards(){
-        ArrayList<Card> temp = new ArrayList(cards);
+        ArrayList<Card> temp = new ArrayList<>(cards);
         cards.clear();
         return temp;
     }
@@ -219,7 +219,7 @@ public class Player{
     }
 
     public ArrayList<Card> returnedCards(){
-        ArrayList<Card> temp = new ArrayList(cardsCashed);
+        ArrayList<Card> temp = new ArrayList<>(cardsCashed);
         cardsCashed.clear();
         return temp;
     }
