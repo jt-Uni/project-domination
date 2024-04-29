@@ -9,7 +9,7 @@ public class StartScreen extends JFrame implements ActionListener{
     JPanel Colors, Players, Bottom;
     JTextField Player1, Player2, Player3, Player4, Player5, Player6;
     JComboBox player1, player2, player3, player4, player5, player6;
-    String [] colors = {"Empty", "Red", "Blue", "Green", "Yellow", "Black", "Gray"}; 
+    String [] colors = {"Empty", "Red", "Blue", "Green", "Yellow", "Black", "Gray"};
     ArrayList <Player> Users;
     int player;
     boolean start;
@@ -30,7 +30,7 @@ public class StartScreen extends JFrame implements ActionListener{
         Bottom = new JPanel();
         Bottom.setPreferredSize(new Dimension(280, 50));
 
-        Player1 = new JTextField("Enter name for Player 1"); //text fields for names
+        Player1 = new JTextField("Enter name for Player 1");
         Player1.setPreferredSize(new Dimension(200, 50));
         Player1.setHorizontalAlignment(JTextField.CENTER);
         Player2 = new JTextField("Enter name for Player 2");
@@ -105,11 +105,9 @@ public class StartScreen extends JFrame implements ActionListener{
         player6 = new JComboBox(colors);
         player6.setPreferredSize(new Dimension(80, 50));
 
-        JLabel Name = new JLabel("Player Names", JLabel.CENTER);
-        JLabel Color = new JLabel("Player Color", JLabel.CENTER);
+        JLabel Name = new JLabel("Please input names", JLabel.CENTER);
+        JLabel Color = new JLabel("Please input player color", JLabel.CENTER);
 
-        JButton Info = new JButton("Info");
-        Info.addActionListener(this);
         JButton Start = new JButton("Start");
         Start.addActionListener(this);
 
@@ -129,7 +127,6 @@ public class StartScreen extends JFrame implements ActionListener{
         Colors.add(player5);
         Colors.add(player6);
 
-        Bottom.add(Info);
         Bottom.add(new JLabel());
         Bottom.add(new JLabel());
         Bottom.add(Start);
