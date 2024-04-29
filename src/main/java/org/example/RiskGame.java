@@ -754,7 +754,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
     public void buffer(){
         Graphics2D graphic = screen.createGraphics();
-        graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON); //apparently, these help to make drawing more smooth
+        graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphic.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphic.setColor(Color.black);
         graphic.fillRect(0, 0, dim.width, dim.height);
@@ -822,13 +822,13 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             graphic.setColor(Color.gray);
             graphic.fillRect((int)((dim.getWidth()/1920.0)*1645), (int)((dim.getHeight()/1080.0)*560), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
             graphic.setColor(Color.black);
-            graphic.setFont(new Font("Urbana", Font.PLAIN, (int)((dim.getWidth()/1920.0)*18)));
+            graphic.setFont(new Font("Urbana", Font.PLAIN, 12));
             graphic.drawString("Attack", (int)((dim.getWidth()/1920.0)*1665), (int)((dim.getHeight()/1080.0)*410));
             graphic.drawString("View Cards", (int)((dim.getWidth()/1920.0)*1775), (int)((dim.getHeight()/1080.0)*410));
             graphic.drawString("Fortify", (int)((dim.getWidth()/1920.0)*1665), (int)((dim.getHeight()/1080.0)*510));
             graphic.drawString("End turn", (int)((dim.getWidth()/1920.0)*1785), (int)((dim.getHeight()/1080.0)*510));
             graphic.drawString("Quit", (int)((dim.getWidth()/1920.0)*1670), (int)((dim.getHeight()/1080.0)*610));
-            graphic.setFont(new Font("English", Font.PLAIN, (int)((dim.getWidth()/1920.0)*18)));
+            graphic.setFont(new Font("English", Font.PLAIN, 12));
             graphic.setColor(Color.black);
             // Update the display based on the current game state
             if (income != 0) {
@@ -865,9 +865,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
         }
         if (view){
-            if (Players.get(turn).getCardsN() == 0){ //drawing cards, if there are none, then draws "no cards"
+            if (Players.get(turn).getCardsN() == 0){
                 graphic.setColor(Color.white);
-                graphic.setFont(new Font("Urbana", Font.PLAIN, 72));
+                graphic.setFont(new Font("Urbana", Font.PLAIN, 12));
                 graphic.drawString("You have no cards", dim.width/2 - 300, dim.height/2 + 50);
             }
             else{
@@ -936,87 +936,39 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         return Card.resize(image, width, height);
     }
 
-    public void postInfo(String a, Graphics2D b){ //custom method made to cut a string into lines so that they fit into the info box
-        int Line2 = 0;
-        int Line3 = 0;
-        int Line4 = 0;
-        int Line5 = 0;
-        b.setFont(new Font("English", Font.PLAIN, (int)((dim.getWidth()/1920.0)*24)));
-        b.setColor(Color.black);
-        if(a.length() > 80){
-            for(int c = a.length() - 1 ; c != 0; c--){
-                if(c == Line2 - 1){
-                    b.drawString(a.substring(0, Line2), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
-                    break;
+    public void postInfo(String text, Graphics2D graphics) {
+        graphics.setFont(new Font("English", Font.PLAIN, 17));
+        graphics.setColor(Color.black);
+    
+        int maxWidth = 30; // Maximum characters per line
+        int lineHeight = 20; // Pixel height difference between lines
+        int baseX = (int)((dim.getWidth() / 1920.0) * 1675); // Base X position
+        int baseY = (int)((dim.getHeight() / 1080.0) * 815); // Base Y position
+    
+        if (text.length() <= maxWidth) {
+            graphics.drawString(text, baseX, baseY);
+        } else {
+            int length = text.length();
+            int start = 0;
+            int line = 0;
+    
+            while (start < length) {
+                int end = start + maxWidth;
+                if (end > length) end = length;
+    
+                // Move back to the nearest space (if not the end of the string)
+                if (end < length) {
+                    while (end > start && text.charAt(end) != ' ') {
+                        end--;
+                    }
                 }
-                else if((a.charAt(c) == (' ')) && c <= 20 && Line2 == 0){
-                    b.drawString(a.substring(c, Line3), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*835));
-                    Line2 = c;
-                }
-                else if((a.charAt(c) == (' ')) && c <= 40 && Line3 == 0){
-                    b.drawString(a.substring(c, Line4), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*855));
-                    Line3 = c;
-                }
-                else if((a.charAt(c) == (' ')) && c < 60 && Line4 == 0){
-                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*875));
-                    Line4 = c;
-                }
-                else if(a.charAt(c) == ' ' && c < 80){
-                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*875));
-                    Line4 = c;
-                }
+    
+                // Draw substring from start to end
+                graphics.drawString(text.substring(start, end), baseX, baseY + (line * lineHeight));
+                start = end + 1; // Skip the space
+                line++;
             }
-        }
-        else if(a.length() > 60){
-            for(int c = a.length() - 1 ; c != 0; c--){
-                if(c == Line2 - 1){
-                    b.drawString(a.substring(0, Line2), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
-                    break;
-                }
-                else if((a.charAt(c) == (' ')) && c <= 20 && Line2 == 0){
-                    b.drawString(a.substring(c, Line3), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*835));
-                    Line2 = c;
-                }
-                else if((a.charAt(c) == (' ')) && c <= 40 && Line3 == 0){
-                    b.drawString(a.substring(c, Line4), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*855));
-                    Line3 = c;
-                }
-                else if((a.charAt(c) == (' ')) && c < 60 && Line4 == 0){
-                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*875));
-                    Line4 = c;
-                }
-            }
-        }
-        else if(a.length() > 40){
-            for(int c = a.length() - 1; c != 0; c--){
-                if(c == Line2 - 1){
-                    b.drawString(a.substring(0, Line2), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
-                    break;
-                }
-                else if((a.charAt(c) == (' ')) && c <= 20 && Line2 == 0){
-                    b.drawString(a.substring(c, Line3), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*835));
-                    Line2 = c;
-                }
-                else if((a.charAt(c) == (' ')) && c < 40 && Line3 == 0){
-                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*855));
-                    Line3 = c;
-                }
-            }
-        }
-        else if(a.length() > 20){
-            for(int c = a.length() - 1; c != 0; c--){
-                if(c == Line2 - 1){
-                    b.drawString(a.substring(0, Line2), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
-                    break;
-                }
-                else if((a.charAt(c) == ' ') && c < 20 && Line2 == 0){
-                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*835));
-                    Line2 = c;
-                }
-            }
-        }
-        else {
-            b.drawString(a, (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
         }
     }
+    
 }
