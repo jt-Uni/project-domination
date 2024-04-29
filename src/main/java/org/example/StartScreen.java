@@ -35,23 +35,23 @@ public class StartScreen extends JFrame implements ActionListener{
         Bottom.setPreferredSize(new Dimension(280, 50));
 
         Player1 = new JTextField("Enter name for Player 1"); //text fields for names
-        Player1.setPreferredSize(new Dimension(200, 50));
-        Player1.setHorizontalAlignment(JTextField.CENTER);
+        Player1.setPreferredSize(new Dimension(100, 50));
+        Player1.setHorizontalAlignment(JTextField.LEFT);
         Player2 = new JTextField("Enter name Player 2: ");
-        Player2.setPreferredSize(new Dimension(200, 50));
-        Player2.setHorizontalAlignment(JTextField.CENTER);
+        Player2.setPreferredSize(new Dimension(100, 50));
+        Player2.setHorizontalAlignment(JTextField.LEFT);
         Player3 = new JTextField("Enter name Player 3: ");
-        Player3.setPreferredSize(new Dimension(200, 50));
-        Player3.setHorizontalAlignment(JTextField.CENTER);
+        Player3.setPreferredSize(new Dimension(100, 50));
+        Player3.setHorizontalAlignment(JTextField.LEFT);
         Player4 = new JTextField("Enter name Player 4: ");
-        Player4.setPreferredSize(new Dimension(200, 50));
-        Player4.setHorizontalAlignment(JTextField.CENTER);
+        Player4.setPreferredSize(new Dimension(100, 50));
+        Player4.setHorizontalAlignment(JTextField.LEFT);
         Player5 = new JTextField("Enter name Player 5: ");
-        Player5.setPreferredSize(new Dimension(200, 50));
-        Player5.setHorizontalAlignment(JTextField.CENTER);
+        Player5.setPreferredSize(new Dimension(100, 50));
+        Player5.setHorizontalAlignment(JTextField.LEFT);
         Player6 = new JTextField("Enter name Player 6: ");
-        Player6.setPreferredSize(new Dimension(200, 50));
-        Player6.setHorizontalAlignment(JTextField.CENTER);
+        Player6.setPreferredSize(new Dimension(100, 50));
+        Player6.setHorizontalAlignment(JTextField.LEFT);
 
         Player1.addMouseListener(
             new MouseAdapter() {
@@ -141,8 +141,8 @@ public class StartScreen extends JFrame implements ActionListener{
         Bottom.add(Start);
 
         add("North", new ScreenLogo());
-        add("Center", Players);
-        add("East", Colors);
+        add("Center", Colors);
+        add("East", Players);
         add("South", Bottom);
 
        
@@ -322,10 +322,6 @@ public class StartScreen extends JFrame implements ActionListener{
                 }
                 setVisible(false);
             }
-        }
-        if (e.getActionCommand() == "Info"){ //information about Risk
-            JFrame frame = new JFrame();
-            JOptionPane.showMessageDialog(frame,"Rafik is a plum");
         }
     }
 
