@@ -92,17 +92,17 @@ public class StartScreen extends JFrame implements ActionListener{
             }
         );
 
-        player1 = new JComboBox(colors); //combobox for colors
+        player1 = new JComboBox<>(colors); //combobox for colors
         player1.setPreferredSize(new Dimension(80, 50));
-        player2 = new JComboBox(colors);
+        player2 = new JComboBox<>(colors);
         player2.setPreferredSize(new Dimension(80, 50));
-        player3 = new JComboBox(colors);
+        player3 = new JComboBox<>(colors);
         player3.setPreferredSize(new Dimension(80, 50));
-        player4 = new JComboBox(colors);
+        player4 = new JComboBox<>(colors);
         player4.setPreferredSize(new Dimension(80, 50));
-        player5 = new JComboBox(colors);
+        player5 = new JComboBox<>(colors);
         player5.setPreferredSize(new Dimension(80, 50));
-        player6 = new JComboBox(colors);
+        player6 = new JComboBox<>(colors);
         player6.setPreferredSize(new Dimension(80, 50));
 
         JLabel Name = new JLabel("Please input names", JLabel.CENTER);
@@ -138,7 +138,7 @@ public class StartScreen extends JFrame implements ActionListener{
 
         start = false;
 
-        Users = new ArrayList();
+        Users = new ArrayList<>();
 
         setResizable(false);
         setVisible(true);

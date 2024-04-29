@@ -367,7 +367,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     }
 
     public static void main(String[] args) {
-        RiskGame a = new RiskGame();
+        RiskGame startGame = new RiskGame();
     }
 
     public void mousePressed( MouseEvent e ) {
@@ -934,47 +934,87 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         return Card.resize(image, width, height);
     }
 
-    public void postInfo(String text, Graphics2D graphics) {
-        // Constants for positioning and line breaking
-        final int maxWidth = 1920;
-        final int maxHeight = 1080;
-        final int startX = 1675;
-        final int startY = 815;
-        final int lineSpacing = 20;
-        final int fontSize = 24;
-
-        // Set graphics font and color
-        graphics.setFont(new Font("English", Font.PLAIN, (int)((dim.getWidth() / maxWidth) * fontSize)));
-        graphics.setColor(Color.black);
-
-        // Determine how many lines are needed
-        int lineCount = 0;
-        for (int i = 0; i < text.length() && lineCount < 4; i++) {
-            if (text.charAt(i) == ' ' && (i <= 20 || i <= 40 || i <= 60 || i <= 80)) {
-                lineCount++;
+    public void postInfo(String a, Graphics2D b){ //custom method made to cut a string into lines so that they fit into the info box
+        int Line2 = 0;
+        int Line3 = 0;
+        int Line4 = 0;
+        int Line5 = 0;
+        b.setFont(new Font("English", Font.PLAIN, (int)((dim.getWidth()/1920.0)*24)));
+        b.setColor(Color.black);
+        if(a.length() > 80){
+            for(int c = a.length() - 1 ; c != 0; c--){
+                if(c == Line2 - 1){
+                    b.drawString(a.substring(0, Line2), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
+                    break;
+                }
+                else if((a.charAt(c) == (' ')) && c <= 20 && Line2 == 0){
+                    b.drawString(a.substring(c, Line3), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*835));
+                    Line2 = c;
+                }
+                else if((a.charAt(c) == (' ')) && c <= 40 && Line3 == 0){
+                    b.drawString(a.substring(c, Line4), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*855));
+                    Line3 = c;
+                }
+                else if((a.charAt(c) == (' ')) && c < 60 && Line4 == 0){
+                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*875));
+                    Line4 = c;
+                }
+                else if(a.charAt(c) == ' ' && c < 80){
+                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*875));
+                    Line4 = c;
+                }
             }
         }
-
-        // Draw each line based on the spacing and content
-        int currentLength = 0;
-        for (int i = 1; i <= lineCount; i++) {
-            int nextSpaceIndex = findNextSpaceIndex(text, currentLength);
-            String line = text.substring(currentLength, nextSpaceIndex);
-            graphics.drawString(line, (int)((dim.getWidth() / maxWidth) * startX),
-                    (int)((dim.getHeight() / maxHeight) * (startY + (i - 1) * lineSpacing)));
-            currentLength = nextSpaceIndex + 1; // Move past the last space
+        else if(a.length() > 60){
+            for(int c = a.length() - 1 ; c != 0; c--){
+                if(c == Line2 - 1){
+                    b.drawString(a.substring(0, Line2), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
+                    break;
+                }
+                else if((a.charAt(c) == (' ')) && c <= 20 && Line2 == 0){
+                    b.drawString(a.substring(c, Line3), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*835));
+                    Line2 = c;
+                }
+                else if((a.charAt(c) == (' ')) && c <= 40 && Line3 == 0){
+                    b.drawString(a.substring(c, Line4), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*855));
+                    Line3 = c;
+                }
+                else if((a.charAt(c) == (' ')) && c < 60 && Line4 == 0){
+                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*875));
+                    Line4 = c;
+                }
+            }
         }
-
-        // Draw remaining part if any
-        if (currentLength < text.length()) {
-            graphics.drawString(text.substring(currentLength), (int)((dim.getWidth() / maxWidth) * startX),
-                    (int)((dim.getHeight() / maxHeight) * (startY + lineCount * lineSpacing)));
+        else if(a.length() > 40){
+            for(int c = a.length() - 1; c != 0; c--){
+                if(c == Line2 - 1){
+                    b.drawString(a.substring(0, Line2), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
+                    break;
+                }
+                else if((a.charAt(c) == (' ')) && c <= 20 && Line2 == 0){
+                    b.drawString(a.substring(c, Line3), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*835));
+                    Line2 = c;
+                }
+                else if((a.charAt(c) == (' ')) && c < 40 && Line3 == 0){
+                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*855));
+                    Line3 = c;
+                }
+            }
+        }
+        else if(a.length() > 20){
+            for(int c = a.length() - 1; c != 0; c--){
+                if(c == Line2 - 1){
+                    b.drawString(a.substring(0, Line2), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
+                    break;
+                }
+                else if((a.charAt(c) == ' ') && c < 20 && Line2 == 0){
+                    b.drawString(a.substring(c), (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*835));
+                    Line2 = c;
+                }
+            }
+        }
+        else {
+            b.drawString(a, (int)((dim.getWidth()/1920.0)*1675), (int)((dim.getHeight()/1080.0)*815));
         }
     }
-
-    private int findNextSpaceIndex(String text, int start) {
-        int spaceIndex = text.indexOf(' ', start);
-        return (spaceIndex == -1) ? text.length() : spaceIndex;
-    }
-
 }
