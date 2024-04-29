@@ -115,8 +115,8 @@ public class StartScreen extends JFrame implements ActionListener{
         JLabel Name = new JLabel("Please input names", JLabel.CENTER);
         JLabel Color = new JLabel("Please input player color", JLabel.CENTER);
 
-        JButton Info = new JButton("Info");
-        Info.addActionListener(this);
+        //JButton Info = new JButton("Info");
+        //Info.addActionListener(this);
         JButton Start = new JButton("Start");
         Start.addActionListener(this);
 

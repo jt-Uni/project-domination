@@ -361,6 +361,37 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
     }
 
+
+
+    private void determineInitialTurnOrder() {
+        Random random = new Random();
+
+        // Roll dice for each player
+        for (Player player : Players) {
+            player.setRoll(random.nextInt(6) + 1); // Set roll between 1 to 6
+        }
+
+        // Sort players by their rolls
+        Players.sort(Comparator.comparingInt(Player::getRoll).reversed());
+
+        // Display turn order
+        StringBuilder message = new StringBuilder("Turn order:\n");
+        for (int i = 0; i < Players.size(); i++) {
+            message.append(i + 1).append(": ")
+                .append(Players.get(i).getName())
+                .append(" (Rolled: ").append(Players.get(i).getRoll()).append(")\n");
+        }
+
+        JOptionPane.showMessageDialog(frame, message.toString(), "Turn Order", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+
+
+
+
+
+
+
     private void showInitialDialog() {
         JOptionPane.showMessageDialog(frame,
             "It is now " + Players.get(turn).getName() + "'s turn.",
@@ -937,7 +968,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     }
 
     public void postInfo(String text, Graphics2D graphics) {
-        graphics.setFont(new Font("English", Font.PLAIN, 17));
+        graphics.setFont(new Font("English", Font.PLAIN, 14));
         graphics.setColor(Color.black);
     
         int maxWidth = 26; // Maximum characters per line

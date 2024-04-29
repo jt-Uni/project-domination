@@ -1,12 +1,12 @@
 package org.example;
 import java.awt.*;
 import java.util.*;
-
+import java.lang.String;
 public class Player{
     Color color;
     String name, colorname;
 
-    int player, armies, income, NA, SA, EU, AF, AS, OC, IN, CA, CN, WI;
+    int player, armies,roll, income, NA, SA, EU, AF, AS, OC, IN, CA, CN, WI;
 
     ArrayList<Country> countries;
     ArrayList<Card> cards;
@@ -72,6 +72,14 @@ public class Player{
     public void lost(Country a){
         countries.remove(a);
     }
+
+    public int getroll(){
+        return roll+1;
+    }
+
+   
+
+
 
     public int getIncome(){ //calculates income
         income = countries.size()/3;
