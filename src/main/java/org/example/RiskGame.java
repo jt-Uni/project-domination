@@ -940,7 +940,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         graphics.setFont(new Font("English", Font.PLAIN, 17));
         graphics.setColor(Color.black);
     
-        int maxWidth = 30; // Maximum characters per line
+        int maxWidth = 26; // Maximum characters per line
         int lineHeight = 20; // Pixel height difference between lines
         int baseX = (int)((dim.getWidth() / 1920.0) * 1675); // Base X position
         int baseY = (int)((dim.getHeight() / 1080.0) * 815); // Base Y position
