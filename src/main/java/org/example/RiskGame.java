@@ -38,6 +38,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         setupPlayers();
         setupCards();
         setupRewards();
+        // New part: Roll dice and set turn order
+        determineInitialTurnOrder();
+        
         finalisation();
         showInitialDialog();
     }

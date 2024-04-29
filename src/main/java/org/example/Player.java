@@ -6,7 +6,29 @@ public class Player{
     Color color;
     String name, colorname;
 
-    int player, armies,roll, income, NA, SA, EU, AF, AS, OC, IN, CA, CN, WI;
+    int player;
+    int armies;
+
+    public int getRoll() {
+        return roll;
+    }
+
+    public void setRoll(int roll) {
+        this.roll = roll;
+    }
+
+    int roll;
+    int income;
+    int NA;
+    int SA;
+    int EU;
+    int AF;
+    int AS;
+    int OC;
+    int IN;
+    int CA;
+    int CN;
+    int WI;
 
     ArrayList<Country> countries;
     ArrayList<Card> cards;
@@ -40,8 +62,8 @@ public class Player{
     }
 
     public void start(){ //starts up all of the player's countries
-        for (int c = 0; c < countries.size(); c++){
-            countries.get(c).start(player);
+        for (Country country : countries) {
+            country.start(player);
         }
     }
 
@@ -73,9 +95,7 @@ public class Player{
         countries.remove(a);
     }
 
-    public int getroll(){
-        return roll+1;
-    }
+
 
    
 
