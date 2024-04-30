@@ -3,6 +3,8 @@ package core;
 import java.awt.*;
 import java.util.*;
 import java.lang.String;
+import java.util.List;
+
 public class Player{
     Color color;
     String name, colorname;
@@ -252,5 +254,9 @@ public class Player{
         ArrayList<Card> temp = new ArrayList<>(cardsCashed);
         cardsCashed.clear();
         return temp;
+    }
+
+    public List<Country> getCountriesList() {
+    return  new ArrayList<>(countries); // Return a copy of the list
     }
 }
