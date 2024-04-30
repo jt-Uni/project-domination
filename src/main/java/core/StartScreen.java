@@ -170,50 +170,50 @@ public class StartScreen extends JFrame implements ActionListener{
         int yellow = 0;
         int black = 0;
         int grey = 0;
-        switch (player1.getSelectedIndex()){ //checks the color of every player
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
+        switch (player1.getSelectedIndex()) { //checks the color of every player
+            case 0 -> empty++;
+            case 1 -> red++;
+            case 2 -> blue++;
+            case 3 -> green++;
+            case 4 -> yellow++;
+            case 5 -> black++;
+            case 6 -> grey++;
         }
-        switch (player2.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
+        switch (player2.getSelectedIndex()) {
+            case 0 -> empty++;
+            case 1 -> red++;
+            case 2 -> blue++;
+            case 3 -> green++;
+            case 4 -> yellow++;
+            case 5 -> black++;
+            case 6 -> grey++;
         }
-        switch (player3.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
+        switch (player3.getSelectedIndex()) {
+            case 0 -> empty++;
+            case 1 -> red++;
+            case 2 -> blue++;
+            case 3 -> green++;
+            case 4 -> yellow++;
+            case 5 -> black++;
+            case 6 -> grey++;
         }
-        switch (player4.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
+        switch (player4.getSelectedIndex()) {
+            case 0 -> empty++;
+            case 1 -> red++;
+            case 2 -> blue++;
+            case 3 -> green++;
+            case 4 -> yellow++;
+            case 5 -> black++;
+            case 6 -> grey++;
         }
-        switch (player5.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
+        switch (player5.getSelectedIndex()) {
+            case 0 -> empty++;
+            case 1 -> red++;
+            case 2 -> blue++;
+            case 3 -> green++;
+            case 4 -> yellow++;
+            case 5 -> black++;
+            case 6 -> grey++;
         }
         switch (player6.getSelectedIndex()){
             case 0: empty++;    break;
@@ -244,7 +244,7 @@ public class StartScreen extends JFrame implements ActionListener{
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             }
-            else if((Player1.getText().equals("") && player1.getSelectedIndex()!=0) || (Player2.getText().equals("") && player2.getSelectedIndex()!=0) || (Player3.getText().equals("") && player3.getSelectedIndex()!=0) || (Player4.getText().equals("") && player4.getSelectedIndex()!=0) || (Player5.getText().equals("") && player5.getSelectedIndex()!=0) || (Player6.getText().equals("") && player6.getSelectedIndex()!=0)){
+            else if((Player1.getText().isEmpty() && player1.getSelectedIndex()!=0) || (Player2.getText().isEmpty() && player2.getSelectedIndex()!=0) || (Player3.getText().isEmpty() && player3.getSelectedIndex()!=0) || (Player4.getText().isEmpty() && player4.getSelectedIndex()!=0) || (Player5.getText().isEmpty() && player5.getSelectedIndex()!=0) || (Player6.getText().isEmpty() && player6.getSelectedIndex()!=0)){
                 JOptionPane.showMessageDialog(frame,
                     "There is a player with no name!",
                     "Error",
@@ -254,66 +254,71 @@ public class StartScreen extends JFrame implements ActionListener{
                 Color temp = Color.white;
                 start = true;
                 if(player1.getSelectedIndex()!=0){
-                    switch(player1.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
+                    switch (player1.getSelectedIndex()) {
+                        case 0 -> {
+                        }
+                        case 1 -> temp = Color.red;
+                        case 2 -> temp = Color.blue;
+                        case 3 -> temp = Color.green;
+                        case 4 -> temp = Color.yellow;
+                        case 5 -> temp = Color.black;
+                        case 6 -> temp = Color.gray;
                     }
                     Users.add(new Player(Player1.getText(), player, temp));
                     player++;
                 }
                 if(player2.getSelectedIndex()!=0){
-                    switch(player2.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
+                    switch (player2.getSelectedIndex()) {
+                        case 0 -> {
+                        }
+                        case 1 -> temp = Color.red;
+                        case 2 -> temp = Color.blue;
+                        case 3 -> temp = Color.green;
+                        case 4 -> temp = Color.yellow;
+                        case 5 -> temp = Color.black;
+                        case 6 -> temp = Color.gray;
                     }
                     Users.add(new Player(Player2.getText(), player, temp));
                     player++;
                 }
                 if(player3.getSelectedIndex()!=0){
-                    switch(player3.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
+                    switch (player3.getSelectedIndex()) {
+                        case 0 -> {
+                        }
+                        case 1 -> temp = Color.red;
+                        case 2 -> temp = Color.blue;
+                        case 3 -> temp = Color.green;
+                        case 4 -> temp = Color.yellow;
+                        case 5 -> temp = Color.black;
+                        case 6 -> temp = Color.gray;
                     }
                     Users.add(new Player(Player3.getText(), player, temp));
                     player++;
                 }
                 if(player4.getSelectedIndex()!=0){
-                    switch(player4.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
+                    switch (player4.getSelectedIndex()) {
+                        case 0 -> {
+                        }
+                        case 1 -> temp = Color.red;
+                        case 2 -> temp = Color.blue;
+                        case 3 -> temp = Color.green;
+                        case 4 -> temp = Color.yellow;
+                        case 5 -> temp = Color.black;
+                        case 6 -> temp = Color.gray;
                     }
                     Users.add(new Player(Player4.getText(), player, temp));
                     player++;
                 }
                 if(player5.getSelectedIndex()!=0){
-                    switch(player5.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
+                    switch (player5.getSelectedIndex()) {
+                        case 0 -> {
+                        }
+                        case 1 -> temp = Color.red;
+                        case 2 -> temp = Color.blue;
+                        case 3 -> temp = Color.green;
+                        case 4 -> temp = Color.yellow;
+                        case 5 -> temp = Color.black;
+                        case 6 -> temp = Color.gray;
                     }
                     Users.add(new Player(Player5.getText(), player, temp));
                     player++;
