@@ -2,6 +2,9 @@ package core;
 import java.awt.*;
 import java.util.*;
 
+
+
+
 public class Country{ //everything is pretty clear
     int armies, possession, continent;
     boolean empty;
@@ -133,5 +136,11 @@ public class Country{ //everything is pretty clear
         boolean temp = empty;
         empty = false;
         return temp;
+    }
+
+    // Getter for neighbors array
+    public Country[] getNeighbors() {
+        // Convert the list of neighbors to an array and return it
+        return neighbors.toArray(new Country[neighbors.size()]);
     }
 }

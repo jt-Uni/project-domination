@@ -1,18 +1,20 @@
 package core;
 
 import javax.swing.*;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.util.*;
+
+
+
 
 public class RiskGame extends JFrame implements MouseListener, MouseMotionListener{
     boolean isActive, clicked, selected, attack, view, getCard, conquered, fortify, fortified, place, moving, a, v, f, end, done, cash, quit;
     BufferedImage screen;
     Image map, actions;
     String x, y;
-    ArrayList<Country> Countries;
+    public ArrayList<Country> Countries;
     ArrayList<Player> Players;
     ArrayList<Card> Cards;
     ArrayList<Integer> Rewards;
