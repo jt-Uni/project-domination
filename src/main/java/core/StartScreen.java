@@ -1,4 +1,5 @@
-package org.example;
+package core;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.JComboBox;
@@ -9,12 +10,22 @@ import java.util.*;
 public class StartScreen extends JFrame implements ActionListener{
     Dimension dim;
     JPanel Colors, Players, Bottom;
-    JTextField Player1, Player2, Player3, Player4, Player5, Player6;
-    JComboBox player1, player2, player3, player4, player5, player6;
+    public JTextField Player1;
+    JTextField Player2;
+    JTextField Player3;
+    JTextField Player4;
+    JTextField Player5;
+    JTextField Player6;
+    public JComboBox player1;
+    JComboBox player2;
+    JComboBox player3;
+    JComboBox player4;
+    JComboBox player5;
+    JComboBox player6;
     String [] colors = {"Empty", "Red", "Blue", "Green", "Yellow", "Black", "Gray"};
     ArrayList <Player> Users;
     int player;
-    boolean start;
+    public boolean start;
 
     public StartScreen(){ 
         

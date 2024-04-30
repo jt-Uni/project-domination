@@ -1,4 +1,5 @@
-package org.example;
+package core;
+
 import javax.swing.*;
 
 import java.awt.*;
@@ -76,6 +77,12 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         turn = 0;
         reward = 0;
     }
+
+
+
+
+
+
 
     private void setupCountries() {
 
@@ -296,7 +303,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         addMouseListener(this);
         addMouseMotionListener(this);
 
-        income = Players.get(0).getIncome();
+        income = Players.getFirst().getIncome();
         fortify1 = -1;
         fortify2 = -1;
 
@@ -329,8 +336,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
         int temp = 0;
         while(!temp2.isEmpty()){ //giving out leftover countries
-            Players.get(temp).conquered(temp2.get(0));
-            temp2.remove(0);
+            Players.get(temp).conquered(temp2.getFirst());
+            temp2.removeFirst();
             temp++;
         }
 

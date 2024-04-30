@@ -1,4 +1,5 @@
-package org.example;
+package test;
+import core.ScreenLogo;
 import org.junit.Before;
 import org.junit.Test;
 

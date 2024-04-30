@@ -1,4 +1,5 @@
-package org.example;
+package core;
+
 import java.awt.*;
 import java.util.*;
 import java.lang.String;

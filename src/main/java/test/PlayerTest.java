@@ -1,4 +1,6 @@
-package org.example;
+package test;
+import core.Country;
+import core.Player;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,15 +32,15 @@ public class PlayerTest {
 
         player.conquered(country1);
         assertEquals(1, player.getCountries());  // Corrected to use assertEquals to check the number of countries
-        assertTrue(player.countries.contains(country1));
+        assertEquals(true, player.getCountries());
 
         player.conquered(country2);
         assertEquals(2, player.getCountries());  // Corrected to use assertEquals
-        assertTrue(player.countries.contains(country2));
+        assertEquals(true, player.getCountries());
 
         player.lost(country1);
         assertEquals(1, player.getCountries());  // Corrected to use assertEquals
-        assertFalse(player.countries.contains(country1));
+        assertEquals(false, player.getCountries());
     }
 
     @Test
