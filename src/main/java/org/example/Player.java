@@ -16,32 +16,29 @@ public class Player{
         name = a;
         player = b;
         color = c;
-        if(c.equals(Color.red)){
-            colorname = "red";
-        }
-        if(c.equals(Color.blue)){
-            colorname = "blue";
-        }
-        if(c.equals(Color.green)){
-            colorname = "green";
-        }
-        if(c.equals(Color.yellow)){
-            colorname = "yellow";
-        }
-        if(c.equals(Color.black)){
-            colorname = "black";
-        }
-        if(c.equals(Color.gray)){
-            colorname = "gray";
-        }
+
+
         countries = new ArrayList<>();
         cards = new ArrayList<>();
         cardsCashed = new ArrayList<>();
-    }
+        }
+
+
+        private String getColorNameFromColor(Color c) {
+            if (c.equals(Color.RED)) return "red";
+            if (c.equals(Color.BLUE)) return "blue";
+            if (c.equals(Color.GREEN)) return "green";
+            if (c.equals(Color.YELLOW)) return "yellow";
+            if (c.equals(Color.BLACK)) return "black";
+            if (c.equals(Color.GRAY)) return "gray";
+            return "unknown";
+        }
+
+
 
     public void start(){ //starts up all of the player's countries
-        for (int c = 0; c < countries.size(); c++){
-            countries.get(c).start(player);
+        for (Country country : countries) {
+            country.start(player);
         }
     }
 
@@ -73,47 +70,61 @@ public class Player{
         countries.remove(a);
     }
 
-    public int getIncome(){ //calculates income
-        income = countries.size()/3;
-        if (income < 3){
+    public int getIncome() { //calculates income
+
+        income = countries.size() / 3;
+        if (income < 3) {
             income = 3;
         }
-        for (Country c : countries){
-            switch (c.getContinent()){
-                case 0:     NA++;   break;
-                case 1:     SA++;   break;
-                case 2:     EU++;   break;
-                case 3:     AF++;   break;
-                case 4:     AS++;   break;
-                case 5:     OC++;   break;
+
+
+        for (Country c : countries) {
+            switch (c.getContinent()) {
+                case 0:
+                    NA++;
+                    break;
+                case 1:
+                    SA++;
+                    break;
+                case 2:
+                    EU++;
+                    break;
+                case 3:
+                    AF++;
+                    break;
+                case 4:
+                    AS++;
+                    break;
+                case 5:
+                    OC++;
+                    break;
             }
         }
-        if (NA == 9){
-            income += 5;
-        }
-        if (SA == 4){
-            income += 2;
-        }
-        if (EU == 7){
-            income += 5;
-        }
-        if (AF == 6){
-            income += 3;
-        }
-        if (AS == 12){
-            income += 7;
-        }
-        if (OC == 4){
-            income += 2;
-        }
-        NA = 0;
-        SA = 0;
-        EU = 0;
-        AF = 0;
-        AS = 0;
-        OC = 0;
+
+        // Adds continent bonuses
+        income += getContinentBonuses();
+
+        resetContinentCounters(); // Reset after use
         return income;
+
     }
+
+        private void resetContinentCounters () {
+            NA = SA = EU = AF = AS = OC = 0;
+        }
+
+        private int getContinentBonuses () {
+            int bonus = 0;
+
+            if (NA == 9) bonus += 5;
+            if (SA == 4) bonus += 2;
+            if (EU == 7) bonus += 5;
+            if (AF == 6) bonus += 3;
+            if (AS == 12) bonus += 7;
+            if (OC == 4) bonus += 2;
+
+            return bonus;
+        }
 
     public int getCardsN(){
         return cards.size();
@@ -150,19 +161,14 @@ public class Player{
         CN = 0;
         WI = 0;
         for (Card ca : cards){
-            switch (ca.getUnit()){
-                case 0:     IN++;   break;
-                case 1:     CA++;   break;
-                case 2:     CN++;   break;
-                case 3:     WI++;   break;
+            switch (ca.getUnit()) {
+                case 0 -> IN++;
+                case 1 -> CA++;
+                case 2 -> CN++;
+                case 3 -> WI++;
             }
         }
-        if ((IN >= 3) || (CA >= 3) ||(CN >= 3) || (IN >= 1 && CA >= 1 && CN >= 1) || (WI >= 1 && IN + CA + CN + WI - 1 >= 2)){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return (IN >= 3) || (CA >= 3) || (CN >= 3) || (IN >= 1 && CA >= 1 && CN >= 1) || (WI >= 1 && IN + CA + CN + WI - 1 >= 2);
     }
 
     public boolean cashable(Card a, Card b, Card c){ //whether set is cashable
@@ -170,17 +176,17 @@ public class Player{
         CA = 0;
         CN = 0;
         WI = 0;
-        switch (a.getUnit()){
-            case 0:     IN++;   break;
-            case 1:     CA++;   break;
-            case 2:     CN++;   break;
-            case 3:     WI++;   break;
+        switch (a.getUnit()) {
+            case 0 -> IN++;
+            case 1 -> CA++;
+            case 2 -> CN++;
+            case 3 -> WI++;
         }
-        switch (b.getUnit()){
-            case 0:     IN++;   break;
-            case 1:     CA++;   break;
-            case 2:     CN++;   break;
-            case 3:     WI++;   break;
+        switch (b.getUnit()) {
+            case 0 -> IN++;
+            case 1 -> CA++;
+            case 2 -> CN++;
+            case 3 -> WI++;
         }
         switch (c.getUnit()){
             case 0:     IN++;   break;

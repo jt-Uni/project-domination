@@ -85,7 +85,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         Done = new Rectangle((int)((dim.getWidth()/1920.0)*1060), (int)((dim.getHeight()/1080.0)*900), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
 
         Countries = new ArrayList<>();
-        
+
         //North america = 10
         Countries.add(new Country("Alaska", 0));
         Countries.get(0).setBord(145,255,75,75);
@@ -292,7 +292,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         addMouseListener(this);
         addMouseMotionListener(this);
 
-        income = Players.get(0).getIncome();
+        income = Players.getFirst().getIncome();
         fortify1 = -1;
         fortify2 = -1;
 
@@ -325,8 +325,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
         int temp = 0;
         while(!temp2.isEmpty()){ //giving out leftover countries
-            Players.get(temp).conquered(temp2.get(0));
-            temp2.remove(0);
+            Players.get(temp).conquered(temp2.getFirst());
+            temp2.removeFirst();
             temp++;
         }
 
@@ -361,237 +361,371 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
     }
 
+
     private void showInitialDialog() {
+        Random r = new Random();
+
+        // Roll dice for the first two players
+        int diceRoll1 = r.nextInt(6) + 1;
+        int diceRoll2 = r.nextInt(6) + 1;
+
+        String message = String.format(
+                "%s rolls a %d, and %s rolls a %d.\n",
+                Players.get(0).getName(),
+                diceRoll1,
+                Players.get(1).getName(),
+                diceRoll2
+        );
+
+        // Determine the winner
+        if (diceRoll1 > diceRoll2) {
+            turn = 0;  // Player 1 starts
+            message += Players.get(turn).getName() + " wins the dice roll and will go first.";
+        } else if (diceRoll1 < diceRoll2) {
+            turn = 1;  // Player 2 starts
+            message += Players.get(turn).getName() + " wins the dice roll and will go first.";
+        } else {
+            message += "It's a tie. Rolling again...";
+            showInitialDialog();  // Recursively re-roll in case of a tie
+            return;
+        }
+
+        JOptionPane.showMessageDialog(frame, message, "Dice Roll", JOptionPane.INFORMATION_MESSAGE);
+
+
+
+
+
+
+        // Display which player's turn it is
         JOptionPane.showMessageDialog(frame,
-            "It is now " + Players.get(turn).getName() + "'s turn.",
-            "Information",
-            JOptionPane.INFORMATION_MESSAGE);
+                "It is now " + Players.get(turn).getName() + "'s turn.",
+                "Information",
+                JOptionPane.INFORMATION_MESSAGE
+        );
     }
 
-    public static void main(String[] args) {
-        RiskGame startGame = new RiskGame();
-    }
 
-    public void mousePressed( MouseEvent e ) {
-        if(Players.get(turn).getCardsN() > 5){
+
+
+
+
+
+    public void mousePressed(MouseEvent e) {
+        if (Players.get(turn).getCardsN() > 5) {
             view = true;
         }
-        if(isActive && !view){
-            if(selected && select != active && Countries.get(select).isNeighbor(Countries.get(active))){ //everything that happens when you attack. Takes note whether you conquered a country, got a card or if you can't attack.
-                if(conquered){
-                    if((fortify1 == select && fortify2 == active)||(fortify1 == active && fortify2 == select)){
-                        if(Countries.get(select).getArmies() > 1){
-                            Countries.get(select).lose(1);
-                            Countries.get(active).gain(1);
-                        }
-                    }
-                    if((select != fortify1) && (select != fortify2)){
-                        moving = false;
-                        fortify1 = -1;
-                        fortify2 = -1;
-                    }
-                }
-                if(attack && Countries.get(active).getPossession() != turn && Countries.get(select).getArmies() > 1){
-                    Countries.get(select).attack(Countries.get(active));
-                    conquered = false;
-                    if(Countries.get(active).isEmpty()){
-                        JOptionPane.showMessageDialog(frame,
-                            "You have conquered " + Countries.get(active).getName() + "!",
-                            "Information",
-                            JOptionPane.INFORMATION_MESSAGE);
-                        while(frame.isVisible()){
-                            Thread.yield();
-                        }
-                        if (!getCard){
-                            getCard = true;
-                            int temp = r.nextInt(Cards.size());
-                            Players.get(Countries.get(select).getPossession()).gotCard(Cards.get(temp));
-                            Cards.remove(temp);
-                        }
-                        if (Players.get(Countries.get(active).getPossession()).getCountries() == 0){
-                            Players.get(Countries.get(select).getPossession()).gotCards(Players.get(Countries.get(active).getPossession()));
-                            JOptionPane.showMessageDialog(frame,
-                                Players.get(turn).getName() + " has defeated " + Players.get(Countries.get(active).getPossession()).getName() + "!",
-                                "Information",
-                                JOptionPane.INFORMATION_MESSAGE);
-                            while(frame.isVisible()){
-                                Thread.yield();
-                            }
-                            if(Players.get(turn).getCountries() == 48){
-                                JOptionPane.showMessageDialog(frame,
-                                    "Congratulations! You have conquered the world!",
-                                    "Information",
-                                    JOptionPane.INFORMATION_MESSAGE);
-                                while(frame.isVisible()){
-                                    Thread.yield();
-                                }
-                                System.exit(0);
-                            }
-                            if (Players.get(turn).getCardsN() > 5){
-                                JOptionPane.showMessageDialog(frame,
-                                    "You have more than 5 cards. Please cash in.",
-                                    "Information",
-                                    JOptionPane.INFORMATION_MESSAGE);
-                                while(frame.isVisible()){
-                                    Thread.yield();
-                                }
-                                view = true;
-                                isActive = false;
-                                cash1 = -1;
-                                cash2 = -1;
-                                cash3 = -1;
-                                cashIn = 1;
-                                setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
-                            }
-                        }
-                        Players.get(Countries.get(select).getPossession()).conquered(Countries.get(active));
-                        Players.get(Countries.get(active).getPossession()).lost(Countries.get(active));
-                        Countries.get(active).conqueredBy(Countries.get(select).getPossession());
-                        conquered = true;
-                        moving = true;
-                        Countries.get(select).lose(1);
-                        Countries.get(active).gain(1);
-                        fortify1 = select;
-                        fortify2 = active;
-                    }
-                }
-                if(fortify && Countries.get(active).getPossession() == turn && Countries.get(select).isNeighbor(Countries.get(active))){ //fortification procedure
-                    if(!fortified && Countries.get(select).getArmies() > 1){
-                        fortified = true;
-                        fortify1 = select;
-                        fortify2 = active;
-                    }
-                    if((fortify1 == select && fortify2 == active)||(fortify1 == active && fortify2 == select)){
-                        if(Countries.get(select).getArmies() > 1 && fortified){
-                            Countries.get(select).lose(1);
-                            Countries.get(active).gain(1);
-                        }
-                    }
-                }
-            }
-            else if(selected && place){ //placing armies
-                Countries.get(select).gain(1);
-                income--;
-                if(income == 0){
-                    place = false;
-                }
-                buffer();
-            }
-            else if(Countries.get(active).getPossession() == turn){
+
+        if (isActive && !view) {
+            handleAttackOrFortify();
+
+            if (selected && place) {
+                placeArmies();
+            } else if (Countries.get(active).getPossession() == turn) {
                 selected = true;
                 select = active;
             }
-        }
-        else{
+        } else {
             selected = false;
         }
-        if (!place){ //allowing custom buttons to work after you finish placing armies
-            if((a)&&(!fortified)){ //choosing to attack
-                attack = true;
-                fortify = false;
-            }
-            if((f) && (!fortified)){ //choosing to fortify
-                attack = false;
-                fortify = true;
-                if(!fortified){
-                    fortify1 = -1;
-                    fortify2 = -1;
-                }
-            }
-            if(end){ //ending your turn
-                turn++;
-                if (turn == Players.size()){
-                    turn = 0;
-                }
-                income = Players.get(turn).getIncome();
-                attack = false;
-                place = true;
-                fortify = false;
-                fortified = false;
-                getCard = false;
-                moving = false;
-                fortify1 = -1;
-                fortify2 = -1;
-                JOptionPane.showMessageDialog(frame,
-                    "It is now " + Players.get(turn).getName() + "'s turn.",
-                    "Information",
-                    JOptionPane.INFORMATION_MESSAGE);
-                while(frame.isVisible()){
-                    Thread.yield();
-                }
-                if(Players.get(turn).ableToCash()){
-                    JOptionPane.showMessageDialog(frame,
-                        "You have a set to cash in!",
-                        "Information",
-                        JOptionPane.INFORMATION_MESSAGE);
-                }
-                while(frame.isVisible()){
-                    Thread.yield();
-                }
-            }
+
+        if (!place) {
+            handleCustomButtons();
         }
-        if(quit){
+
+        if (quit) {
             System.exit(0);
         }
-        if(v){ //viewing cards, setting up for a potential cash-in
-            view = true;
-            isActive = false;
-            cash1 = -1;
-            cash2 = -1;
-            cash3 = -1;
-            cashIn = 1;
-            setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+
+        if (v) {
+            viewCards();
         }
-        if (isActive && view){ //selecting cards
-            if (cashIn == 4){
-                cashIn = 1;
+
+        if (isActive && view) {
+            selectCards();
+        }
+
+        if (cash && place) {
+            cashInCards();
+        }
+
+        if (done) {
+            stopViewingCards();
+        }
+
+        buffer();
+    }
+
+    private void handleAttackOrFortify() {
+        if (selected && select != active && Countries.get(select).isNeighbor(Countries.get(active))) {
+            handleFortify();
+            handleAttack();
+        }
+    }
+
+    private void handleFortify() {
+        if (conquered) {
+            handleTroopMovement();
+        } else if (fortify && Countries.get(active).getPossession() == turn) {
+            fortifyPositions();
+        }
+    }
+
+    private void handleTroopMovement() {
+        if ((fortify1 == select && fortify2 == active) || (fortify1 == active && fortify2 == select)) {
+            if (Countries.get(select).getArmies() > 1) {
+                Countries.get(select).lose(1);
+                Countries.get(active).gain(1);
             }
-            if (cashIn == 1){
-                if(active != cash2 && active != cash3){
-                    cash1 = active;
-                    cashIn++;
-                }
-            }
-            if (cashIn == 2){
-                if(active != cash1 && active != cash3){
-                    cash2 = active;
-                    cashIn++;
-                }
-            }
-            if (cashIn == 3){
-                if(active != cash1 && active != cash2){
-                    cash3 = active;
-                    cashIn++;
-                }
+        } else {
+            moving = false;
+            fortify1 = -1;
+            fortify2 = -1;
+        }
+    }
+
+    private void fortifyPositions() {
+        if (!fortified && Countries.get(select).getArmies() > 1) {
+            fortified = true;
+            fortify1 = select;
+            fortify2 = active;
+        }
+        if ((fortify1 == select && fortify2 == active) || (fortify1 == active && fortify2 == select)) {
+            if (Countries.get(select).getArmies() > 1 && fortified) {
+                Countries.get(select).lose(1);
+                Countries.get(active).gain(1);
             }
         }
-        if ((cash) && (place)){ //cashing in
-            if((cash1 == -1) || (cash2 == -1) || (cash3 == -1)){
-            }
-            else{
-                if(Players.get(turn).cashable(Cards.get(cash1), Cards.get(cash2), Cards.get(cash3))){
-                    income = Players.get(turn).cash(Cards.get(cash1), Cards.get(cash2), Cards.get(cash3), Rewards, reward);
-                    Cards.addAll(Players.get(turn).returnedCards());
-                    reward++;
-                    if (reward == 17){
-                        reward = 0;
-                    }
-                    place = true;
-                    view = false;
-                }
-                else{
-                    return ;
-                }
+    }
+
+    private void handleAttack() {
+        if (attack && Countries.get(active).getPossession() != turn && Countries.get(select).getArmies() > 1) {
+            Countries.get(select).attack(Countries.get(active));
+            conquered = false;
+
+            if (Countries.get(active).isEmpty()) {
+                processConquest();
             }
         }
-        if (done){ //stop viewing cards
-            if (Players.get(Countries.get(select).getPossession()).getCardsN() < 5){
-                view = false;
-                done = false;
-            }
+    }
+
+    private void processConquest() {
+        JOptionPane.showMessageDialog(frame,
+                "You have conquered " + Countries.get(active).getName() + "!",
+                "Information",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+        waitForDialog();
+
+        if (!getCard) {
+            handleCard();
+        }
+
+        checkPlayerDefeat();
+        finalizeConquest();
+    }
+
+    private void handleCard() {
+        getCard = true;
+        int temp = r.nextInt(Cards.size());
+        Players.get(Countries.get(select).getPossession()).gotCard(Cards.get(temp));
+        Cards.remove(temp);
+    }
+
+    private void checkPlayerDefeat() {
+        if (Players.get(Countries.get(active).getPossession()).getCountries() == 0) {
+            Players.get(Countries.get(select).getPossession()).gotCards(Players.get(Countries.get(active).getPossession()));
+            JOptionPane.showMessageDialog(frame,
+                    Players.get(turn).getName() + " has defeated " + Players.get(Countries.get(active).getPossession()).getName() + "!",
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            waitForDialog();
+
+            checkGameVictory();
+        }
+    }
+
+    private void checkGameVictory() {
+        if (Players.get(turn).getCountries() == 48) {
+            JOptionPane.showMessageDialog(frame,
+                    "Congratulations! You have conquered the world!",
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+            waitForDialog();
+            System.exit(0);
+        }
+
+        if (Players.get(turn).getCardsN() > 5) {
+            promptForCashIn();
+        }
+    }
+
+    private void promptForCashIn() {
+        JOptionPane.showMessageDialog(frame,
+                "You have more than 5 cards. Please cash in.",
+                "Information",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+        waitForDialog();
+        view = true;
+        isActive = false;
+        cash1 = -1;
+        cash2 = -1;
+        cash3 = -1;
+        cashIn = 1;
+        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
+
+    private void finalizeConquest() {
+        Players.get(Countries.get(select).getPossession()).conquered(Countries.get(active));
+        Players.get(Countries.get(active).getPossession()).lost(Countries.get(active));
+        Countries.get(active).conqueredBy(Countries.get(select).getPossession());
+
+        conquered = true;
+        moving = true;
+        Countries.get(select).lose(1);
+        Countries.get(active).gain(1);
+        fortify1 = select;
+        fortify2 = active;
+    }
+
+    private void placeArmies() {
+        Countries.get(select).gain(1);
+        income--;
+        if (income == 0) {
+            place = false;
         }
         buffer();
     }
+
+    private void handleCustomButtons() {
+        if ((a) && (!fortified)) {
+            attack = true;
+            fortify = false;
+        }
+        if ((f) && (!fortified)) {
+            attack = false;
+            fortify = true;
+
+            if (!fortified) {
+                fortify1 = -1;
+                fortify2 = -1;
+            }
+        }
+        if (end) {
+            endTurn();
+        }
+    }
+
+    private void endTurn() {
+        turn++;
+        if (turn == Players.size()) {
+            turn = 0;
+        }
+
+        income = Players.get(turn).getIncome();
+        resetTurnState();
+        showTurnDialog();
+    }
+
+    private void resetTurnState() {
+        attack = false;
+        place = true;
+        fortify = false;
+        fortified = false;
+        getCard = false;
+        moving = false;
+        fortify1 = -1;
+        fortify2 = -1;
+    }
+
+    private void showTurnDialog() {
+        JOptionPane.showMessageDialog(frame,
+                "It is now " + Players.get(turn).getName() + "'s turn.",
+                "Information",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+        waitForDialog();
+
+        if (Players.get(turn).ableToCash()) {
+            JOptionPane.showMessageDialog(frame,
+                    "You have a set to cash in!",
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+        }
+        waitForDialog();
+    }
+
+    private void viewCards() {
+        view = true;
+        isActive = false;
+        cash1 = -1;
+        cash2 = -1;
+        cash3 = -1;
+        cashIn = 1;
+        setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+    }
+
+    private void selectCards() {
+        if (cashIn == 4) {
+            cashIn = 1;
+        }
+
+        switch (cashIn) {
+            case 1:
+                if (active != cash2 && active != cash3) {
+                    cash1 = active;
+                    cashIn++;
+                }
+                break;
+            case 2:
+                if (active != cash1 && active != cash3) {
+                    cash2 = active;
+                    cashIn++;
+                }
+                break;
+            case 3:
+                if (active != cash1 && active != cash2) {
+                    cash3 = active;
+                    cashIn++;
+                }
+                break;
+        }
+    }
+
+    private void cashInCards() {
+        if (cash1 == -1 || cash2 == -1 || cash3 == -1) {
+            return;
+        }
+
+        if (Players.get(turn).cashable(Cards.get(cash1), Cards.get(cash2), Cards.get(cash3))) {
+            income = Players.get(turn).cash(Cards.get(cash1), Cards.get(cash2), Cards.get(cash3), Rewards, reward);
+            Cards.addAll(Players.get(turn).returnedCards());
+            reward++;
+            if (reward == 17) {
+                reward = 0;
+            }
+            place = true;
+            view = false;
+        }
+    }
+
+    private void stopViewingCards() {
+        if (Players.get(Countries.get(select).getPossession()).getCardsN() < 5) {
+            view = false;
+            done = false;
+        }
+    }
+
+    private void waitForDialog() {
+        while (frame.isVisible()) {
+            Thread.yield();
+        }
+    }
+
 
     public void mouseMoved(MouseEvent e) {
         if(!view){
@@ -752,185 +886,189 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         g.drawImage(screen, 0, 0, null); //painting the buffered image
     }
 
-    public void buffer(){
+
+
+    public void buffer() {
         Graphics2D graphic = screen.createGraphics();
         graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphic.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         graphic.setColor(Color.black);
         graphic.fillRect(0, 0, dim.width, dim.height);
-        if (!view){
-            graphic.drawImage(map, (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
-            graphic.drawImage(actions, (int)((dim.getWidth()/1920.0)*1615), (int)((dim.getHeight()/1080.0)*15), null);
-            if (isActive){ //drawing the highlight around countries when they're selected
-                if (selected){
-                    if (Countries.get(select).isNeighbor(Countries.get(active))){
-                        graphic.drawImage(Countries.get(active).getSelected(), (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
-                    }
-                    else{
-                        graphic.drawImage(Countries.get(select).getSelected(), (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
-                    }
-                }
-                else{
-                    graphic.drawImage(Countries.get(active).getSelected(), (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
-                }
-            }
-            else if (selected){
-                graphic.drawImage(Countries.get(select).getSelected(), (int)((dim.getWidth()/1920.0)*15), (int)((dim.getHeight()/1080.0)*15), null);
-            }
-            for (int c = 0; c < 48; c++){ //drawing armies and color on each country
-                graphic.setColor(Players.get(Countries.get(c).getPossession()).getColor());
-                graphic.fillOval(Countries.get(c).giveBorder().x + (Countries.get(c).giveBorder().width/2) - 10, Countries.get(c).giveBorder().y + Countries.get(c).giveBorder().height, 20, 20);
-                graphic.setColor(Color.white);
-                graphic.fillOval(Countries.get(c).giveBorder().x + (Countries.get(c).giveBorder().width/2) - 6, Countries.get(c).giveBorder().y + Countries.get(c).giveBorder().height + 4, 12, 12);
-                graphic.setFont(new Font("Urbana", Font.PLAIN, 12));
-                graphic.setColor(Color.black);
-                graphic.drawString(Countries.get(c).getArmies() + "", Countries.get(c).giveBorder().x + (Countries.get(c).giveBorder().width/2) - 4, Countries.get(c).giveBorder().y + Countries.get(c).giveBorder().height + 15);
-            }
-            graphic.clearRect(0, 0, dim.width, (int)((dim.getHeight()/1080.0)*17));
-            graphic.clearRect(0, dim.height - (int)((dim.getHeight()/1080.0)*17), dim.width, (int)((dim.getHeight()/1080.0)*17));
-            if(a){ //drawing highlight around each custom button
-                graphic.setColor(Color.yellow);
-                graphic.fillRect((int)((dim.getWidth()/1920.0)*1635), (int)((dim.getHeight()/1080.0)*350), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            else if(v){
-                graphic.setColor(Color.yellow);
-                graphic.fillRect((int)((dim.getWidth()/1920.0)*1755), (int)((dim.getHeight()/1080.0)*350), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            else if(f){
-                graphic.setColor(Color.yellow);
-                graphic.fillRect((int)((dim.getWidth()/1920.0)*1635), (int)((dim.getHeight()/1080.0)*450), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            else if(end){
-                graphic.setColor(Color.yellow);
-                graphic.fillRect((int)((dim.getWidth()/1920.0)*1755), (int)((dim.getHeight()/1080.0)*450), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            else if(quit){
-                graphic.setColor(Color.yellow);
-                graphic.fillRect((int)((dim.getWidth()/1920.0)*1635), (int)((dim.getHeight()/1080.0)*550), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            else{
-                graphic.drawImage(actions, (int)((dim.getWidth()/1920.0)*1615), (int)((dim.getHeight()/1080.0)*15), null);
-            }
-            graphic.setColor(Color.red); //drawing custom buttons
-            graphic.fillRect((int)((dim.getWidth()/1920.0)*1645), (int)((dim.getHeight()/1080.0)*360), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
-            graphic.setColor(Color.green);
-            graphic.fillRect((int)((dim.getWidth()/1920.0)*1765), (int)((dim.getHeight()/1080.0)*360), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
-            graphic.setColor(Color.blue);
-            graphic.fillRect((int)((dim.getWidth()/1920.0)*1645), (int)((dim.getHeight()/1080.0)*460), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
-            graphic.setColor(Color.cyan);
-            graphic.fillRect((int)((dim.getWidth()/1920.0)*1765), (int)((dim.getHeight()/1080.0)*460), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
-            graphic.setColor(Color.gray);
-            graphic.fillRect((int)((dim.getWidth()/1920.0)*1645), (int)((dim.getHeight()/1080.0)*560), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
-            graphic.setColor(Color.black);
-            graphic.setFont(new Font("Urbana", Font.PLAIN, 12));
-            graphic.drawString("Attack", (int)((dim.getWidth()/1920.0)*1665), (int)((dim.getHeight()/1080.0)*410));
-            graphic.drawString("View Cards", (int)((dim.getWidth()/1920.0)*1775), (int)((dim.getHeight()/1080.0)*410));
-            graphic.drawString("Fortify", (int)((dim.getWidth()/1920.0)*1665), (int)((dim.getHeight()/1080.0)*510));
-            graphic.drawString("End turn", (int)((dim.getWidth()/1920.0)*1785), (int)((dim.getHeight()/1080.0)*510));
-            graphic.drawString("Quit", (int)((dim.getWidth()/1920.0)*1670), (int)((dim.getHeight()/1080.0)*610));
-            graphic.setFont(new Font("English", Font.PLAIN, 12));
-            graphic.setColor(Color.black);
-            // Update the display based on the current game state
-            if (income != 0) {
-                // Inform the player that they have armies left to deploy
-                postInfo(Players.get(turn).getName() + " needs to deploy: " + income + " more armies.", graphic);
-            } else if (selected && isActive && attack && select != active && Countries.get(active).getPossession() != turn && Countries.get(select).isNeighbor(Countries.get(active))) {
-                // Prompt the player to initiate an attack
-                postInfo("Initiate an attack on " + Countries.get(active).getName() + " by clicking.", graphic);
-            } else if (moving) {
-                // Provide options for troop movement or initiating an attack
-                postInfo("Troops selected in " + Countries.get(select).getName() + ". Move troops between " + Countries.get(fortify1).getName() + " and " + Countries.get(fortify2).getName() + ", or attack another country.", graphic);
-            } else if (!selected && fortify && fortify1 != -1 && fortify2 != -1) {
-                // Options to fortify positions or conclude the turn
-                postInfo("Ready to fortify from " + Countries.get(fortify1).getName() + " to " + Countries.get(fortify2).getName() + ". You may also end your turn now.", graphic);
-            } else if (selected && isActive && fortify && select != active && Countries.get(active).getPossession() == turn && Countries.get(select).isNeighbor(Countries.get(active))) {
-                // Option to fortify to an active country
-                postInfo("Prepare to strengthen " + Countries.get(active).getName() + " from " + Countries.get(select).getName() + ".", graphic);
-            } else if (selected && fortify) {
-                // Player has selected a country and can choose an attack target
-                postInfo("Country selected: " + Countries.get(select).getName() + ". Select an attack target.", graphic);
-            } else if (!selected && fortify) {
-                // Prompt to select a country for fortification
-                postInfo("Choose a country to fortify from.", graphic);
-            } else if (selected && attack) {
-                // Attack phase with a country selected, prompt to choose a target
-                postInfo("Country selected: " + Countries.get(select).getName() + ". Select an attack target.", graphic);
-            } else if (!selected && attack) {
-                // Attack phase with no country selected, prompt to choose a starting country
-                postInfo("Choose a country to launch an attack from.", graphic);
-            } else {
-                // General prompt if no specific action is currently being taken
-                postInfo("Decide to attack, fortify, or conclude your turn.", graphic);
-            }
 
+        if (!view) {
+            drawGameInterface(graphic);
+            handleCustomButtons(graphic);
+            handleGamePrompts(graphic);
+        } else {
+            drawCardInterface(graphic);
         }
-        if (view){
-            if (Players.get(turn).getCardsN() == 0){
-                graphic.setColor(Color.white);
-                graphic.setFont(new Font("Urbana", Font.PLAIN, 12));
-                graphic.drawString("You have no cards", dim.width/2 - 300, dim.height/2 + 50);
-            }
-            else{
-                if (isActive){
-                    graphic.setColor(Color.yellow);
-                    Rectangle temp = new Rectangle (Players.get(turn).getCards().get(active).giveBorder());
-                    temp.grow((int)((dim.getWidth()/1920.0)*10), (int)((dim.getWidth()/1920.0)*10));
-                    graphic.fill(temp);
-                }
-                for(int c = 0; c < Players.get(turn).getCardsN(); c++){
-                    if( c < 5){
-                        graphic.drawImage(Players.get(turn).getCards().get(c).getCard(), (int)((dim.getWidth()/1920.0)*160 + (c*350)), (int)((dim.getHeight()/1080.0)*120), null);
-                        Players.get(turn).getCards().get(c).setBorder((int)((dim.getWidth()/1920.0)*160 + (c*350)), (int)((dim.getHeight()/1080.0)*120), (int)((dim.getWidth()/1920.0)*220), (int)((dim.getHeight()/1080.0)*320));
-                    }
-                    else{
-                        graphic.drawImage(Players.get(turn).getCards().get(c).getCard(), (int)((dim.getWidth()/1920.0)*160 + ((c-5)*350)), (int)((dim.getHeight()/1080.0)*540), null);
-                        Players.get(turn).getCards().get(c).setBorder((int)((dim.getWidth()/1920.0)*160 + ((c-5)*350)), (int)((dim.getHeight()/1080.0)*540), (int)((dim.getWidth()/1920.0)*220), (int)((dim.getHeight()/1080.0)*320));
-                    }
-                }
-                if (cash1 != -1){ //draws highlights around cards when they're selected
-                    graphic.setColor(Color.yellow);
-                    Rectangle temp = new Rectangle (Players.get(turn).getCards().get(cash1).giveBorder());
-                    temp.grow((int)((dim.getWidth()/1920.0)*10), (int)((dim.getWidth()/1920.0)*10));
-                    graphic.fill(temp);
-                }
-                if (cash2 != -1){
-                    graphic.setColor(Color.yellow);
-                    Rectangle temp = new Rectangle (Players.get(turn).getCards().get(cash2).giveBorder());
-                    temp.grow((int)((dim.getWidth()/1920.0)*10), (int)((dim.getWidth()/1920.0)*10));
-                    graphic.fill(temp);
-                }
-                if (cash3 != -1){
-                    graphic.setColor(Color.yellow);
-                    Rectangle temp = new Rectangle (Players.get(turn).getCards().get(cash3).giveBorder());
-                    temp.grow((int)((dim.getWidth()/1920.0)*10), (int)((dim.getWidth()/1920.0)*10));
-                    graphic.fill(temp);
-                }
-            }
-            if(done){
-                graphic.setColor(Color.yellow);
-                graphic.fillRect((int)((dim.getWidth()/1920.0)*1050), (int)((dim.getHeight()/1080.0)*890), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            else{
-                graphic.clearRect((int)((dim.getWidth()/1920.0)*1050), (int)((dim.getHeight()/1080.0)*890), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            if(cash){
-                graphic.setColor(Color.yellow);
-                graphic.fillRect((int)((dim.getWidth()/1920.0)*750), (int)((dim.getHeight()/1080.0)*890), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            else{
-                graphic.clearRect((int)((dim.getWidth()/1920.0)*750), (int)((dim.getHeight()/1080.0)*890), (int)((dim.getWidth()/1920.0)*120), (int)((dim.getHeight()/1080.0)*100));
-            }
-            graphic.setColor(Color.green);
-            graphic.fillRect((int)((dim.getWidth()/1920.0)*760), (int)((dim.getHeight()/1080.0)*900), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
-            graphic.setColor(Color.red);
-            graphic.fillRect((int)((dim.getWidth()/1920.0)*1060), (int)((dim.getHeight()/1080.0)*900), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
-            graphic.setColor(Color.black);
-            graphic.setFont(new Font("Urbana", Font.PLAIN, (int)((dim.getWidth()/1920.0)*20)));
-            graphic.drawString("Cash In", (int)((dim.getWidth()/1920.0)*780), (int)((dim.getHeight()/1080.0)*950));
-            graphic.drawString("Done", (int)((dim.getWidth()/1920.0)*1080), (int)((dim.getHeight()/1080.0)*950));
-        }
+
         repaint();
     }
+
+    private void drawGameInterface(Graphics2D graphic) {
+        graphic.drawImage(map, (int) ((dim.getWidth() / 1920.0) * 15), (int) ((dim.getHeight() / 1080.0) * 15), null);
+        graphic.drawImage(actions, (int) ((dim.getWidth() / 1920.0) * 1615), (int) ((dim.getHeight() / 1080.0) * 15), null);
+
+        if (isActive) {
+            if (selected) {
+                if (Countries.get(select).isNeighbor(Countries.get(active))) {
+                    graphic.drawImage(Countries.get(active).getSelected(), (int) ((dim.getWidth() / 1920.0) * 15), (int) ((dim.getHeight() / 1080.0) * 15), null);
+                } else {
+                    graphic.drawImage(Countries.get(select).getSelected(), (int) ((dim.getWidth() / 1920.0) * 15), (int) ((dim.getHeight() / 1080.0) * 15), null);
+                }
+            } else {
+                graphic.drawImage(Countries.get(active).getSelected(), (int) ((dim.getWidth() / 1920.0) * 15), (int) ((dim.getHeight() / 1080.0) * 15), null);
+            }
+        } else if (selected) {
+            graphic.drawImage(Countries.get(select).getSelected(), (int) ((dim.getWidth() / 1920.0) * 15), (int) ((dim.getHeight() / 1080.0) * 15), null);
+        }
+
+        for (int c = 0; c < 48; c++) {
+            drawCountryState(graphic, Countries.get(c));
+        }
+
+        graphic.clearRect(0, 0, dim.width, (int) ((dim.getHeight() / 1080.0) * 17));
+        graphic.clearRect(0, dim.height - (int) ((dim.getHeight() / 1080.0) * 17), dim.width, (int) ((dim.getHeight() / 1080.0) * 17));
+    }
+
+    private void drawCountryState(Graphics2D graphic, Country country) {
+        graphic.setColor(Players.get(country.getPossession()).getColor());
+        graphic.fillOval(country.giveBorder().x + (country.giveBorder().width / 2) - 10, country.giveBorder().y + country.giveBorder().height, 20, 20);
+
+        graphic.setColor(Color.white);
+        graphic.fillOval(country.giveBorder().x + (country.giveBorder().width / 2) - 6, country.giveBorder().y + country.giveBorder().height + 4, 12, 12);
+        graphic.setFont(new Font("Urbana", Font.PLAIN, 12));
+
+        graphic.setColor(Color.black);
+        graphic.drawString(country.getArmies() + "", country.giveBorder().x + (country.giveBorder().width / 2) - 4, country.giveBorder().y + country.giveBorder().height + 15);
+    }
+
+    private void handleCustomButtons(Graphics2D graphic) {
+        Rectangle[] buttons = {
+                new Rectangle((int) ((dim.getWidth() / 1920.0) * 1645), (int) ((dim.getHeight() / 1080.0) * 360), (int) ((dim.getWidth() / 1920.0) * 100), (int) ((dim.getHeight() / 1080.0) * 80)),
+                new Rectangle((int) ((dim.getWidth() / 1920.0) * 1765), (int) ((dim.getHeight() / 1080.0) * 360), (int) ((dim.getWidth() / 1920.0) * 100), (int) ((dim.getHeight() / 1080.0) * 80)),
+                new Rectangle((int) ((dim.getWidth() / 1920.0) * 1645), (int) ((dim.getHeight() / 1080.0) * 460), (int) ((dim.getWidth() / 1920.0) * 100), (int) ((dim.getHeight() / 1080.0) * 80)),
+                new Rectangle((int) ((dim.getWidth() / 1920.0) * 1765), (int) ((dim.getHeight() / 1080.0) * 460), (int) ((dim.getWidth() / 1920.0) * 100), (int) ((dim.getHeight() / 1080.0) * 80)),
+                new Rectangle((int) ((dim.getWidth() / 1920.0) * 1645), (int) ((dim.getHeight() / 1080.0) * 560), (int) ((dim.getWidth() / 1920.0) * 100), (int) ((dim.getHeight() / 1080.0) * 80))
+        };
+
+        for (Rectangle button : buttons) {
+            drawButton(graphic, button);
+        }
+    }
+
+    private void drawButton(Graphics2D graphic, Rectangle button) {
+        graphic.setColor(Color.red); // Or customize color based on the button's function
+        graphic.fillRect(button.x, button.y, button.width, button.height);
+
+        graphic.setColor(Color.black);
+        graphic.setFont(new Font("Urbana", Font.PLAIN, 12));
+
+        String buttonLabel = determineButtonLabel(button); // Implement this method to get button labels
+        graphic.drawString(buttonLabel, button.x + 20, button.y + 40); // Position text centered on the button
+    }
+
+    private void handleGamePrompts(Graphics2D graphic) {
+        if (income != 0) {
+            postInfo(Players.get(turn).getName() + " needs to deploy: " + income + " more armies.", graphic);
+        } else if (selected && isActive && attack && select != active && Countries.get(active).getPossession() != turn && Countries.get(select).isNeighbor(Countries.get(active))) {
+            postInfo("Initiate an attack on " + Countries.get(active).getName() + " by clicking.", graphic);
+        } else if (moving) {
+            postInfo("Troops selected in " + Countries.get(select).getName() + ". Move troops between " + Countries.get(fortify1).getName() + " and " + Countries.get(fortify2).getName() + ", or attack another country.", graphic);
+        } else if (!selected && fortify && fortify1 != -1 && fortify2 != -1) {
+            postInfo("Ready to fortify from " + Countries.get(fortify1).getName() + " to " + Countries.get(fortify2).getName() + ". You may also end your turn now.", graphic);
+        } else if (selected && fortify && select != active && Countries.get(active).getPossession() == turn && Countries.get(select).isNeighbor(Countries.get(active))) {
+            postInfo("Prepare to strengthen " + Countries.get(active).getName() + " from " + Countries.get(select).getName() + ".", graphic);
+        } else if (selected && fortify) {
+            postInfo("Country selected: " + Countries.get(select).getName() + ". Select an attack target.", graphic);
+        } else if (!selected && fortify) {
+            postInfo("Choose a country to fortify from.", graphic);
+        } else if (selected && attack) {
+            postInfo("Country selected: " + Countries.get(select).getName() + ". Select an attack target.", graphic);
+        } else if (!selected && attack) {
+            postInfo("Choose a country to launch an attack from.", graphic);
+        } else {
+            postInfo("Decide to attack, fortify, or conclude your turn.", graphic);
+        }
+    }
+
+
+    private String determineButtonLabel(Rectangle button) {
+        // Mapping button positions to their labels
+        if (button.equals(Attack)) {
+            return "Attack";
+        } else if (button.equals(Fortify)) {
+            return "Fortify";
+        } else if (button.equals(View)) {
+            return "View Cards";
+        } else if (button.equals(End)) {
+            return "End Turn";
+        } else if (button.equals(Quit)) {
+            return "Quit";
+        } else if (button.equals(CashIn)) {
+            return "Cash In";
+        } else if (button.equals(Done)) {
+            return "Done";
+        }
+
+        return ""; // Default case if no matching button
+    }
+
+
+    private void drawCardInterface(Graphics2D graphic) {
+        graphic.setFont(new Font("Urbana", Font.PLAIN, 12)); // Setting a font for text
+
+        if (Players.get(turn).getCardsN() == 0) {
+            graphic.setColor(Color.white);
+            graphic.drawString("You have no cards", dim.width / 2 - 300, dim.height / 2 + 50);
+            return; // Early exit if no cards to show
+        }
+
+        for (int i = 0; i < Players.get(turn).getCardsN(); i++) {
+            Card card = Players.get(turn).getCards().get(i);
+
+            int x, y;
+            if (i < 5) {
+                x = (int) ((dim.getWidth() / 1920.0) * (160 + i * 350));
+                y = (int) ((dim.getHeight() / 1080.0) * 120);
+            } else {
+                x = (int) ((dim.getWidth() / 1920.0) * (160 + (i - 5) * 350));
+                y = (int) ((dim.getHeight() / 1080.0) * 540);
+            }
+
+            graphic.drawImage(card.getCard(), x, y, null);
+            card.setBorder(x, y, (int) ((dim.getWidth() / 1920.0) * 220), (int) ((dim.getHeight() / 1080.0) * 320));
+
+            // Draw a yellow highlight around selected cards
+            if (card == Players.get(turn).getCards().get(cash1) || card == Players.get(turn).getCards().get(cash2) || card == Players.get(turn).getCards().get(cash3)) {
+                graphic.setColor(Color.yellow);
+                Rectangle temp = card.giveBorder();
+                temp.grow((int) ((dim.getWidth() / 1920.0) * 10), (int) ((dim.getHeight() / 1080.0) * 10));
+                graphic.fill(temp);
+            }
+        }
+
+        // Draw "Cash In" and "Done" buttons
+        drawActionButton(graphic, CashIn, Color.green, "Cash In", (int) ((dim.getWidth() / 1920.0) * 780), (int) ((dim.getHeight() / 1080.0) * 950));
+        drawActionButton(graphic, Done, Color.red, "Done", (int) ((dim.getWidth() / 1920.0) * 1080), (int) ((dim.getHeight() / 1080.0) * 950));
+    }
+
+    private void drawActionButton(Graphics2D graphic, Rectangle button, Color color, String label, int labelX, int labelY) {
+        graphic.setColor(color);
+        graphic.fillRect(button.x, button.y, button.width, button.height);
+        graphic.setColor(Color.black);
+        graphic.setFont(new Font("Urbana", Font.PLAIN, (int) ((dim.getWidth() / 1920.0) * 20)));
+        graphic.drawString(label, labelX, labelY);
+    }
+
+
+
+
+
+
+
+
 
     public static BufferedImage resize(Image image, int width, int height) { //code found from internet. supposedly resizes images
         return Card.resize(image, width, height);
