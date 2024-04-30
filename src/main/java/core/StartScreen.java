@@ -30,8 +30,8 @@ public class StartScreen extends JFrame implements ActionListener{
     public StartScreen(){ 
         
         //start screen to set up players' names and colors
-        super("Start Screen");
-        setSize(600, 1000);
+        super("World Domination");
+        setSize(600, 860);
         setLayout(new BorderLayout());
         dim = Toolkit.getDefaultToolkit().getScreenSize();
         setLocation(dim.width/2 - 390, dim.height/2 - 500);
@@ -124,11 +124,11 @@ public class StartScreen extends JFrame implements ActionListener{
         player6.setPreferredSize(new Dimension(80, 50));
 
         JLabel Name = new JLabel("Please input names", JLabel.CENTER);
-        JLabel Color = new JLabel("Please input player color", JLabel.CENTER);
+        JLabel Color = new JLabel("Please choose player color", JLabel.CENTER);
 
         //JButton Info = new JButton("Info");
         //Info.addActionListener(this);
-        JButton Start = new JButton("Start");
+        JButton Start = new JButton("Game Start");
         Start.addActionListener(this);
 
         Players.add(Name);
