@@ -8,46 +8,57 @@ import java.awt.event.*;
 import java.util.*;
 
 public class StartScreen extends JFrame implements ActionListener{
-    Dimension dim;
-    JPanel Colors, Players, Bottom;
-    public JTextField Player1;
-    JTextField Player2;
-    JTextField Player3;
-    JTextField Player4;
-    JTextField Player5;
-    JTextField Player6;
-    public JComboBox player1;
-    JComboBox player2;
-    JComboBox player3;
-    JComboBox player4;
-    JComboBox player5;
-    JComboBox player6;
-    String [] colors = {"Empty", "Red", "Blue", "Green", "Yellow", "Black", "Gray"};
-    ArrayList <Player> Users;
-    int player;
-    public boolean start;
 
-    public StartScreen(){ 
-        
-        //start screen to set up players' names and colors
-        super("World Domination");
-        setSize(600, 860);
-        setLayout(new BorderLayout());
-        dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width/2 - 390, dim.height/2 - 500);
+    Dimension dim; // Dimension object to get screen size
+    JPanel Colors, Players, Bottom; // Panels to hold different sections of the start screen
+    public JTextField Player1; // Text field for Player 1's name
+    JTextField Player2; // Text field for Player 2's name
+    JTextField Player3; // Text field for Player 3's name
+    JTextField Player4; // Text field for Player 4's name
+    JTextField Player5; // Text field for Player 5's name
+    JTextField Player6; // Text field for Player 6's name
+    public JComboBox player1; // Combo box for Player 1's color
+    JComboBox player2; // Combo box for Player 2's color
+    JComboBox player3; // Combo box for Player 3's color
+    JComboBox player4; // Combo box for Player 4's color
+    JComboBox player5; // Combo box for Player 5's color
+    JComboBox player6; // Combo box for Player 6's color
+    String[] colors = {"Empty", "Red", "Blue", "Green", "Yellow", "Black", "Gray"}; // Array of colors to choose from
+    ArrayList<Player> Users; // List of players
+    int player; // Counter to track the number of players
+    public boolean start; // Flag to indicate if the game has started
 
-        Colors = new JPanel();
-        Colors.setLayout(new GridLayout(7, 1));
-        Colors.setPreferredSize(new Dimension(80, 400));
+
+
+
+    public StartScreen(){
+        // Constructor to set up the start screen
+        super("World Domination"); // Call the superclass constructor with the window title
+        setSize(600, 860); // Set window size
+        setLayout(new BorderLayout());// Set layout manager for the window;
+        dim = Toolkit.getDefaultToolkit().getScreenSize();// Get screen dimensions
+        setLocation(dim.width/2 - 390, dim.height/2 - 500);// Center the window
+
+
+        Colors = new JPanel();// Panel for color selection
+        Colors.setLayout(new GridLayout(7, 1));// Set grid layout with 7 rows
+        Colors.setPreferredSize(new Dimension(80, 400));// Set preferred size
+
+
+        // Panel for player names
         Players = new JPanel();
-        Players.setLayout(new GridLayout(7, 1));
-        Players.setPreferredSize(new Dimension(200, 400));
-        Bottom = new JPanel();
-        Bottom.setPreferredSize(new Dimension(280, 50));
+        Players.setLayout(new GridLayout(7, 1));// Set grid layout with 7 rows
+        Players.setPreferredSize(new Dimension(200, 400));// Set preferred size
 
+        Bottom = new JPanel();// Panel for bottom section
+        Bottom.setPreferredSize(new Dimension(280, 50));// Set preferred size
+
+
+
+        // Text fields for player names
         Player1 = new JTextField("Enter name for Player 1"); //text fields for names
-        Player1.setPreferredSize(new Dimension(100, 50));
-        Player1.setHorizontalAlignment(JTextField.LEFT);
+        Player1.setPreferredSize(new Dimension(100, 50));// Set preferred size
+        Player1.setHorizontalAlignment(JTextField.LEFT);// Align text to the left
         Player2 = new JTextField("Enter name Player 2: ");
         Player2.setPreferredSize(new Dimension(100, 50));
         Player2.setHorizontalAlignment(JTextField.LEFT);
@@ -64,6 +75,8 @@ public class StartScreen extends JFrame implements ActionListener{
         Player6.setPreferredSize(new Dimension(100, 50));
         Player6.setHorizontalAlignment(JTextField.LEFT);
 
+
+        // Mouse listeners to clear text fields when clicked
         Player1.addMouseListener(
             new MouseAdapter() {
                 public void mousePressed( MouseEvent e ) {
@@ -107,9 +120,12 @@ public class StartScreen extends JFrame implements ActionListener{
             }
         );
 
-        start = false;
+        start = false;// Initially, the game has not started
+        Users = new ArrayList<>();// Initialize Users as an empty list
 
-        Users = new ArrayList<>();
+
+
+        // Combo boxes for player colors
         player1 = new JComboBox<>(colors); //combobox for colors
         player1.setPreferredSize(new Dimension(80, 50));
         player2 = new JComboBox<>(colors);
@@ -128,9 +144,11 @@ public class StartScreen extends JFrame implements ActionListener{
 
         //JButton Info = new JButton("Info");
         //Info.addActionListener(this);
-        JButton Start = new JButton("Game Start");
-        Start.addActionListener(this);
+        JButton Start = new JButton("Start");// Button to start the game
+        Start.addActionListener(this);// Set action listener
 
+
+        // Add components to their respective panels
         Players.add(Name);
         Players.add(Player1);
         Players.add(Player2);
@@ -151,6 +169,7 @@ public class StartScreen extends JFrame implements ActionListener{
         Bottom.add(new JLabel());
         Bottom.add(Start);
 
+        // Add panels to the main frame
         add("North", new ScreenLogo());
         add("Center", Colors);
         add("East", Players);
@@ -158,11 +177,13 @@ public class StartScreen extends JFrame implements ActionListener{
 
        
 
-        setResizable(false);
-        setVisible(true);
+        setResizable(false);// Make window non-resizable
+        setVisible(true);// Make window visible
     }
 
     public void actionPerformed(ActionEvent e){
+
+        // Logic for handling button clicks
         int empty = 0;
         int red = 0;
         int blue = 0;
@@ -224,7 +245,10 @@ public class StartScreen extends JFrame implements ActionListener{
             case 5: black++;    break;
             case 6: grey++;     break;
         }
+
+
         if (e.getActionCommand() == "Start"){
+            // Error checking for various conditions
             JFrame frame = new JFrame();
             if(empty == 6){ //shows errors such as no players, only1 player, multiple players with the same colors or no names
                 JOptionPane.showMessageDialog(frame,
@@ -250,7 +274,7 @@ public class StartScreen extends JFrame implements ActionListener{
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
             }
-            else{ //starts the game by setting every player up 
+            else{ // Setup game with valid configurations
                 Color temp = Color.white;
                 start = true;
                 if(player1.getSelectedIndex()!=0){
@@ -342,10 +366,10 @@ public class StartScreen extends JFrame implements ActionListener{
     }
 
     public boolean started(){
-        return start;
+        return start; // Indicates if the game has started
     }
 
     public ArrayList<Player> getPlayers(){
-        return Users;
+        return Users;// Returns the list of players
     }
 }
