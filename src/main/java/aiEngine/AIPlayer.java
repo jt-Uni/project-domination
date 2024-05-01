@@ -1,11 +1,7 @@
 package aiEngine;
-import core.Country;
-import core.Player;
-import core.RiskGame;
 import core.*;
-
-import java.util.*;
 import java.awt.*;
+import java.util.*;
 
 public class AIPlayer extends Player {
     private String difficulty;
@@ -34,16 +30,22 @@ public class AIPlayer extends Player {
     private void takeTurnEasy(RiskGame game) {
         placeArmiesRandomly();
         attackIfAdvantageous();
+        fortifyCountries();
+        game.endTurn(); // Automatically end turn after actions
     }
 
     private void takeTurnHard(RiskGame game) {
         placeArmiesStrategically();
         attackWithPlanning();
+        fortifyCountries();
+        game.endTurn(); // Automatically end turn after actions
     }
 
     private void takeTurnExtremelyHard(RiskGame game) {
         placeArmiesForContinentControl();
         attackWithStrategy();
+        fortifyCountries();
+        game.endTurn(); // Automatically end turn after actions
     }
 
     private void placeArmiesRandomly() {
@@ -89,7 +91,7 @@ public class AIPlayer extends Player {
             for (Country neighbor : country.getNeighbors()) {
                 if (neighbor.getPossession() != getPlayer() && country.getArmies() > neighbor.getArmies()) {
                     country.attack(neighbor);
-                    // Optionally handle attack results further
+                    fortifyCountry(country, neighbor); // Additional fortification after attack
                 }
             }
         }
@@ -125,6 +127,21 @@ public class AIPlayer extends Player {
                 if (neighbor.getPossession() != getPlayer() && country.getArmies() > neighbor.getArmies()) {
                     country.attack(neighbor);
                     fortifyCountry(country, neighbor);
+                }
+            }
+        }
+    }
+
+    private void fortifyCountries() {
+        Set<Country> ownCountries = new HashSet<>(getCountries());
+
+        for (Country country : ownCountries) {
+            for (Country neighbor : country.getNeighbors()) {
+                if (country.getPossession() == getPlayer() && neighbor.getPossession() == getPlayer()) {
+                    while (country.getArmies() > 1) {
+                        country.lose(1);
+                        neighbor.gain(1);
+                    }
                 }
             }
         }

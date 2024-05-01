@@ -1,10 +1,17 @@
 package core;
 import javax.swing.*;
+import javax.swing.Timer;
 
+import aiEngine.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
 import java.util.*;
+
+
+
+
+
 
 public class RiskGame extends JFrame implements MouseListener, MouseMotionListener{
     boolean isActive, clicked, selected, attack, view, getCard, conquered, fortify, fortified, place, moving, a, v, f, end, done, cash, quit;
@@ -21,13 +28,20 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     Random r;
     StartScreen Start;
     JFrame frame;
-
     private static final String WINDOW_TITLE = "RiskGame Window";
+
+
+
+
+
+
 
     public RiskGame() {
         super(WINDOW_TITLE);
         initializeGame();
     }
+
+
 
     private void initializeGame() {
         Start = new StartScreen();
@@ -42,6 +56,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         showInitialDialog();
     }
 
+
+
     private void waitForStartScreen(StartScreen start) {
         while (!start.started()) {
             if (!start.isVisible()) {
@@ -51,12 +67,17 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
     }
 
+
+
+
     private void setupUI() {
         setLayout(new BorderLayout());
         dim = Toolkit.getDefaultToolkit().getScreenSize();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setUndecorated(true);
     }
+
+
 
     private void initializeGameState() {
         isActive = false;
@@ -74,6 +95,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
     }
 
+
+
+
     private void setupCountries() {
 
         Attack = new Rectangle((int)((dim.getWidth()/1920.0)*1645), (int)((dim.getHeight()/1080.0)*360), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
@@ -84,6 +108,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
         CashIn = new Rectangle((int)((dim.getWidth()/1920.0)*760), (int)((dim.getHeight()/1080.0)*900), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
         Done = new Rectangle((int)((dim.getWidth()/1920.0)*1060), (int)((dim.getHeight()/1080.0)*900), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
+
+
+
 
         Countries = new ArrayList<>();
 
@@ -282,12 +309,19 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             {"Eastern Australia", "New Guinea", "Indonesia", "Western Australia"} // Central Australia
         };
 
+
+
         for (int i = 0; i < countryNames.length; i++) {
             for (String neighbor : neighbors[i]) {
                 Countries.get(i).addNeighbor(Countries, neighbor);
             }
         }
     }
+
+
+
+
+
 
     private void finalisation() {
         addMouseListener(this);
@@ -309,32 +343,48 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         setVisible(true);
     }
 
+
+
+
+
     private void setupPlayers() {
-        Players = new ArrayList<>(Start.getPlayers()); //getting players from StartScreen.
+        Players = new ArrayList<>(Start.getPlayers());
 
         ArrayList<Country> temp2 = new ArrayList<>(Countries);
         Cards = new ArrayList<>();
         r = new Random();
 
-        for (int c = 0; c < Players.size(); c++){ //distributing countries randomly
-            for (int c2 = 0; c2 < 48/Players.size(); c2++){
+        for (int c = 0; c < Players.size(); c++) { // distributing countries randomly
+            for (int c2 = 48 / Players.size(); c2 > 0; c2--) {
                 int temp = r.nextInt(temp2.size());
                 Players.get(c).conquered(temp2.get(temp));
                 temp2.remove(temp);
             }
         }
 
-        int temp = 0;
-        while(!temp2.isEmpty()){ //giving out leftover countries
-            Players.get(temp).conquered(temp2.getFirst());
+        while (!temp2.isEmpty()) {
+            Players.get(turn).conquered(temp2.getFirst());
             temp2.removeFirst();
-            temp++;
+            turn++;
+            if (turn >= Players.size()) turn = 0;
         }
+
+        turn = 0;  // Reset turn to start the game from the beginning
 
         for (Player player : Players) {
             player.start();
         }
     }
+
+
+
+
+
+
+
+
+
+
 
     private void setupCards() {
         int unit = 0;
@@ -349,6 +399,10 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         Cards.add(new Card("Wild card", 3, -1));
     }
 
+
+
+
+
     private void setupRewards() {
         Rewards = new ArrayList<>(); //setting rewards
         for (int c = 4; c < 13; c += 2){
@@ -361,6 +415,10 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             Rewards.add(Integer.parseInt(String.valueOf(c)));
         }
     }
+
+
+
+
 
 
     private void showInitialDialog() {
@@ -392,11 +450,6 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
 
         JOptionPane.showMessageDialog(frame, message, "Dice Roll", JOptionPane.INFORMATION_MESSAGE);
-
-
-
-
-
 
         // Display which player's turn it is
         JOptionPane.showMessageDialog(frame,
@@ -457,12 +510,16 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         buffer();
     }
 
+
     private void handleAttackOrFortify() {
         if (selected && select != active && Countries.get(select).isNeighbor(Countries.get(active))) {
             handleFortify();
             handleAttack();
         }
     }
+
+
+
 
     private void handleFortify() {
         if (conquered) {
@@ -471,6 +528,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             fortifyPositions();
         }
     }
+
+
+
 
     private void handleTroopMovement() {
         if ((fortify1 == select && fortify2 == active) || (fortify1 == active && fortify2 == select)) {
@@ -484,6 +544,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             fortify2 = -1;
         }
     }
+
+
+
 
     private void fortifyPositions() {
         if (!fortified && Countries.get(select).getArmies() > 1) {
@@ -499,6 +562,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
     }
 
+
     private void handleAttack() {
         if (attack && Countries.get(active).getPossession() != turn && Countries.get(select).getArmies() > 1) {
             Countries.get(select).attack(Countries.get(active));
@@ -509,6 +573,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             }
         }
     }
+
 
     private void processConquest() {
         JOptionPane.showMessageDialog(frame,
@@ -526,6 +591,9 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         finalizeConquest();
     }
 
+
+
+
     private void handleCard() {
         getCard = true;
         int temp = r.nextInt(Cards.size());
@@ -533,11 +601,15 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         Cards.remove(temp);
     }
 
+
     private void checkPlayerDefeat() {
-        if (Objects.equals(Players.get(Countries.get(active).getPossession()).getCountries(), 0)) {
-            Players.get(Countries.get(select).getPossession()).gotCards(Players.get(Countries.get(active).getPossession()));
+        Player defeatedPlayer = Players.get(Countries.get(active).getPossession());
+        if (defeatedPlayer.getCountries().isEmpty()) {
+            Player victor = Players.get(Countries.get(select).getPossession());
+
+            victor.gotCards(defeatedPlayer); // Transfer cards from defeated player to victor
             JOptionPane.showMessageDialog(frame,
-                    Players.get(turn).getName() + " has defeated " + Players.get(Countries.get(active).getPossession()).getName() + "!",
+                    victor.getName() + " has defeated " + defeatedPlayer.getName() + "!",
                     "Information",
                     JOptionPane.INFORMATION_MESSAGE
             );
@@ -546,6 +618,10 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             checkGameVictory();
         }
     }
+
+
+
+
 
     private void checkGameVictory() {
         if (Objects.equals(Players.get(turn).getCountries(), 48)) {
@@ -562,6 +638,12 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             promptForCashIn();
         }
     }
+
+
+
+
+
+
 
     private void promptForCashIn() {
         JOptionPane.showMessageDialog(frame,
@@ -592,14 +674,25 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         fortify2 = active;
     }
 
+
+
     private void placeArmies() {
+        if (income <= 0) {
+            place = false;
+            return;
+        }
+
         Countries.get(select).gain(1);
         income--;
+
         if (income == 0) {
             place = false;
         }
+
         buffer();
     }
+
+
 
     private void handleCustomButtons() {
         if ((a) && (!fortified)) {
@@ -620,16 +713,59 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
     }
 
-    private void endTurn() {
+
+
+
+    public void endTurn() {
         turn++;
-        if (turn == Players.size()) {
-            turn = 0;
-        }
+        if (turn == Players.size()) turn = 0;
 
         income = Players.get(turn).getIncome();
+
         resetTurnState();
         showTurnDialog();
+
+        if (Players.get(turn) instanceof AIPlayer) {
+            aiTurn((AIPlayer) Players.get(turn));  // Handle AI's turn directly
+        }
     }
+
+    private void aiTurn(AIPlayer aiPlayer) {
+        aiPlayer.takeTurn(this);  // AI performs its actions
+        endTurn();  // Transition to the next player's turn
+    }
+
+
+
+
+
+
+    private void showTurnDialog() {
+
+
+        buffer();
+        String message = "It is now " + Players.get(turn).getName() + "'s turn.";
+        JOptionPane optionPane = new JOptionPane(message, JOptionPane.INFORMATION_MESSAGE);
+
+        JDialog dialog = optionPane.createDialog(frame, "Information");
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+        Timer timer = new Timer(3000, e -> dialog.dispose());  // Auto-close after 3 seconds
+        timer.setRepeats(false);
+        timer.start();
+
+        dialog.setVisible(true);  // Display the dialog
+    }
+
+
+
+
+
+
+
+
+
+
 
     private void resetTurnState() {
         attack = false;
@@ -642,23 +778,12 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         fortify2 = -1;
     }
 
-    private void showTurnDialog() {
-        JOptionPane.showMessageDialog(frame,
-                "It is now " + Players.get(turn).getName() + "'s turn.",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE
-        );
-        waitForDialog();
 
-        if (Players.get(turn).ableToCash()) {
-            JOptionPane.showMessageDialog(frame,
-                    "You have a set to cash in!",
-                    "Information",
-                    JOptionPane.INFORMATION_MESSAGE
-            );
-        }
-        waitForDialog();
-    }
+
+
+
+
+
 
     private void viewCards() {
         view = true;
@@ -669,6 +794,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         cashIn = 1;
         setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
     }
+
+
 
     private void selectCards() {
         if (cashIn == 4) {
@@ -726,6 +853,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             Thread.yield();
         }
     }
+
+
 
 
     public void mouseMoved(MouseEvent e) {
@@ -891,6 +1020,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
 
     public void buffer(){
+
+
         Graphics2D graphic = screen.createGraphics();
         graphic.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         graphic.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
@@ -1079,11 +1210,12 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         repaint();
     }
 
+
+
+
     public static BufferedImage resize(Image image, int width, int height) { //code found from internet. supposedly resizes images
         return Card.resize(image, width, height);
     }
-
-
 
 
 
@@ -1123,5 +1255,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             }
         }
     }
+
+
     
 }
