@@ -1,15 +1,16 @@
 package org.example;
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 public class Country{ //everything is pretty clear
     int armies, possession, continent;
     boolean empty;
-    String country;
+
+       String country;
     
-    ArrayList<Country> neighbors;
+    Set<Country> neighbors;
     Rectangle borders;
-    
     Image selected;
     
     Random diceRoll;
@@ -18,7 +19,7 @@ public class Country{ //everything is pretty clear
         country = a;
         continent = b;
         diceRoll = new Random();
-        neighbors = new ArrayList<>();
+        neighbors = new HashSet<>();
         empty = true;
     }
 
@@ -28,7 +29,7 @@ public class Country{ //everything is pretty clear
     
     public void start(int a){
         possession = a;
-        armies = 3;
+        armies = 5;
         empty = false;
     }
     
@@ -55,13 +56,15 @@ public class Country{ //everything is pretty clear
     }
     
     public boolean isNeighbor(Country a){
-        for (int c = 0; c < neighbors.size(); c++){
-            if (neighbors.get(c) == a){
+        for (Country neighbor : neighbors) {
+            if (neighbor == a) {
                 return true;
             }
         }
         return false;
     }
+
+
     
     public Image getSelected(){
         return selected;
@@ -112,7 +115,23 @@ public class Country{ //everything is pretty clear
         int temp = diceRoll.nextInt(6);
         return temp;
     }
-    
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+
+
+    public Set<Country> getNeighbors() {
+        return neighbors;
+    }
+
+
+
     public void lose(int a){
         armies -= a;
     }
@@ -133,5 +152,15 @@ public class Country{ //everything is pretty clear
         boolean temp = empty;
         empty = false;
         return temp;
+    }
+
+    public Set<Country> getCountries() {
+        // Returns the set of neighboring countries associated with this country
+        return neighbors;
+    }
+
+    public boolean isStrategic() {
+        // Define strategic criteria. For instance, a country with many neighbors can be considered strategic.
+        return neighbors.size() > 2;  // Example criterion: having more than 2 neighbors
     }
 }

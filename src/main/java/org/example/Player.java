@@ -58,8 +58,8 @@ public class Player{
         return name;
     }
 
-    public int getCountries(){
-        return countries.size();
+    public ArrayList<Country> getCountries(){
+        return countries;
     }
 
     public void conquered(Country a){

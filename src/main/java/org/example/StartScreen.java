@@ -1,335 +1,195 @@
 package org.example;
+
+import aiEngine.AIPlayer;
+
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.JComboBox;
-
 import java.awt.event.*;
 import java.util.*;
 
-public class StartScreen extends JFrame implements ActionListener{
-    Dimension dim;
-    JPanel Colors, Players, Bottom;
-    JTextField Player1, Player2, Player3, Player4, Player5, Player6;
-    JComboBox player1, player2, player3, player4, player5, player6;
-    String [] colors = {"Empty", "Red", "Blue", "Green", "Yellow", "Black", "Gray"};
-    ArrayList <Player> Users;
-    int player;
-    boolean start;
+public class StartScreen extends JFrame implements ActionListener {
+    private Dimension dim;
+    private JPanel playersPanel, bottomPanel;
+    private JTextField[] playerNames;
+    private JComboBox<String>[] playerTypes, colorCombos, difficultyCombos;
+    private String[] colors = {"Empty", "Red", "Blue", "Green", "Yellow", "Black", "Gray"};
+    private String[] playerTypesArr = {"Human", "AI"};
+    private String[] difficulties = {"Easy", "Hard", "Extremely Hard"};
+    private ArrayList<Player> users;
+    private boolean start;
 
-    public StartScreen(){ 
-        
-        //start screen to set up players' names and colors
-        super("Start Screen");
-        setSize(600, 1000);
-        setLayout(new BorderLayout());
-        dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width/2 - 390, dim.height/2 - 500);
-
-        Colors = new JPanel();
-        Colors.setLayout(new GridLayout(7, 1));
-        Colors.setPreferredSize(new Dimension(80, 400));
-        Players = new JPanel();
-        Players.setLayout(new GridLayout(7, 1));
-        Players.setPreferredSize(new Dimension(200, 400));
-        Bottom = new JPanel();
-        Bottom.setPreferredSize(new Dimension(280, 50));
-
-        Player1 = new JTextField("Enter name for Player 1"); //text fields for names
-        Player1.setPreferredSize(new Dimension(100, 50));
-        Player1.setHorizontalAlignment(JTextField.LEFT);
-        Player2 = new JTextField("Enter name Player 2: ");
-        Player2.setPreferredSize(new Dimension(100, 50));
-        Player2.setHorizontalAlignment(JTextField.LEFT);
-        Player3 = new JTextField("Enter name Player 3: ");
-        Player3.setPreferredSize(new Dimension(100, 50));
-        Player3.setHorizontalAlignment(JTextField.LEFT);
-        Player4 = new JTextField("Enter name Player 4: ");
-        Player4.setPreferredSize(new Dimension(100, 50));
-        Player4.setHorizontalAlignment(JTextField.LEFT);
-        Player5 = new JTextField("Enter name Player 5: ");
-        Player5.setPreferredSize(new Dimension(100, 50));
-        Player5.setHorizontalAlignment(JTextField.LEFT);
-        Player6 = new JTextField("Enter name Player 6: ");
-        Player6.setPreferredSize(new Dimension(100, 50));
-        Player6.setHorizontalAlignment(JTextField.LEFT);
-
-        Player1.addMouseListener(
-            new MouseAdapter() {
-                public void mousePressed( MouseEvent e ) {
-                    Player1.setText("");
-                }
-            }
-        );
-        Player2.addMouseListener(
-            new MouseAdapter() {
-                public void mousePressed( MouseEvent e ) {
-                    Player2.setText("");
-                }
-            }
-        );
-        Player3.addMouseListener(
-            new MouseAdapter() {
-                public void mousePressed( MouseEvent e ) {
-                    Player3.setText("");
-                }
-            }
-        );
-        Player4.addMouseListener(
-            new MouseAdapter() {
-                public void mousePressed( MouseEvent e ) {
-                    Player4.setText("");
-                }
-            }
-        );
-        Player5.addMouseListener(
-            new MouseAdapter() {
-                public void mousePressed( MouseEvent e ) {
-                    Player5.setText("");
-                }
-            }
-        );
-        Player6.addMouseListener(
-            new MouseAdapter() {
-                public void mousePressed( MouseEvent e ) {
-                    Player6.setText("");
-                }
-            }
-        );
-
-        start = false;
-
-        Users = new ArrayList<>();
-        player1 = new JComboBox<>(colors); //combobox for colors
-        player1.setPreferredSize(new Dimension(80, 50));
-        player2 = new JComboBox<>(colors);
-        player2.setPreferredSize(new Dimension(80, 50));
-        player3 = new JComboBox<>(colors);
-        player3.setPreferredSize(new Dimension(80, 50));
-        player4 = new JComboBox<>(colors);
-        player4.setPreferredSize(new Dimension(80, 50));
-        player5 = new JComboBox<>(colors);
-        player5.setPreferredSize(new Dimension(80, 50));
-        player6 = new JComboBox<>(colors);
-        player6.setPreferredSize(new Dimension(80, 50));
-
-        JLabel Name = new JLabel("Please input names", JLabel.CENTER);
-        JLabel Color = new JLabel("Please input player color", JLabel.CENTER);
-
-        JButton Info = new JButton("Info");
-        Info.addActionListener(this);
-        JButton Start = new JButton("Start");
-        Start.addActionListener(this);
-
-        Players.add(Name);
-        Players.add(Player1);
-        Players.add(Player2);
-        Players.add(Player3);
-        Players.add(Player4);
-        Players.add(Player5);
-        Players.add(Player6);
-
-        Colors.add(Color);
-        Colors.add(player1);
-        Colors.add(player2);
-        Colors.add(player3);
-        Colors.add(player4);
-        Colors.add(player5);
-        Colors.add(player6);
-
-        Bottom.add(new JLabel());
-        Bottom.add(new JLabel());
-        Bottom.add(Start);
-
-        add("North", new ScreenLogo());
-        add("Center", Colors);
-        add("East", Players);
-        add("South", Bottom);
-
-       
-
+    public StartScreen() {
+        super("World Conquest");
+        setupUI();
         setResizable(false);
         setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent e){
-        int empty = 0;
-        int red = 0;
-        int blue = 0;
-        int green = 0;
-        int yellow = 0;
-        int black = 0;
-        int grey = 0;
-        switch (player1.getSelectedIndex()){ //checks the color of every player
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
-        }
-        switch (player2.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
-        }
-        switch (player3.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
-        }
-        switch (player4.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
-        }
-        switch (player5.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
-        }
-        switch (player6.getSelectedIndex()){
-            case 0: empty++;    break;
-            case 1: red++;      break;
-            case 2: blue++;     break;
-            case 3: green++;    break;
-            case 4: yellow++;   break;
-            case 5: black++;    break;
-            case 6: grey++;     break;
-        }
-        if (e.getActionCommand() == "Start"){
-            JFrame frame = new JFrame();
-            if(empty == 6){ //shows errors such as no players, only1 player, multiple players with the same colors or no names
-                JOptionPane.showMessageDialog(frame,
-                    "There are no players!",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-            else if (empty == 5){
-                JOptionPane.showMessageDialog(frame,
-                    "There is only 1 player!",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-            else if((red>1) || (blue>1) || (green>1) || (yellow>1) || (black>1) || (grey>1)){
-                JOptionPane.showMessageDialog(frame,
-                    "You have more than 1 player with the same color!",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-            else if((Player1.getText().equals("") && player1.getSelectedIndex()!=0) || (Player2.getText().equals("") && player2.getSelectedIndex()!=0) || (Player3.getText().equals("") && player3.getSelectedIndex()!=0) || (Player4.getText().equals("") && player4.getSelectedIndex()!=0) || (Player5.getText().equals("") && player5.getSelectedIndex()!=0) || (Player6.getText().equals("") && player6.getSelectedIndex()!=0)){
-                JOptionPane.showMessageDialog(frame,
-                    "There is a player with no name!",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            }
-            else{ //starts the game by setting every player up 
-                Color temp = Color.white;
-                start = true;
-                if(player1.getSelectedIndex()!=0){
-                    switch(player1.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
-                    }
-                    Users.add(new Player(Player1.getText(), player, temp));
-                    player++;
-                }
-                if(player2.getSelectedIndex()!=0){
-                    switch(player2.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
-                    }
-                    Users.add(new Player(Player2.getText(), player, temp));
-                    player++;
-                }
-                if(player3.getSelectedIndex()!=0){
-                    switch(player3.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
-                    }
-                    Users.add(new Player(Player3.getText(), player, temp));
-                    player++;
-                }
-                if(player4.getSelectedIndex()!=0){
-                    switch(player4.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
-                    }
-                    Users.add(new Player(Player4.getText(), player, temp));
-                    player++;
-                }
-                if(player5.getSelectedIndex()!=0){
-                    switch(player5.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
-                    }
-                    Users.add(new Player(Player5.getText(), player, temp));
-                    player++;
-                }
-                if(player6.getSelectedIndex()!=0){
-                    switch(player6.getSelectedIndex()){
-                        case 0:                        break;
-                        case 1: temp = Color.red;      break;
-                        case 2: temp = Color.blue;     break;
-                        case 3: temp = Color.green;    break;
-                        case 4: temp = Color.yellow;   break;
-                        case 5: temp = Color.black;    break;
-                        case 6: temp = Color.gray;     break;
-                    }
-                    Users.add(new Player(Player6.getText(), player, temp));
-                    player++;
-                }
-                setVisible(false);
-            }
+    private void setupUI() {
+        setSize(600, 900);
+        setLayout(new BorderLayout());
+        dim = Toolkit.getDefaultToolkit().getScreenSize();
+        setLocation(dim.width / 2 - 390, dim.height / 2 - 500);
+
+        setupPanels();
+        setupPlayerFields();
+        addComponentsToPanels();
+
+        add("North", new ScreenLogo());
+        add("Center", playersPanel);
+        add("South", bottomPanel);
+    }
+
+    private void setupPanels() {
+        playersPanel = new JPanel(new GridLayout(7, 1));
+        playersPanel.setPreferredSize(new Dimension(400, 400));
+        bottomPanel = new JPanel();
+        bottomPanel.setPreferredSize(new Dimension(280, 50));
+    }
+
+    private void setupPlayerFields() {
+        playerNames = new JTextField[6];
+        colorCombos = new JComboBox[6];
+        playerTypes = new JComboBox[6];
+        difficultyCombos = new JComboBox[6];
+
+        for (int i = 0; i < 6; i++) {
+            playerNames[i] = new JTextField("Player " + (i + 1));
+            setupMouseClickClearing(playerNames[i]);
+
+            colorCombos[i] = new JComboBox<>(colors);
+            playerTypes[i] = new JComboBox<>(playerTypesArr);
+            difficultyCombos[i] = new JComboBox<>(difficulties);
         }
     }
 
-    public boolean started(){
+    private void setupMouseClickClearing(JTextField field) {
+        field.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                field.setText("");
+            }
+        });
+    }
+
+    private void addComponentsToPanels() {
+        for (int i = 0; i < 6; i++) {
+            JPanel playerRow = new JPanel(new GridLayout(1, 6, 5, 0));
+            playerRow.add(new JLabel("Name:"));
+            playerRow.add(playerNames[i]);
+            playerRow.add(new JLabel("Type:"));
+            playerRow.add(playerTypes[i]);
+            playerRow.add(new JLabel("Color:"));
+            playerRow.add(colorCombos[i]);
+
+            if (playerTypes[i].getSelectedIndex() == 1) {
+                playerRow.add(new JLabel("Difficulty:"));
+                playerRow.add(difficultyCombos[i]);
+            }
+
+            playersPanel.add(playerRow);
+        }
+
+        JButton startButton = new JButton("Start");
+        startButton.addActionListener(this);
+        bottomPanel.add(startButton);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getActionCommand().equals("Start")) {
+            setupPlayers();
+        }
+    }
+
+    private void setupPlayers() {
+        users = new ArrayList<>();
+
+        // Available colors for random assignment
+        Set<Color> availableColors = new HashSet<>(Arrays.asList(
+                Color.red, Color.blue, Color.green, Color.yellow, Color.black, Color.gray
+        ));
+
+        for (int i = 0; i < 6; i++) {
+            String name = playerNames[i].getText();
+            Color color = getColorFromCombo(colorCombos[i]);
+
+            if (name.isEmpty() || (playerTypes[i].getSelectedIndex() == 0 && color == null)) continue;
+
+            if (playerTypes[i].getSelectedIndex() == 1) { // AI player
+                String difficulty = difficulties[difficultyCombos[i].getSelectedIndex()];
+
+                // Randomly assign a color if none specified
+                if (color == null) {
+                    color = availableColors.toArray(new Color[0])[new Random().nextInt(availableColors.size())];
+                    availableColors.remove(color); // Remove assigned color from pool
+                }
+
+                users.add(new AIPlayer(name, users.size(), color, difficulty));
+            } else { // Human player
+                users.add(new Player(name, users.size(), color));
+            }
+        }
+
+        if (users.size() < 2) {
+            showError("At least 2 players are needed!");
+            return;
+        }
+
+        if (!validatePlayers()) {
+            return;
+        }
+
+        start = true;
+        setVisible(false);
+    }
+
+    private boolean validatePlayers() {
+        Set<String> names = new HashSet<>();
+        Set<Color> colors = new HashSet<>();
+
+        for (Player player : users) {
+            String name = player.getName();
+            Color color = player.getColor();
+
+            if (names.contains(name)) {
+                showError("Duplicate name found: " + name);
+                return false;
+            }
+
+            if (colors.contains(color)) {
+                showError("Duplicate color found: " + player.getColorName());
+                return false;
+            }
+
+            names.add(name);
+            colors.add(color);
+        }
+
+        return true;
+    }
+
+    private void showError(String message) {
+        JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    private Color getColorFromCombo(JComboBox<String> combo) {
+        return switch (combo.getSelectedIndex()) {
+            case 1 -> Color.red;
+            case 2 -> Color.blue;
+            case 3 -> Color.green;
+            case 4 -> Color.yellow;
+            case 5 -> Color.black;
+            case 6 -> Color.gray;
+            default -> null;
+        };
+    }
+
+    public boolean started() {
         return start;
     }
 
-    public ArrayList<Player> getPlayers(){
-        return Users;
+    public ArrayList<Player> getPlayers() {
+        return users;
     }
 }
