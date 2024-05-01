@@ -1,4 +1,5 @@
 package aiEngine;
+
 import core.*;
 import java.awt.*;
 import java.util.*;
@@ -31,21 +32,21 @@ public class AIPlayer extends Player {
         placeArmiesRandomly();
         attackIfAdvantageous();
         fortifyCountries();
-        game.endTurn(); // Automatically end turn after actions
+        game.endTurn(); // End turn after actions
     }
 
     private void takeTurnHard(RiskGame game) {
         placeArmiesStrategically();
         attackWithPlanning();
         fortifyCountries();
-        game.endTurn(); // Automatically end turn after actions
+        game.endTurn(); // End turn after actions
     }
 
     private void takeTurnExtremelyHard(RiskGame game) {
         placeArmiesForContinentControl();
         attackWithStrategy();
         fortifyCountries();
-        game.endTurn(); // Automatically end turn after actions
+        game.endTurn(); // End turn after actions
     }
 
     private void placeArmiesRandomly() {
@@ -91,7 +92,11 @@ public class AIPlayer extends Player {
             for (Country neighbor : country.getNeighbors()) {
                 if (neighbor.getPossession() != getPlayer() && country.getArmies() > neighbor.getArmies()) {
                     country.attack(neighbor);
-                    fortifyCountry(country, neighbor); // Additional fortification after attack
+
+                    if (neighbor.isEmpty()) {
+                        neighbor.conqueredBy(getPlayer());
+                        continue;
+                    }
                 }
             }
         }
@@ -126,7 +131,11 @@ public class AIPlayer extends Player {
             for (Country neighbor : country.getNeighbors()) {
                 if (neighbor.getPossession() != getPlayer() && country.getArmies() > neighbor.getArmies()) {
                     country.attack(neighbor);
-                    fortifyCountry(country, neighbor);
+
+                    if (neighbor.isEmpty()) {
+                        neighbor.conqueredBy(getPlayer());
+                        continue;
+                    }
                 }
             }
         }
@@ -138,10 +147,7 @@ public class AIPlayer extends Player {
         for (Country country : ownCountries) {
             for (Country neighbor : country.getNeighbors()) {
                 if (country.getPossession() == getPlayer() && neighbor.getPossession() == getPlayer()) {
-                    while (country.getArmies() > 1) {
-                        country.lose(1);
-                        neighbor.gain(1);
-                    }
+                    fortifyCountry(country, neighbor);
                 }
             }
         }
@@ -150,9 +156,7 @@ public class AIPlayer extends Player {
     private Set<Country> findStrategicCountries() {
         Set<Country> strategic = new HashSet<>();
         for (Country country : getCountries()) {
-            if (country.isStrategic()) {
-                strategic.add(country);
-            }
+            if (country.isStrategic()) strategic.add(country);
         }
         return strategic;
     }

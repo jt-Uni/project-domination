@@ -141,7 +141,10 @@ public class Country{ //everything is pretty clear
         
     public void conqueredBy(int a){
         possession = a;
+        armies = 1;
     }
+
+
     
     public void defeated(){
         empty = true;

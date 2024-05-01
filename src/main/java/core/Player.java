@@ -13,6 +13,10 @@ public class Player{
     ArrayList<Card> cards;
     ArrayList<Card> cardsCashed;
 
+
+
+
+
     public Player(String a, int b, Color c){ //makes a player. variables are self-explanatory
         name = a;
         player = b;

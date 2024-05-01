@@ -7,12 +7,7 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 
-
-
-
-
 public class StartScreen extends JFrame implements ActionListener {
-    public Object Player1;
     private Dimension dim;
     private JPanel playersPanel, bottomPanel;
     public JTextField[] playerNames;
@@ -67,6 +62,8 @@ public class StartScreen extends JFrame implements ActionListener {
             colorCombos[i] = new JComboBox<>(colors);
             playerTypes[i] = new JComboBox<>(playerTypesArr);
             difficultyCombos[i] = new JComboBox<>(difficulties);
+
+            playerTypes[i].addActionListener(new PlayerTypeChangeListener(i));
         }
     }
 
@@ -81,18 +78,15 @@ public class StartScreen extends JFrame implements ActionListener {
 
     private void addComponentsToPanels() {
         for (int i = 0; i < 6; i++) {
-            JPanel playerRow = new JPanel(new GridLayout(1, 6, 5, 0));
+            JPanel playerRow = new JPanel(new GridLayout(1, 7, 5, 0));
             playerRow.add(new JLabel("Name:"));
             playerRow.add(playerNames[i]);
             playerRow.add(new JLabel("Type:"));
             playerRow.add(playerTypes[i]);
             playerRow.add(new JLabel("Color:"));
             playerRow.add(colorCombos[i]);
-
-            if (playerTypes[i].getSelectedIndex() == 1) {
-                playerRow.add(new JLabel("Difficulty:"));
-                playerRow.add(difficultyCombos[i]);
-            }
+            playerRow.add(new JLabel("Difficulty:"));
+            playerRow.add(difficultyCombos[i]);
 
             playersPanel.add(playerRow);
         }
@@ -112,7 +106,6 @@ public class StartScreen extends JFrame implements ActionListener {
     public void setupPlayers() {
         users = new ArrayList<>();
 
-        // Available colors for random assignment
         Set<Color> availableColors = new HashSet<>(Arrays.asList(
                 Color.red, Color.blue, Color.green, Color.yellow, Color.black, Color.gray
         ));
@@ -126,10 +119,9 @@ public class StartScreen extends JFrame implements ActionListener {
             if (playerTypes[i].getSelectedIndex() == 1) { // AI player
                 String difficulty = difficulties[difficultyCombos[i].getSelectedIndex()];
 
-                // Randomly assign a color if none specified
                 if (color == null) {
                     color = availableColors.toArray(new Color[0])[new Random().nextInt(availableColors.size())];
-                    availableColors.remove(color); // Remove assigned color from pool
+                    availableColors.remove(color);
                 }
 
                 users.add(new AIPlayer(name, users.size(), color, difficulty));
@@ -143,9 +135,7 @@ public class StartScreen extends JFrame implements ActionListener {
             return;
         }
 
-        if (!validatePlayers()) {
-            return;
-        }
+        if (!validatePlayers()) return;
 
         start = true;
         setVisible(false);
@@ -198,5 +188,34 @@ public class StartScreen extends JFrame implements ActionListener {
 
     public ArrayList<Player> getPlayers() {
         return users;
+    }
+
+    // Listener class for dynamically showing difficulty combo
+    private class PlayerTypeChangeListener implements ActionListener {
+        private int index;
+
+        public PlayerTypeChangeListener(int index) {
+            this.index = index;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JPanel playerRow = new JPanel(new GridLayout(1, 7, 5, 0));
+            playerRow.add(new JLabel("Name:"));
+            playerRow.add(playerNames[index]);
+            playerRow.add(new JLabel("Type:"));
+            playerRow.add(playerTypes[index]);
+            playerRow.add(new JLabel("Color:"));
+            playerRow.add(colorCombos[index]);
+
+            if (playerTypes[index].getSelectedIndex() == 1) { // If AI selected
+                playerRow.add(new JLabel("Difficulty:"));
+                playerRow.add(difficultyCombos[index]);
+            }
+
+            playersPanel.remove(index); // Remove old row
+            playersPanel.add(playerRow, index); // Add new row at the same position
+            playersPanel.revalidate(); // Refresh panel to reflect changes
+        }
     }
 }
