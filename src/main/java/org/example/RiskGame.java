@@ -1083,8 +1083,14 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         return Card.resize(image, width, height);
     }
 
+
+
+
+
+
+
     public void postInfo(String text, Graphics2D graphics) {
-        graphics.setFont(new Font("English", Font.PLAIN, 17));
+        graphics.setFont(new Font("English", Font.PLAIN, 15));
         graphics.setColor(Color.black);
     
         int maxWidth = 25; // Maximum characters per line

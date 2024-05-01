@@ -1,4 +1,5 @@
 package org.example;
+import org.example.*;
 import java.awt.*;
 import java.util.*;
 
@@ -221,8 +222,7 @@ public class Player{
         cashedCard(a);
         cashedCard(b);
         cashedCard(c);
-        int reward = d.get(e);
-        return reward;
+        return d.get(e);
     }
 
     public ArrayList<Card> returnedCards(){
