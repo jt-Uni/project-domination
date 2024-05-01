@@ -1,5 +1,8 @@
 package aiEngine;
-import org.example.*;
+import core.Country;
+import core.Player;
+import core.RiskGame;
+import core.*;
 
 import java.util.*;
 import java.awt.*;

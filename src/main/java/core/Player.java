@@ -1,5 +1,5 @@
-package org.example;
-import org.example.*;
+package core;
+import core.*;
 import java.awt.*;
 import java.util.*;
 

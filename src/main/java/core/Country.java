@@ -1,7 +1,6 @@
-package org.example;
+package core;
 import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 public class Country{ //everything is pretty clear
     int armies, possession, continent;

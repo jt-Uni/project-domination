@@ -1,48 +1,59 @@
 package org.example;
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import core.Card;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class CardTest {
+
     private Card card;
 
-    @Before
+    @BeforeEach
     public void setUp() {
-        // Initialize a Card object before each test
-        card = new Card("Narnia", 1, 2);
+        card = new Card("USA", 1, 1); // Sample data for initializing the Card object
     }
 
     @Test
-    public void testGetCountry() {
-        // Test if the country name is returned correctly
-        assertEquals("Narnia", card.getCountry());
+    public void testCardCreation() {
+        assertNotNull(card, "Card object should not be null");
     }
 
     @Test
-    public void testGetUnit() {
-        // Test if the unit type is returned correctly
-        assertEquals(1, card.getUnit());
+    public void testCountry() {
+        assertEquals("USA", card.getCountry(), "Country should match the initialized value");
     }
 
     @Test
-    public void testGetPossession() {
-        // Test if the possession status is returned correctly
-        assertEquals(2, card.getPossession());
+    public void testUnit() {
+        assertEquals(1, card.getUnit(), "Unit should match the initialized value");
+    }
+
+    @Test
+    public void testPossession() {
+        assertEquals(1, card.getPossession(), "Possession should match the initialized value");
+    }
+
+    @Test
+    public void testGetCard() {
+        BufferedImage cardImage = card.getCard();
+        assertNotNull(cardImage, "Card image should not be null");
     }
 
     @Test
     public void testHeldBy() {
-        // Test the heldBy method by updating the possession status
-        card.heldBy(3);
-        assertEquals(3, card.getPossession());
+        card.heldBy(2);
+        assertEquals(2, card.getPossession(), "Possession should be updated correctly");
     }
 
-
-
     @Test
-    public void testCardImageNotNull() {
-        // Test if the card image is generated and is not null
-        assertNotNull(card.getCard());
+    public void testBorder() {
+        card.setBorder(10, 10, 100, 200);
+        Rectangle border = card.giveBorder();
+        assertNotNull(border, "Border should not be null");
+        assertEquals(new Rectangle(10, 10, 100, 200), border, "Border should be set correctly");
     }
 }

@@ -1,10 +1,10 @@
-package org.example;
+package core;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.image.*;
 
 public class ScreenLogo extends JPanel{
-    BufferedImage Logo;
+    public BufferedImage Logo;
     
     public ScreenLogo(){ //seperate method because there is a bug if the screen logo is painted directly onto StartScreen
         setPreferredSize(new Dimension(700, 600));

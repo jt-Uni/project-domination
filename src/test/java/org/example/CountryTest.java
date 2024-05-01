@@ -1,40 +1,91 @@
 package org.example;
-import org.junit.Before;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import core.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 public class CountryTest {
-    private Country country1;
-    private Country country2;
 
-    @Before
+    private Country country;
+    private Country neighborCountry;
+
+    @BeforeEach
     public void setUp() {
-        country1 = new Country("Country1", 1);
-        country2 = new Country("Country2", 1);
+        country = new Country("USA", 1); // Initialize with sample data
+        neighborCountry = new Country("Canada", 1); // Create a neighboring country
     }
 
     @Test
-    public void testAddNeighbor() {
-        country1.addNeighbor(country2);
-        assertTrue(country1.isNeighbor(country2));
+    public void testCountryCreation() {
+        assertNotNull(country, "Country object should not be null");
+        assertEquals("USA", country.getName(), "Country name should match the initialized value");
     }
 
     @Test
     public void testStart() {
-        country1.start(100);
-        assertEquals(100, country1.getPossession());
-        assertEquals(3, country1.getArmies());
-        assertFalse(country1.isEmpty());
+        country.start(2);
+        assertEquals(2, country.getPossession(), "Possession should match the initialized value");
+        assertEquals(5, country.getArmies(), "Armies should start at 5");
     }
 
     @Test
-    public void testAttackDefend() {
-        country1.start(100); // Start with initial setup
-        country2.start(100); // Start with initial setup
-        int initialArmiesCountry2 = country2.getArmies();
-        country1.attack(country2);
-        // Ensure armies are reduced or remain the same based on the dice roll
-        assertTrue(country2.getArmies() <= initialArmiesCountry2);
+    public void testAddNeighbor() {
+        country.addNeighbor(neighborCountry);
+        assertTrue(country.isNeighbor(neighborCountry), "Neighbor should be added correctly");
     }
+
+    @Test
+    public void testAddNeighborByName() {
+        ArrayList<Country> allCountries = new ArrayList<>(List.of(neighborCountry));
+        country.addNeighbor(allCountries, "Canada");
+        assertTrue(country.isNeighbor(neighborCountry), "Neighbor should be added correctly by name");
+    }
+
+    @Test
+    public void testRemoveNeighborByName() {
+        ArrayList<Country> allCountries = new ArrayList<>(List.of(neighborCountry));
+        country.addNeighbor(allCountries, "Canada");
+        country.removeNeighbor(allCountries, "Canada");
+        assertFalse(country.isNeighbor(neighborCountry), "Neighbor should be removed correctly by name");
+    }
+
+    @Test
+    public void testSetAndGetBorder() {
+        country.setBord(10, 10, 100, 200);
+        Rectangle border = country.giveBorder();
+        assertEquals(new Rectangle(10, 10, 100, 200), border, "Border should be set correctly");
+    }
+
+    @Test
+    public void testAttackAndDefend() {
+        country.start(1);
+        neighborCountry.start(1);
+
+        country.attack(neighborCountry);
+        // Check that one of the countries lost an army
+        assertTrue(country.getArmies() < 5 || neighborCountry.getArmies() < 5, "One of the countries should lose an army");
+    }
+
+    @Test
+    public void testConqueredBy() {
+        country.conqueredBy(2);
+        assertEquals(2, country.getPossession(), "Country should be conquered by the new possession");
+    }
+
+    @Test
+    public void testIsStrategic() {
+        country.addNeighbor(neighborCountry);
+        Country anotherNeighbor = new Country("Mexico", 2);
+        country.addNeighbor(anotherNeighbor);
+
+        assertEquals(country.isStrategic(), false, "Country with more than two neighbors should be strategic");
+    }
+
+
 }

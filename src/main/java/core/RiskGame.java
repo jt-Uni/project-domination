@@ -1,4 +1,4 @@
-package org.example;
+package core;
 import javax.swing.*;
 
 import java.awt.*;
@@ -11,8 +11,8 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     BufferedImage screen;
     Image map, actions;
     String x, y;
-    ArrayList<Country> Countries;
-    ArrayList<Player> Players;
+    public ArrayList<Country> Countries;
+    public ArrayList<Player> Players;
     ArrayList<Card> Cards;
     ArrayList<Integer> Rewards;
     int select, active, turn, income, fortify1, fortify2, cashIn, cash1, cash2, cash3, reward;

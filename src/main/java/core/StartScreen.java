@@ -1,4 +1,4 @@
-package org.example;
+package core;
 
 import aiEngine.AIPlayer;
 
@@ -7,11 +7,18 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 
+
+
+
+
 public class StartScreen extends JFrame implements ActionListener {
+    public Object Player1;
     private Dimension dim;
     private JPanel playersPanel, bottomPanel;
-    private JTextField[] playerNames;
-    private JComboBox<String>[] playerTypes, colorCombos, difficultyCombos;
+    public JTextField[] playerNames;
+    public JComboBox<String>[] playerTypes;
+    public JComboBox<String>[] colorCombos;
+    public JComboBox<String>[] difficultyCombos;
     private String[] colors = {"Empty", "Red", "Blue", "Green", "Yellow", "Black", "Gray"};
     private String[] playerTypesArr = {"Human", "AI"};
     private String[] difficulties = {"Easy", "Hard", "Extremely Hard"};
@@ -102,7 +109,7 @@ public class StartScreen extends JFrame implements ActionListener {
         }
     }
 
-    private void setupPlayers() {
+    public void setupPlayers() {
         users = new ArrayList<>();
 
         // Available colors for random assignment
