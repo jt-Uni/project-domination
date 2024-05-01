@@ -14,7 +14,7 @@ public class AIPlayer extends Player {
         this.rand = new Random();
     }
 
-    public void takeTurn(RiskGame game) {
+    public void takeTurn(WorldConquestGame game) {
         switch (difficulty) {
             case "Easy":
                 takeTurnEasy(game);
@@ -28,21 +28,21 @@ public class AIPlayer extends Player {
         }
     }
 
-    private void takeTurnEasy(RiskGame game) {
+    private void takeTurnEasy(WorldConquestGame game) {
         placeArmiesRandomly();
         attackIfAdvantageous();
         fortifyCountries();
         game.endTurn(); // End turn after actions
     }
 
-    private void takeTurnHard(RiskGame game) {
+    private void takeTurnHard(WorldConquestGame game) {
         placeArmiesStrategically();
         attackWithPlanning();
         fortifyCountries();
         game.endTurn(); // End turn after actions
     }
 
-    private void takeTurnExtremelyHard(RiskGame game) {
+    private void takeTurnExtremelyHard(WorldConquestGame game) {
         placeArmiesForContinentControl();
         attackWithStrategy();
         fortifyCountries();

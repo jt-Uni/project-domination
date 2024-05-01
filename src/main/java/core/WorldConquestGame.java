@@ -13,7 +13,7 @@ import java.util.*;
 
 
 
-public class RiskGame extends JFrame implements MouseListener, MouseMotionListener{
+public class WorldConquestGame extends JFrame implements MouseListener, MouseMotionListener{
     boolean isActive, clicked, selected, attack, view, getCard, conquered, fortify, fortified, place, moving, a, v, f, end, done, cash, quit;
     BufferedImage screen;
     Image map, actions;
@@ -28,7 +28,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     Random r;
     StartScreen Start;
     JFrame frame;
-    private static final String WINDOW_TITLE = "RiskGame Window";
+    private static final String WINDOW_TITLE = "World Conquest";
 
     private Random random; // For generating random numbers
 
@@ -36,7 +36,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
 
 
-    public RiskGame() {
+    public WorldConquestGame() {
         super(WINDOW_TITLE);
         initializeGame();
     }
@@ -332,7 +332,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         fortify1 = -1;
         fortify2 = -1;
 
-        map = new ImageIcon("./assets/RiskMap.png").getImage();
+        map = new ImageIcon("./assets/worldConquest.png").getImage();
         map = resize(map, (int)((dim.getWidth()/1920)*1576), (int)((dim.getHeight()/1080)*1050.0));
         actions = new ImageIcon("./assets/ActionPaneWithInfo.jpg").getImage();
         actions = resize(actions, (int)((dim.getWidth()/1920)*290), (int)((dim.getHeight()/1080)*1050.0));
@@ -381,11 +381,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
 
 
-
-
-
-
-
+    
 
 
     private void setupCards() {
@@ -448,7 +444,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         } else {
             message += "It's a tie. Rolling again...";
             showInitialDialog();  // Recursively re-roll in case of a tie
-            return;
+            return;// continue the game
         }
 
         JOptionPane.showMessageDialog(frame, message, "Dice Roll", JOptionPane.INFORMATION_MESSAGE);
@@ -1213,15 +1209,15 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
             }
 
             // Draw custom buttons with different colors
-            graphic.setColor(Color.red);
-            graphic.fillRect((int)((dim.getWidth()/1920.0) * 1645), (int)((dim.getHeight()/1080.0) * 360), (int)((dim.getWidth()/1920.0) * 100), (int)((dim.getHeight()/1080.0) * 80));
-            graphic.setColor(Color.green);
-            graphic.fillRect((int)((dim.getWidth()/1920.0) * 1765), (int)((dim.getHeight()/1080.0) * 360), (int)((dim.getWidth()/1920.0) * 100), (int)((dim.getHeight()/1080.0) * 80));
             graphic.setColor(Color.blue);
+            graphic.fillRect((int)((dim.getWidth()/1920.0) * 1645), (int)((dim.getHeight()/1080.0) * 360), (int)((dim.getWidth()/1920.0) * 100), (int)((dim.getHeight()/1080.0) * 80));
+            graphic.setColor(Color.orange);
+            graphic.fillRect((int)((dim.getWidth()/1920.0) * 1765), (int)((dim.getHeight()/1080.0) * 360), (int)((dim.getWidth()/1920.0) * 100), (int)((dim.getHeight()/1080.0) * 80));
+            graphic.setColor(Color.red);
             graphic.fillRect((int)((dim.getWidth()/1920.0) * 1645), (int)((dim.getHeight()/1080.0) * 460), (int)((dim.getWidth()/1920.0) * 100), (int)((dim.getHeight()/1080.0) * 80));
-            graphic.setColor(Color.cyan);
+            graphic.setColor(Color.pink);
             graphic.fillRect((int)((dim.getWidth()/1920.0) * 1765), (int)((dim.getHeight()/1080.0) * 460), (int)((dim.getWidth()/1920.0) * 100), (int)((dim.getHeight()/1080.0) * 80));
-            graphic.setColor(Color.gray);
+            graphic.setColor(Color.green);
             graphic.fillRect((int)((dim.getWidth()/1920.0) * 1645), (int)((dim.getHeight()/1080.0) * 560), (int)((dim.getWidth()/1920.0) * 100), (int)((dim.getHeight()/1080.0) * 80));
 
             // Draw button labels
@@ -1266,7 +1262,11 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         } else {
             postInfo("Decide to attack, fortify, or conclude your turn.", graphic);
         }
+
     }
+
+
+
 
     private void displayCards(Graphics2D graphic) {
         if (Players.get(turn).getCardsN() == 0) {

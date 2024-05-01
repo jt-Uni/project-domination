@@ -18,7 +18,7 @@ public class ScreenLogo extends JPanel{
     }
     
     public void buffer(){
-        Image logo = new ImageIcon("./assets/startScreenGame.jpg").getImage();
+        Image logo = new ImageIcon("./assets/naeem.png").getImage();
         Graphics2D g2 = Logo.createGraphics();
         g2.drawImage(logo, 0, 0, 700, 600, null);
         repaint();

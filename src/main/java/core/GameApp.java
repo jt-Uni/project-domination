@@ -3,6 +3,6 @@ package core;
 public class GameApp {
 
     public static void main(String[] args) {
-        RiskGame startGame = new RiskGame();
+        WorldConquestGame startGame = new WorldConquestGame();
     }
 }

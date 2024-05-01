@@ -16,7 +16,7 @@ public class GameAppTest {
             mainMethod.invoke(null, (Object) new String[0]);
 
             // Assuming RiskGame has a behavior or state that we can check directly
-            RiskGame gameInstance = getRiskGameInstance();
+            WorldConquestGame gameInstance = getRiskGameInstance();
 
             assertNotNull(gameInstance, "RiskGame instance should exist");
 
@@ -29,7 +29,7 @@ public class GameAppTest {
         }
     }
 
-    private RiskGame getRiskGameInstance() {
+    private WorldConquestGame getRiskGameInstance() {
         // This assumes there's a way to retrieve the RiskGame instance directly
         // or a global variable tracking it, which might not exist directly.
         // Modify as needed to reflect actual game tracking behavior.
