@@ -16,6 +16,12 @@ public class CountryTest {
     }
 
     @Test
+    public void testGetName() {
+        assertEquals("Country1", country1.getName());
+        assertEquals("Country2", country2.getName());
+    }
+
+    @Test
     public void testAddNeighbor() {
         country1.addNeighbor(country2);
         assertTrue(country1.isNeighbor(country2));
