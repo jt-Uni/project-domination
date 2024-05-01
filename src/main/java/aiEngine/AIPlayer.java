@@ -92,10 +92,10 @@ public class AIPlayer extends Player {
             for (Country neighbor : country.getNeighbors()) {
                 if (neighbor.getPossession() != getPlayer() && country.getArmies() > neighbor.getArmies()) {
                     country.attack(neighbor);
-
+                    // Check if conquered and update ownership:
                     if (neighbor.isEmpty()) {
                         neighbor.conqueredBy(getPlayer());
-                        continue;
+                        continue;// Skip further attacks on this territory
                     }
                 }
             }
@@ -132,26 +132,33 @@ public class AIPlayer extends Player {
                 if (neighbor.getPossession() != getPlayer() && country.getArmies() > neighbor.getArmies()) {
                     country.attack(neighbor);
 
+                    // Check if conquered and update ownership:
                     if (neighbor.isEmpty()) {
                         neighbor.conqueredBy(getPlayer());
-                        continue;
+                        continue;// Skip further attacks on this territory
                     }
                 }
             }
         }
     }
 
-    private void fortifyCountries() {
+    public void fortifyCountries() {
         Set<Country> ownCountries = new HashSet<>(getCountries());
 
         for (Country country : ownCountries) {
             for (Country neighbor : country.getNeighbors()) {
                 if (country.getPossession() == getPlayer() && neighbor.getPossession() == getPlayer()) {
-                    fortifyCountry(country, neighbor);
+                    while (country.getArmies() > 1) {
+                        country.lose(1);
+                        neighbor.gain(1);
+                    }
                 }
             }
         }
     }
+
+
+
 
     private Set<Country> findStrategicCountries() {
         Set<Country> strategic = new HashSet<>();
@@ -160,6 +167,8 @@ public class AIPlayer extends Player {
         }
         return strategic;
     }
+
+
 
     private Map<Integer, Integer> getContinentControl() {
         Map<Integer, Integer> controlMap = new HashMap<>();

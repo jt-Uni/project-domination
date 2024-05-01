@@ -30,7 +30,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
     JFrame frame;
     private static final String WINDOW_TITLE = "RiskGame Window";
 
-
+    private Random random; // For generating random numbers
 
 
 
@@ -44,6 +44,7 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
 
     private void initializeGame() {
+        random = new Random();
         Start = new StartScreen();
         waitForStartScreen(Start);
         setupUI();
@@ -452,14 +453,25 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
         JOptionPane.showMessageDialog(frame, message, "Dice Roll", JOptionPane.INFORMATION_MESSAGE);
 
-        // Display which player's turn it is
+        // Additional logic to handle AI victory specifically:
+        if (Players.get(turn) instanceof AIPlayer) {
+            JOptionPane.showMessageDialog(frame,
+                    "AI won the roll. It's the AI's turn, but it will wait for you to make a move.",
+                    "Information",
+                    JOptionPane.INFORMATION_MESSAGE
+            );
+
+            // Return control to the player without invoking aiTurn.
+            return;
+        }
+
+        // Proceed normally for a human player's turn.
         JOptionPane.showMessageDialog(frame,
                 "It is now " + Players.get(turn).getName() + "'s turn.",
                 "Information",
                 JOptionPane.INFORMATION_MESSAGE
         );
     }
-
 
 
 
@@ -565,15 +577,36 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
         }
     }
 
-    // Modifications to RiskGame Class:
     private void handleAttack() {
         if (attack && Countries.get(active).getPossession() != turn && Countries.get(select).getArmies() > 1) {
-            Countries.get(select).attack(Countries.get(active));
-            conquered = false;
+            // Step 1: Roll dice for attacker and defender.
+            int attackerRoll = r.nextInt(6) + 1;
+            int defenderRoll = r.nextInt(6) + 1;
 
-            if (Countries.get(active).isEmpty()) {
-                processConquest();
+            String resultMessage = String.format(
+                    "Attacker rolled: %d\nDefender rolled: %d\n",
+                    attackerRoll, defenderRoll
+            );
+
+            // Step 2: Determine the winner and handle outcomes.
+            if (attackerRoll > defenderRoll) {
+                resultMessage += "Attacker wins!";
+                Countries.get(select).attack(Countries.get(active));
+                conquered = true;
+
+                // Further conquest handling.
+                if (Countries.get(active).isEmpty()) {
+                    processConquest();
+                }
+            } else {
+                resultMessage += "Defender wins! Turn ends.";
+                JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
+                endTurn(); // End turn immediately if the defender wins.
+                return;
             }
+
+            // Show the final result dialog.
+            JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 
@@ -771,9 +804,57 @@ public class RiskGame extends JFrame implements MouseListener, MouseMotionListen
 
 
     private void aiTurn(AIPlayer aiPlayer) {
-        aiPlayer.takeTurn(this);  // AI performs its actions
-        endTurn();  // Transition to the next player's turn
+        aiPlayer.takeTurn(this); // Execute AI's turn based on its strategy
+
+        // Revised handling for attacks:
+        Set<Country> ownCountries = new HashSet<>(aiPlayer.getCountries());
+
+        for (Country country : ownCountries) {
+            for (Country neighbor : country.getNeighbors()) {
+                if (neighbor.getPossession() != aiPlayer.getPlayer() && country.getArmies() > neighbor.getArmies()) {
+                    // Roll dice to determine the outcome
+                    int attackerRoll = rollDice();
+                    int defenderRoll = rollDice();
+
+                    String resultMessage = String.format(
+                            "Attacker (AI) rolled: %d\nDefender rolled: %d\n",
+                            attackerRoll, defenderRoll
+                    );
+
+                    if (attackerRoll > defenderRoll) {
+                        // AI wins the attack
+                        resultMessage += "AI wins the attack!";
+                        country.attack(neighbor); // Attack the territory
+
+                        // Check if the territory is conquered
+                        if (neighbor.isEmpty()) {
+                            neighbor.conqueredBy(aiPlayer.getPlayer());
+
+                            JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
+                            continue; // Skip further attacks on this territory
+                        }
+                    } else {
+                        // Defender wins the attack
+                        resultMessage += "Defender wins! AI turn ends.";
+                        JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
+                        return; // End AI turn immediately
+                    }
+
+                    JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
+                }
+            }
+        }
+
+        // Proceed with fortifying after attacking
+        aiPlayer.fortifyCountries();
+        endTurn(); // End AI turn
     }
+
+    private int rollDice() {
+        Random rand = new Random();
+        return rand.nextInt(6) + 1; // Return a number between 1 and 6
+    }
+
 
 
 
