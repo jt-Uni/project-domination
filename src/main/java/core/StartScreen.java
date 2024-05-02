@@ -20,18 +20,36 @@ public class StartScreen extends JFrame implements ActionListener {
     private ArrayList<Player> users;
     private boolean start;
 
+    private Map<Integer, ImageIcon> typeIcons;
+
+
+
+
+
+
+
+
     public StartScreen() {
         super("World Conquest");
+
+        // Initialize icons
+        typeIcons = new HashMap<>();
+        typeIcons.put(0, new ImageIcon("./assets/1.png")); // Human icon path
+        typeIcons.put(1, new ImageIcon("./assets/2.png")); // AI icon path
+
+
+
         setupUI();
         setResizable(false);
         setVisible(true);
+
     }
 
     private void setupUI() {
-        setSize(600, 900);
+        setSize(800, 950);
         setLayout(new BorderLayout());
         dim = Toolkit.getDefaultToolkit().getScreenSize();
-        setLocation(dim.width / 2 - 390, dim.height / 2 - 500);
+        setLocation(dim.width / 2 - 450, dim.height / 2 - 600);
 
         setupPanels();
         setupPlayerFields();
@@ -78,15 +96,41 @@ public class StartScreen extends JFrame implements ActionListener {
 
     private void addComponentsToPanels() {
         for (int i = 0; i < 6; i++) {
-            JPanel playerRow = new JPanel(new GridLayout(1, 7, 5, 0));
-            playerRow.add(new JLabel("Name:"));
-            playerRow.add(playerNames[i]);
-            playerRow.add(new JLabel("Type:"));
-            playerRow.add(playerTypes[i]);
-            playerRow.add(new JLabel("Color:"));
-            playerRow.add(colorCombos[i]);
-            playerRow.add(new JLabel("Difficulty:"));
-            playerRow.add(difficultyCombos[i]);
+            JPanel playerRow = new JPanel(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
+
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(5, 5, 5, 5);
+
+            gbc.gridx = 0; gbc.gridy = 0;
+            playerRow.add(new JLabel("Name:"), gbc);
+            gbc.gridx = 1;
+            playerRow.add(playerNames[i], gbc);
+
+            gbc.gridx = 2; gbc.gridy = 0;
+            playerRow.add(new JLabel("Type:"), gbc);
+            gbc.gridx = 3;
+            playerRow.add(playerTypes[i], gbc);
+
+            gbc.gridx = 4;
+            ImageIcon icon = typeIcons.get(playerTypes[i].getSelectedIndex());
+            if (icon != null) {
+                icon = resizeIcon(icon, 20, 20); // Resize the icon
+                JLabel iconLabel = new JLabel(icon);
+                playerRow.add(iconLabel, gbc);
+            }
+
+            gbc.gridx = 5;
+            playerRow.add(new JLabel("Color:"), gbc);
+            gbc.gridx = 6;
+            playerRow.add(colorCombos[i], gbc);
+
+            if (playerTypes[i].getSelectedIndex() == 1) {
+                gbc.gridx = 7;
+                playerRow.add(new JLabel("Difficulty:"), gbc);
+                gbc.gridx = 8;
+                playerRow.add(difficultyCombos[i], gbc);
+            }
 
             playersPanel.add(playerRow);
         }
@@ -95,6 +139,10 @@ public class StartScreen extends JFrame implements ActionListener {
         startButton.addActionListener(this);
         bottomPanel.add(startButton);
     }
+
+
+
+
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -190,32 +238,72 @@ public class StartScreen extends JFrame implements ActionListener {
         return users;
     }
 
-    // Listener class for dynamically showing difficulty combo
+
+
+
+    private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
+        Image image = icon.getImage(); // Convert to Image
+        Image scaledImage = image.getScaledInstance(width, height, Image.SCALE_SMOOTH); // Scale the Image
+        return new ImageIcon(scaledImage); // Convert back to ImageIcon
+    }
+
+
+
+
+
+
+    // Revised PlayerTypeChangeListener with resizing
     private class PlayerTypeChangeListener implements ActionListener {
         private int index;
+        private Map<Integer, ImageIcon> typeIcons;
 
         public PlayerTypeChangeListener(int index) {
             this.index = index;
+            typeIcons = new HashMap<>();
+
+            typeIcons.put(0, resizeIcon(new ImageIcon("./assets/1.png"), 20, 20)); // Resize immediately upon mapping
+            typeIcons.put(1, resizeIcon(new ImageIcon("./assets/2.png"), 20, 20)); // Adjust these paths as needed
         }
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            JPanel playerRow = new JPanel(new GridLayout(1, 7, 5, 0));
-            playerRow.add(new JLabel("Name:"));
-            playerRow.add(playerNames[index]);
-            playerRow.add(new JLabel("Type:"));
-            playerRow.add(playerTypes[index]);
-            playerRow.add(new JLabel("Color:"));
-            playerRow.add(colorCombos[index]);
+            JPanel playerRow = new JPanel(new GridBagLayout());
+            GridBagConstraints gbc = new GridBagConstraints();
 
-            if (playerTypes[index].getSelectedIndex() == 1) { // If AI selected
-                playerRow.add(new JLabel("Difficulty:"));
-                playerRow.add(difficultyCombos[index]);
+            gbc.anchor = GridBagConstraints.WEST;
+            gbc.insets = new Insets(5, 5, 5, 5);
+
+            // Populate the row with updated components
+            gbc.gridx = 0; gbc.gridy = 0;
+            playerRow.add(new JLabel("Name:"), gbc);
+            gbc.gridx = 1;
+            playerRow.add(playerNames[index], gbc);
+
+            gbc.gridx = 2;
+            playerRow.add(new JLabel("Type:"), gbc);
+            gbc.gridx = 3;
+            playerRow.add(playerTypes[index], gbc);
+
+            gbc.gridx = 4;
+            JLabel iconLabel = new JLabel(typeIcons.get(playerTypes[index].getSelectedIndex())); // Use the resized icons
+            playerRow.add(iconLabel, gbc);
+
+            gbc.gridx = 5;
+            playerRow.add(new JLabel("Color:"), gbc);
+            gbc.gridx = 6;
+            playerRow.add(colorCombos[index], gbc);
+
+            if (playerTypes[index].getSelectedIndex() == 1) {
+                gbc.gridx = 7;
+                playerRow.add(new JLabel("Difficulty:"), gbc);
+                gbc.gridx = 8;
+                playerRow.add(difficultyCombos[index], gbc);
             }
 
-            playersPanel.remove(index); // Remove old row
-            playersPanel.add(playerRow, index); // Add new row at the same position
-            playersPanel.revalidate(); // Refresh panel to reflect changes
+            playersPanel.remove(index);
+            playersPanel.add(playerRow, index);
+            playersPanel.revalidate();
         }
     }
+
 }

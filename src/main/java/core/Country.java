@@ -2,6 +2,11 @@ package core;
 import java.awt.*;
 import java.util.*;
 
+
+/*
+
+ */
+
 public class Country{ //everything is pretty clear
     public void setArmies(int armies) {
         this.armies = armies;

@@ -6,9 +6,9 @@ import java.awt.image.*;
 public class ScreenLogo extends JPanel{
     public BufferedImage Logo;
     
-    public ScreenLogo(){ //seperate method because there is a bug if the screen logo is painted directly onto StartScreen
+    public ScreenLogo(){
         setPreferredSize(new Dimension(700, 600));
-        Logo = new BufferedImage(700, 600, BufferedImage.TYPE_INT_RGB);
+        Logo = new BufferedImage(800, 600, BufferedImage.TYPE_INT_RGB);
         buffer();
         setVisible(true);
     }
@@ -18,9 +18,9 @@ public class ScreenLogo extends JPanel{
     }
     
     public void buffer(){
-        Image logo = new ImageIcon("./assets/naeem.png").getImage();
+        Image logo = new ImageIcon("./assets/screenStart.png").getImage();
         Graphics2D g2 = Logo.createGraphics();
-        g2.drawImage(logo, 0, 0, 700, 600, null);
+        g2.drawImage(logo, 0, 0, 800, 600, null);
         repaint();
     }
 }
