@@ -69,7 +69,7 @@ public class CountryTest {
 
         country.attack(neighborCountry);
         // Check that one of the countries lost an army
-        assertTrue(country.getArmies() < 5 || neighborCountry.getArmies() < 5, "One of the countries should lose an army");
+        assertEquals(country.getArmies() < 5 || neighborCountry.getArmies() < 5, true, "One of the countries should lose an army");
     }
 
     @Test

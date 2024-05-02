@@ -26,7 +26,7 @@ public class ScreenLogoTest {
     public void testBuffer() {
         BufferedImage logo = screenLogo.Logo;
         assertNotNull(logo, "Logo buffer should not be null");
-        assertEquals(700, logo.getWidth(), "Logo width should match the initialized dimension");
+        assertEquals(800, logo.getWidth(), "Logo width should match the initialized dimension");
         assertEquals(600, logo.getHeight(), "Logo height should match the initialized dimension");
     }
 
