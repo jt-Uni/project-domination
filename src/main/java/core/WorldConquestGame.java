@@ -14,7 +14,24 @@ import java.util.*;
 
 
 public class WorldConquestGame extends JFrame implements MouseListener, MouseMotionListener{
-    boolean isActive, clicked, selected, attack, view, getCard, conquered, fortify, fortified, place, moving, a, v, f, end, done, cash, quit;
+    boolean isActive;
+    boolean clicked;
+    boolean selected;
+    public boolean attack;
+    public boolean view;
+    boolean getCard;
+    boolean conquered;
+    public boolean fortify;
+    public boolean fortified;
+    public boolean place;
+    boolean moving;
+    boolean a;
+    boolean v;
+    boolean f;
+    public boolean end;
+    boolean done;
+    boolean cash;
+    boolean quit;
     BufferedImage screen;
     Image map, actions;
     String x, y;
@@ -22,9 +39,25 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     public ArrayList<Player> Players;
     ArrayList<Card> Cards;
     ArrayList<Integer> Rewards;
-    int select, active, turn, income, fortify1, fortify2, cashIn, cash1, cash2, cash3, reward;
+    int select;
+    int active;
+    public int turn;
+    int income;
+    int fortify1;
+    int fortify2;
+    int cashIn;
+    int cash1;
+    int cash2;
+    int cash3;
+    int reward;
     Dimension dim;
-    Rectangle Attack, View, Fortify, End, Done, CashIn, Quit;
+    Rectangle Attack;
+    Rectangle View;
+    Rectangle Fortify;
+    public Rectangle End;
+    Rectangle Done;
+    Rectangle CashIn;
+    Rectangle Quit;
     Random r;
     StartScreen Start;
     JFrame frame;
@@ -522,7 +555,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
-    private void handleAttackOrFortify() {
+    public void handleAttackOrFortify() {
         if (selected && select != active && Countries.get(select).isNeighbor(Countries.get(active))) {
             handleFortify();
             handleAttack();
@@ -682,7 +715,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-    private void checkGameVictory() {
+    public void checkGameVictory() {
         if (Objects.equals(Players.get(turn).getCountries(), 48)) {
             JOptionPane.showMessageDialog(frame,
                     "Congratulations! You have conquered the world!",
@@ -757,7 +790,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-    private void handleCustomButtons() {
+    public void handleCustomButtons() {
         if ((a) && (!fortified)) {
             attack = true;
             fortify = false;
@@ -884,7 +917,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-    private void resetTurnState() {
+    public void resetTurnState() {
         attack = false;
         place = true;
         fortify = false;
@@ -902,7 +935,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-    private void viewCards() {
+    public void viewCards() {
         view = true;
         isActive = false;
         cash1 = -1;
@@ -941,7 +974,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         }
     }
 
-    private void cashInCards() {
+    public void cashInCards() {
         if (cash1 == -1 || cash2 == -1 || cash3 == -1) {
             return;
         }
