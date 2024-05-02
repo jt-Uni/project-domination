@@ -48,7 +48,7 @@ public class ScreenLogo extends JPanel{
      * Buffers the logo image from a file and redraws it on the panel.
      */
     public void buffer(){
-        Image logo = new ImageIcon("./assets/screenStart.png").getImage();
+        Image logo = new ImageIcon("./assets/naeem.png").getImage();
         Graphics2D g2 = Logo.createGraphics();
         g2.drawImage(logo, 0, 0, 800, 600, null);
         repaint();
