@@ -87,7 +87,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         setupCards();
         setupRewards();
         finalisation();
-        showInitialDialog();
+        showInitialDialog(); // Optionally remove this entirely for no initial dialogs
     }
 
 
@@ -132,7 +132,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-    private void setupCountries() {
+    public void setupCountries() {
 
         Attack = new Rectangle((int)((dim.getWidth()/1920.0)*1645), (int)((dim.getHeight()/1080.0)*360), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
         View = new Rectangle((int)((dim.getWidth()/1920.0)*1765), (int)((dim.getHeight()/1080.0)*360), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
@@ -451,7 +451,6 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
     private void showInitialDialog() {
         Random r = new Random();
 
@@ -477,31 +476,22 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         } else {
             message += "It's a tie. Rolling again...";
             showInitialDialog();  // Recursively re-roll in case of a tie
-            return;// continue the game
+            return; // Continue the game
         }
 
         JOptionPane.showMessageDialog(frame, message, "Dice Roll", JOptionPane.INFORMATION_MESSAGE);
 
-        // Additional logic to handle AI victory specifically:
+        // If the current player is an AI, execute its turn
         if (Players.get(turn) instanceof AIPlayer) {
+            aiTurn((AIPlayer) Players.get(turn));
+        } else {
             JOptionPane.showMessageDialog(frame,
-                    "AI won the roll. It's the AI's turn, but it will wait for you to make a move.",
+                    "It is now " + Players.get(turn).getName() + "'s turn.",
                     "Information",
                     JOptionPane.INFORMATION_MESSAGE
             );
-
-            // Return control to the player without invoking aiTurn.
-            return;
         }
-
-        // Proceed normally for a human player's turn.
-        JOptionPane.showMessageDialog(frame,
-                "It is now " + Players.get(turn).getName() + "'s turn.",
-                "Information",
-                JOptionPane.INFORMATION_MESSAGE
-        );
     }
-
 
 
 
@@ -606,35 +596,37 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         }
     }
 
+
+
+
     private void handleAttack() {
         if (attack && Countries.get(active).getPossession() != turn && Countries.get(select).getArmies() > 1) {
-            // Step 1: Roll dice for attacker and defender.
-            int attackerRoll = r.nextInt(6) + 1;
-            int defenderRoll = r.nextInt(6) + 1;
+            int attackerRoll = random.nextInt(6) + 1; // Roll a die for the attacker
+            int defenderRoll = random.nextInt(6) + 1; // Roll a die for the defender
 
             String resultMessage = String.format(
                     "Attacker rolled: %d\nDefender rolled: %d\n",
                     attackerRoll, defenderRoll
             );
 
-            // Step 2: Determine the winner and handle outcomes.
-            if (attackerRoll > defenderRoll) {
+            boolean attackerWins = (random.nextDouble() < 0.70) || (attackerRoll > defenderRoll);
+
+            if (attackerWins) {
                 resultMessage += "Attacker wins!";
-                Countries.get(select).attack(Countries.get(active));
+                Countries.get(select).attack(Countries.get(active)); // Attack the territory
                 conquered = true;
 
-                // Further conquest handling.
                 if (Countries.get(active).isEmpty()) {
-                    processConquest();
+                    processConquest(); // Handle immediate conquest
                 }
             } else {
                 resultMessage += "Defender wins! Turn ends.";
                 JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
-                endTurn(); // End turn immediately if the defender wins.
+                endTurn(); // End turn immediately if the defender wins
                 return;
             }
 
-            // Show the final result dialog.
+            // Show the final result dialog
             JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
         }
     }
@@ -833,58 +825,52 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
     private void aiTurn(AIPlayer aiPlayer) {
-        aiPlayer.takeTurn(this); // Execute AI's turn based on its strategy
+        aiPlayer.takeTurn(this); // Execute AI's turn
 
-        // Revised handling for attacks:
         Set<Country> ownCountries = new HashSet<>(aiPlayer.getCountries());
 
         for (Country country : ownCountries) {
             for (Country neighbor : country.getNeighbors()) {
                 if (neighbor.getPossession() != aiPlayer.getPlayer() && country.getArmies() > neighbor.getArmies()) {
-                    // Roll dice to determine the outcome
-                    int attackerRoll = rollDice();
-                    int defenderRoll = rollDice();
+                    int attackerRoll = rollDice(); // Roll a die for the attacker
+                    int defenderRoll = rollDice(); // Roll a die for the defender
+
+                    boolean attackerWins = (random.nextDouble() < 0.70) || (attackerRoll > defenderRoll);
 
                     String resultMessage = String.format(
                             "Attacker (AI) rolled: %d\nDefender rolled: %d\n",
                             attackerRoll, defenderRoll
                     );
 
-                    if (attackerRoll > defenderRoll) {
-                        // AI wins the attack
+                    if (attackerWins) {
                         resultMessage += "AI wins the attack!";
-                        country.attack(neighbor); // Attack the territory
+                        country.attack(neighbor); // Attack directly
 
-                        // Check if the territory is conquered
                         if (neighbor.isEmpty()) {
                             neighbor.conqueredBy(aiPlayer.getPlayer());
 
                             JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
-                            continue; // Skip further attacks on this territory
+                            continue; // Skip further attacks
                         }
                     } else {
-                        // Defender wins the attack
                         resultMessage += "Defender wins! AI turn ends.";
                         JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
-                        return; // End AI turn immediately
+                        return; // End turn
                     }
 
+                    // Show the final result dialog
                     JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
                 }
             }
         }
 
-        // Proceed with fortifying after attacking
-        aiPlayer.fortifyCountries();
-        endTurn(); // End AI turn
+        aiPlayer.fortifyCountries(); // Fortify after attacking
+        endTurn(); // End AI's turn
     }
 
     private int rollDice() {
-        Random rand = new Random();
-        return rand.nextInt(6) + 1; // Return a number between 1 and 6
+        return random.nextInt(6) + 1; // Return a number between 1 and 6
     }
-
-
 
 
 
