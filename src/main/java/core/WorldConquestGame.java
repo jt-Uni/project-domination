@@ -1579,7 +1579,6 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
      * @param graphics The Graphics2D context to render into.
      */
 
-
     public void postInfo(String text, Graphics2D graphics) {
         graphics.setFont(new Font("English", Font.PLAIN, 15));
         graphics.setColor(Color.black);

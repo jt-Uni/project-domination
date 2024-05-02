@@ -13,6 +13,13 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.util.*;
 
+
+
+
+/**
+ * StartScreen is a GUI window for setting up a World Conquest game.
+ * It allows users to define players, choose their types, colors, and difficulties.
+ */
 public class StartScreen extends JFrame implements ActionListener {
     private Dimension dim;
     private JPanel playersPanel, bottomPanel;
@@ -31,9 +38,10 @@ public class StartScreen extends JFrame implements ActionListener {
 
 
 
-
-
-
+    /**
+     * Constructs a new StartScreen window for setting up a World Conquest game.
+     * Initializes the GUI components and displays the window.
+     */
 
     public StartScreen() {
         super("World Conquest");
@@ -43,13 +51,17 @@ public class StartScreen extends JFrame implements ActionListener {
         typeIcons.put(0, new ImageIcon("./assets/1.png")); // Human icon path
         typeIcons.put(1, new ImageIcon("./assets/2.png")); // AI icon path
 
-
-
         setupUI();
         setResizable(false);
         setVisible(true);
 
     }
+
+
+
+    /**
+     * Sets up the main UI components for the start screen, including panels and fields.
+     */
 
     private void setupUI() {
         setSize(800, 950);
@@ -66,6 +78,11 @@ public class StartScreen extends JFrame implements ActionListener {
         add("South", bottomPanel);
     }
 
+
+    /**
+     * Configures the panels for player setup and the start button.
+     */
+
     private void setupPanels() {
         playersPanel = new JPanel(new GridLayout(7, 1));
         playersPanel.setPreferredSize(new Dimension(400, 400));
@@ -74,6 +91,11 @@ public class StartScreen extends JFrame implements ActionListener {
         bottomPanel.setPreferredSize(new Dimension(280, 50));
         bottomPanel.setBackground(new Color(64, 224, 208)); // Turquoise background
     }
+
+
+    /**
+     * Sets up the fields for player names, types, colors, and difficulties.
+     */
 
     private void setupPlayerFields() {
         playerNames = new JTextField[6];
@@ -93,6 +115,12 @@ public class StartScreen extends JFrame implements ActionListener {
         }
     }
 
+
+    /**
+     * Sets up a mouse click listener to clear the text field on press.
+     * @param field The text field to be cleared on click.
+     */
+
     private void setupMouseClickClearing(JTextField field) {
         field.addMouseListener(new MouseAdapter() {
             @Override
@@ -101,6 +129,11 @@ public class StartScreen extends JFrame implements ActionListener {
             }
         });
     }
+
+
+    /**
+     * Adds the necessary components to each player setup row and to the main panel.
+     */
 
     private void addComponentsToPanels() {
         for (int i = 0; i < 6; i++) {
@@ -154,13 +187,21 @@ public class StartScreen extends JFrame implements ActionListener {
 
 
 
-
+    /**
+     * Handles button clicks on the start screen.
+     * @param e The ActionEvent triggered by a button click.
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Start")) {
             setupPlayers();
         }
     }
+
+
+    /**
+     * Initializes the player list based on the selected player types and attributes.
+     */
 
     public void setupPlayers() {
         users = new ArrayList<>();
@@ -200,6 +241,13 @@ public class StartScreen extends JFrame implements ActionListener {
         setVisible(false);
     }
 
+
+
+    /**
+     * Validates the list of players, checking for unique names and colors.
+     * @return True if all players have unique names and colors, false otherwise.
+     */
+
     private boolean validatePlayers() {
         Set<String> names = new HashSet<>();
         Set<Color> colors = new HashSet<>();
@@ -225,10 +273,21 @@ public class StartScreen extends JFrame implements ActionListener {
         return true;
     }
 
+
+    /**
+     * Displays an error message dialog.
+     * @param message The error message to display.
+     */
     private void showError(String message) {
         JOptionPane.showMessageDialog(new JFrame(), message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
+
+    /**
+     * Converts a JComboBox selection into a corresponding Color instance.
+     * @param combo The JComboBox containing the color selection.
+     * @return The corresponding Color instance, or null if no valid color is selected.
+     */
     private Color getColorFromCombo(JComboBox<String> combo) {
         return switch (combo.getSelectedIndex()) {
             case 1 -> Color.red;
@@ -241,16 +300,35 @@ public class StartScreen extends JFrame implements ActionListener {
         };
     }
 
+
+
+    /**
+     * Checks if the start screen setup is complete and the game can start.
+     * @return True if setup is complete and the game can start, false otherwise.
+     */
     public boolean started() {
         return start;
     }
 
+
+    /**
+     * Retrieves the list of players defined by the start screen setup.
+     * @return An ArrayList of Player instances.
+     */
     public ArrayList<Player> getPlayers() {
         return users;
     }
 
 
 
+
+    /**
+     * Resizes an ImageIcon to the specified dimensions.
+     * @param icon The original ImageIcon.
+     * @param width The desired width.
+     * @param height The desired height.
+     * @return A new ImageIcon with the specified dimensions.
+     */
 
     private ImageIcon resizeIcon(ImageIcon icon, int width, int height) {
         Image image = icon.getImage(); // Convert to Image
@@ -263,11 +341,19 @@ public class StartScreen extends JFrame implements ActionListener {
 
 
 
+    /**
+     * A listener class for changes to the player type JComboBox, with immediate resizing.
+     */
     // Revised PlayerTypeChangeListener with resizing
     private class PlayerTypeChangeListener implements ActionListener {
         private int index;
         private Map<Integer, ImageIcon> typeIcons;
 
+
+        /**
+         * Constructs a new PlayerTypeChangeListener for the specified player row index.
+         * @param index The index of the player row.
+         */
         public PlayerTypeChangeListener(int index) {
             this.index = index;
             typeIcons = new HashMap<>();
@@ -276,6 +362,11 @@ public class StartScreen extends JFrame implements ActionListener {
             typeIcons.put(1, resizeIcon(new ImageIcon("./assets/2.png"), 20, 20)); // Adjust these paths as needed
         }
 
+
+        /**
+         * Handles the ActionEvent triggered by changing the player type.
+         * @param e The ActionEvent object.
+         */
         @Override
         public void actionPerformed(ActionEvent e) {
             JPanel playerRow = new JPanel(new GridBagLayout());

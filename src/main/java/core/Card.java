@@ -12,6 +12,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+
+
+/**
+ * The `Card` class represents a card used in the World Conquest game.
+ * Each card contains information about a country, unit type, and possession.
+ */
+
 public class Card {
     private String country;
     private int unit;
@@ -30,6 +37,15 @@ public class Card {
     private static final Color INNER_COLOR = Color.WHITE;
     private static final Color TEXT_COLOR = Color.BLACK;
 
+
+
+    /**
+     * Constructs a new card for a given country, unit type, and possession.
+     *
+     * @param country the name of the country associated with the card
+     * @param unit the unit type represented by the card (0: Infantry, 1: Cavalry, 2: Cannon, 3: Wild)
+     * @param possession the ID of the player currently possessing the card
+     */
     public Card(String country, int unit, int possession) {
         this.country = country;
         this.unit = unit;
@@ -39,6 +55,10 @@ public class Card {
         createCard();
     }
 
+
+    /**
+     * Creates the visual representation of the card, including text and unit image.
+     */
     private void createCard() {
         int width = (int)((dim.getWidth() / BASE_WIDTH) * CARD_WIDTH);
         int height = (int)((dim.getHeight() / BASE_HEIGHT) * CARD_HEIGHT);
@@ -71,6 +91,14 @@ public class Card {
         }
     }
 
+
+
+    /**
+     * Retrieves the file path of the image corresponding to a given unit type.
+     *
+     * @param unit the unit type identifier (0, 1, 2, or 3)
+     * @return the file path of the unit image or null if the unit type is invalid
+     */
     private String getUnitImagePath(int unit) {
         return switch (unit) {
             case 0 -> "./assets/Infantry.jpg";
@@ -81,6 +109,16 @@ public class Card {
         };
     }
 
+
+
+    /**
+     * Resizes an image to the specified width and height.
+     *
+     * @param image the original image to resize
+     * @param width the new width for the resized image
+     * @param height the new height for the resized image
+     * @return a BufferedImage representing the resized image
+     */
     public static BufferedImage resize(Image image, int width, int height) {
         BufferedImage resizedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = resizedImage.createGraphics();
@@ -95,31 +133,76 @@ public class Card {
         return resizedImage;
     }
 
+    /**
+     * Retrieves the country associated with this card.
+     *
+     * @return the name of the country
+     */
     // Getter methods for accessing private fields
     public String getCountry() {
         return country;
     }
 
+
+    /**
+     * Retrieves the visual representation of this card.
+     *
+     * @return a BufferedImage containing the card's graphical content
+     */
     public BufferedImage getCard() {
         return card;
     }
 
+
+    /**
+     * Retrieves the unit type represented by this card.
+     *
+     * @return an integer representing the unit type
+     */
     public int getUnit() {
         return unit;
     }
 
+
+    /**
+     * Updates the possession status of this card.
+     *
+     * @param possession the ID of the player now possessing this card
+     */
     public void heldBy(int possession) {
         this.possession = possession;
     }
 
+
+
+    /**
+     * Retrieves the ID of the player currently possessing this card.
+     *
+     * @return an integer representing the player's ID
+     */
     public int getPossession() {
         return possession;
     }
 
+
+    /**
+     * Sets the border for the card.
+     *
+     * @param a the x-coordinate of the top-left corner
+     * @param b the y-coordinate of the top-left corner
+     * @param c the width of the border
+     * @param d the height of the border
+     */
     public void setBorder(int a, int b, int c, int d) {
         border = new Rectangle(a, b, c, d);
     }
 
+
+    /**
+     * Retrieves the border rectangle for this card.
+     *
+     * @return a Rectangle object defining the card's border
+     */
     public Rectangle giveBorder() {
         return border;
     }

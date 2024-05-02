@@ -1,9 +1,8 @@
-/*
- * Rafik deboub
- * Sussex university
- * 2023/2024
+/**
+ * Author: Rafik Deboub
+ * Institution: Sussex University
+ * Year: 2023/2024
  */
-
 
 package aiEngine;
 
@@ -11,15 +10,43 @@ import core.*;
 import java.awt.*;
 import java.util.*;
 
+
+
+
+
+
+/**
+ * The AIPlayer class represents an AI-controlled player in the World Conquest game.
+ * This class extends the Player class and provides different AI behaviors based on difficulty levels.
+  */
+
 public class AIPlayer extends Player {
     private String difficulty;
     private Random rand;
+
+
+
+    /**
+     * Constructs an AIPlayer with a specified name, player ID, color, and difficulty level.
+     *
+     * @param name       The name of the AI player.
+     * @param playerId   The unique identifier for the player.
+     * @param color      The color representing the player.
+     * @param difficulty The difficulty level of the AI ("Easy", "Hard", or "Extremely Hard").
+     */
 
     public AIPlayer(String name, int playerId, Color color, String difficulty) {
         super(name, playerId, color);
         this.difficulty = difficulty;
         this.rand = new Random();
     }
+
+
+    /**
+     * Takes a turn in the World Conquest game, performing actions based on the AI difficulty level.
+     *
+     * @param game The current World Conquest game instance.
+     */
 
     public void takeTurn(WorldConquestGame game) {
         switch (difficulty) {
@@ -35,12 +62,25 @@ public class AIPlayer extends Player {
         }
     }
 
+
+
+    /**
+     * Executes a turn for an AI player on "Easy" difficulty.
+     * @param game The WorldConquestGame instance managing the game state.
+     */
+
     private void takeTurnEasy(WorldConquestGame game) {
         placeArmiesRandomly();
         attackIfAdvantageous();
         fortifyCountries();
         game.endTurn(); // End turn after actions
     }
+
+
+    /**
+     * Executes a turn for an AI player on "Hard" difficulty.
+     * @param game The WorldConquestGame instance managing the game state.
+     */
 
     private void takeTurnHard(WorldConquestGame game) {
         placeArmiesStrategically();
@@ -49,12 +89,24 @@ public class AIPlayer extends Player {
         game.endTurn(); // End turn after actions
     }
 
+
+    /**
+     * Executes a turn for an AI player on "Extremely Hard" difficulty.
+     * @param game The WorldConquestGame instance managing the game state.
+     */
+
     private void takeTurnExtremelyHard(WorldConquestGame game) {
         placeArmiesForContinentControl();
         attackWithStrategy();
         fortifyCountries();
         game.endTurn(); // End turn after actions
     }
+
+
+
+    /**
+     * Places the AI player's armies randomly across its owned countries.
+     */
 
     private void placeArmiesRandomly() {
         int income = getIncome();
@@ -67,6 +119,10 @@ public class AIPlayer extends Player {
         }
     }
 
+
+    /**
+     * Attacks neighboring countries if the AI player's country has an advantageous number of armies.
+     */
     private void attackIfAdvantageous() {
         Set<Country> ownCountries = new HashSet<>(getCountries());
 
@@ -80,6 +136,12 @@ public class AIPlayer extends Player {
         }
     }
 
+
+
+    /**
+     * Places the AI player's armies in a strategic manner, prioritizing certain countries.
+     */
+
     private void placeArmiesStrategically() {
         int income = getIncome();
         Set<Country> strategicCountries = findStrategicCountries();
@@ -91,6 +153,11 @@ public class AIPlayer extends Player {
 
         }
     }
+
+
+    /**
+     * Plans attacks strategically across the AI player's owned countries.
+     */
 
     private void attackWithPlanning() {
         Set<Country> ownCountries = new HashSet<>(getCountries());
@@ -108,6 +175,13 @@ public class AIPlayer extends Player {
             }
         }
     }
+
+
+
+
+    /**
+     * Places the AI player's armies to gain control of entire continents.
+     */
 
     private void placeArmiesForContinentControl() {
         int income = getIncome();
@@ -131,6 +205,11 @@ public class AIPlayer extends Player {
         }
     }
 
+
+    /**
+     * Executes strategic attacks to conquer neighboring territories.
+     */
+
     private void attackWithStrategy() {
         Set<Country> ownCountries = new HashSet<>(getCountries());
 
@@ -148,6 +227,11 @@ public class AIPlayer extends Player {
             }
         }
     }
+
+
+    /**
+     * Fortifies the AI player's countries, redistributing armies between them.
+     */
 
     public void fortifyCountries() {
         Set<Country> ownCountries = new HashSet<>(getCountries());
@@ -167,6 +251,11 @@ public class AIPlayer extends Player {
 
 
 
+    /**
+     * Finds countries considered strategic for the AI player.
+     *
+     * @return A set of strategic countries.
+     */
     private Set<Country> findStrategicCountries() {
         Set<Country> strategic = new HashSet<>();
         for (Country country : getCountries()) {
@@ -177,6 +266,11 @@ public class AIPlayer extends Player {
 
 
 
+    /**
+     * Generates a map showing the level of control the AI player has over different continents.
+     *
+     * @return A map where the keys are continent identifiers and the values are the number of controlled countries.
+     */
     private Map<Integer, Integer> getContinentControl() {
         Map<Integer, Integer> controlMap = new HashMap<>();
 
@@ -187,6 +281,14 @@ public class AIPlayer extends Player {
         return controlMap;
     }
 
+
+
+    /**
+     * Fortifies a target country by transferring armies from another country.
+     *
+     * @param from The country from which to transfer armies.
+     * @param to   The country to fortify.
+     */
     private void fortifyCountry(Country from, Country to) {
         while (from.getArmies() > 1) {
             from.lose(1);
