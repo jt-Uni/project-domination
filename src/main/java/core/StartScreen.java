@@ -63,8 +63,10 @@ public class StartScreen extends JFrame implements ActionListener {
     private void setupPanels() {
         playersPanel = new JPanel(new GridLayout(7, 1));
         playersPanel.setPreferredSize(new Dimension(400, 400));
+        playersPanel.setBackground(new Color(64, 224, 208)); // Turquoise background
         bottomPanel = new JPanel();
         bottomPanel.setPreferredSize(new Dimension(280, 50));
+        bottomPanel.setBackground(new Color(64, 224, 208)); // Turquoise background
     }
 
     private void setupPlayerFields() {
@@ -97,6 +99,7 @@ public class StartScreen extends JFrame implements ActionListener {
     private void addComponentsToPanels() {
         for (int i = 0; i < 6; i++) {
             JPanel playerRow = new JPanel(new GridBagLayout());
+            playerRow.setBackground(new Color(224, 240, 200)); // Light pistachio background
             GridBagConstraints gbc = new GridBagConstraints();
 
             gbc.anchor = GridBagConstraints.WEST;
@@ -115,7 +118,7 @@ public class StartScreen extends JFrame implements ActionListener {
             gbc.gridx = 4;
             ImageIcon icon = typeIcons.get(playerTypes[i].getSelectedIndex());
             if (icon != null) {
-                icon = resizeIcon(icon, 20, 20); // Resize the icon
+                icon = resizeIcon(icon, 23, 23); // Resize the icon
                 JLabel iconLabel = new JLabel(icon);
                 playerRow.add(iconLabel, gbc);
             }
@@ -123,12 +126,14 @@ public class StartScreen extends JFrame implements ActionListener {
             gbc.gridx = 5;
             playerRow.add(new JLabel("Color:"), gbc);
             gbc.gridx = 6;
+            colorCombos[i].setBackground(new Color(224, 240, 200)); // Light pistachio combo box
             playerRow.add(colorCombos[i], gbc);
 
             if (playerTypes[i].getSelectedIndex() == 1) {
                 gbc.gridx = 7;
                 playerRow.add(new JLabel("Difficulty:"), gbc);
                 gbc.gridx = 8;
+                difficultyCombos[i].setBackground(new Color(224, 240, 200)); // Light pistachio combo box
                 playerRow.add(difficultyCombos[i], gbc);
             }
 

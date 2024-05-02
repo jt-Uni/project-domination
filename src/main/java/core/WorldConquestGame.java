@@ -571,6 +571,12 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
             if (Countries.get(select).getArmies() > 1) {
                 Countries.get(select).lose(1);
                 Countries.get(active).gain(1);
+            } else {
+                JOptionPane.showMessageDialog(frame,
+                        "Cannot move troops from a territory with only 1 army left.",
+                        "Troop Movement Error",
+                        JOptionPane.WARNING_MESSAGE
+                );
             }
         } else {
             moving = false;
@@ -578,6 +584,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
             fortify2 = -1;
         }
     }
+
 
 
 
@@ -670,7 +677,12 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
                     "Player Defeated",
                     JOptionPane.INFORMATION_MESSAGE
             );
-            Players.remove(conqueredPlayer); // Remove the player from the game
+            // Remove the defeated player from the game
+            Players.remove(conqueredPlayer);
+
+            // Check for overall game victory, in case the defeated player was the only opponent left
+            checkGameVictory();
+
         }
     }
 
@@ -830,36 +842,41 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         Set<Country> ownCountries = new HashSet<>(aiPlayer.getCountries());
 
         for (Country country : ownCountries) {
-            for (Country neighbor : country.getNeighbors()) {
-                if (neighbor.getPossession() != aiPlayer.getPlayer() && country.getArmies() > neighbor.getArmies()) {
-                    int attackerRoll = rollDice(); // Roll a die for the attacker
-                    int defenderRoll = rollDice(); // Roll a die for the defender
+            if (country.getArmies() > 1) {
+                for (Country neighbor : country.getNeighbors()) {
+                    if (neighbor.getPossession() != aiPlayer.getPlayer() && country.getArmies() > neighbor.getArmies()) {
+                        int attackerRoll = rollDice(); // Roll a die for the attacker
+                        int defenderRoll = rollDice(); // Roll a die for the defender
 
-                    boolean attackerWins = (random.nextDouble() < 0.70) || (attackerRoll > defenderRoll);
+                        boolean attackerWins = (random.nextDouble() < 0.70) || (attackerRoll > defenderRoll);
 
-                    String resultMessage = String.format(
-                            "Attacker (AI) rolled: %d\nDefender rolled: %d\n",
-                            attackerRoll, defenderRoll
-                    );
+                        String resultMessage = String.format(
+                                "Attacker (AI) rolled: %d\nDefender rolled: %d\n",
+                                attackerRoll, defenderRoll
+                        );
 
-                    if (attackerWins) {
-                        resultMessage += "AI wins the attack!";
-                        country.attack(neighbor); // Attack directly
+                        if (attackerWins) {
+                            resultMessage += "AI wins the attack!";
+                            country.attack(neighbor); // Attack directly
+                            
 
-                        if (neighbor.isEmpty()) {
-                            neighbor.conqueredBy(aiPlayer.getPlayer());
+                            if (neighbor.isEmpty()) {
+                                neighbor.conqueredBy(aiPlayer.getPlayer());
 
+                                JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
+                                continue; // Skip further attacks
+                            }
+                            // Award a card to AIPlayer on conquest:
+                            aiPlayer.gotCard(Cards.remove(r.nextInt(Cards.size())));
+                        } else {
+                            resultMessage += "Defender wins! AI turn ends.";
                             JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
-                            continue; // Skip further attacks
+                            return; // End turn
                         }
-                    } else {
-                        resultMessage += "Defender wins! AI turn ends.";
-                        JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
-                        return; // End turn
-                    }
 
-                    // Show the final result dialog
-                    JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
+                        // Show the final result dialog
+                        JOptionPane.showMessageDialog(frame, resultMessage, "Attack Result", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 }
             }
         }

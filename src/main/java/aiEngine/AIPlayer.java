@@ -78,10 +78,10 @@ public class AIPlayer extends Player {
         Set<Country> strategicCountries = findStrategicCountries();
 
         for (Country country : strategicCountries) {
-            while (income > 0) {
-                country.gain(1);
+            if(income <= 0) break;
+            country.gain(1);
                 income--;
-            }
+
         }
     }
 
