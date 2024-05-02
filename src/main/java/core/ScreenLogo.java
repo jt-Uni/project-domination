@@ -1,3 +1,13 @@
+/*
+ * Rafik deboub
+ * Sussex university
+ * 2023/2024
+ */
+
+
+
+
+
 package core;
 import java.awt.*;
 import javax.swing.*;

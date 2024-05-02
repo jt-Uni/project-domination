@@ -1,3 +1,10 @@
+/*
+ * Rafik deboub
+ * Sussex university
+ * 2023/2024
+ */
+
+
 package aiEngine;
 
 import core.*;

@@ -1,7 +1,15 @@
+/*
+* Rafik deboub
+* Sussex university
+* 2023/2024
+ */
+
+
+
+
 package core;
 import javax.swing.*;
 import javax.swing.Timer;
-
 import aiEngine.*;
 import java.awt.*;
 import java.awt.event.*;
@@ -11,7 +19,11 @@ import java.util.*;
 
 
 
-
+/**
+ * The WorldConquestGame class manages the core mechanics and UI interactions
+ * for a strategic game where players conquer territories and compete for global control.
+ * This class handles player interactions, turn logic, game initialization, and graphical rendering.
+ */
 
 public class WorldConquestGame extends JFrame implements MouseListener, MouseMotionListener{
     boolean isActive;
@@ -69,11 +81,19 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Constructs a WorldConquestGame instance, initializing the game UI, state, and related components.
+     */
+
     public WorldConquestGame() {
         super(WINDOW_TITLE);
         initializeGame();
     }
 
+
+    /**
+     * Initializes game components, UI setup, and state configurations.
+     */
 
 
     private void initializeGame() {
@@ -91,6 +111,11 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
+    /**
+     * Waits until the start screen is initialized and ready.
+     *
+     * @param start The StartScreen instance to monitor.
+     */
 
     private void waitForStartScreen(StartScreen start) {
         while (!start.started()) {
@@ -103,6 +128,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Sets up the UI layout and dimensions.
+     */
 
     private void setupUI() {
         setLayout(new BorderLayout());
@@ -112,6 +140,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
+    /**
+     * Initializes various game states.
+     */
 
     private void initializeGameState() {
         isActive = false;
@@ -132,6 +163,10 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Sets up the countries for the game, including their borders and neighbors.
+     */
+
     public void setupCountries() {
 
         Attack = new Rectangle((int)((dim.getWidth()/1920.0)*1645), (int)((dim.getHeight()/1080.0)*360), (int)((dim.getWidth()/1920.0)*100), (int)((dim.getHeight()/1080.0)*80));
@@ -147,6 +182,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
         Countries = new ArrayList<>();
+        // Add countries with appropriate borders and neighbors...
 
         //North america = 10
         Countries.add(new Country("Alaska", 0));
@@ -356,6 +392,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Finalizes the game setup by adding listeners, rendering initial graphics, and more.
+     */
 
     private void finalisation() {
         addMouseListener(this);
@@ -379,7 +418,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
+    /**
+     * Sets up the players, distributing countries and initializing their states.
+     */
 
     private void setupPlayers() {
         Players = new ArrayList<>(Start.getPlayers());
@@ -414,8 +455,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-    
-
+    /**
+     * Sets up the game cards.
+     */
 
     private void setupCards() {
         int unit = 0;
@@ -432,7 +474,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
+    /**
+     * Sets up reward values.
+     */
 
     private void setupRewards() {
         Rewards = new ArrayList<>(); //setting rewards
@@ -450,6 +494,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Displays an initial dialog, including a dice roll between the first two players to determine the starting turn.
+     */
 
     private void showInitialDialog() {
         Random r = new Random();
@@ -495,7 +542,11 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
+    /**
+     * Handles mouse presses, managing game actions such as attacks, fortifications, and card viewing.
+     *
+     * @param e The MouseEvent triggered by a mouse press.
+     */
 
     public void mousePressed(MouseEvent e) {
 
@@ -545,6 +596,11 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
+
+    /**
+     * Handles potential attacks or fortifications between neighboring countries.
+     */
+
     public void handleAttackOrFortify() {
         if (selected && select != active && Countries.get(select).isNeighbor(Countries.get(active))) {
             handleFortify();
@@ -553,7 +609,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
-
+    /**
+     * Handles troop fortifications between two countries.
+     */
 
     private void handleFortify() {
         if (conquered) {
@@ -564,6 +622,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
+    /**
+     * Handles troop movements between selected countries.
+     */
 
 
     private void handleTroopMovement() {
@@ -587,7 +648,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
+    /**
+     * Fortifies positions between countries, if allowed.
+     */
 
     private void fortifyPositions() {
         if (!fortified && Countries.get(select).getArmies() > 1) {
@@ -605,6 +668,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Handles attacks between countries.
+     */
 
     private void handleAttack() {
         if (attack && Countries.get(active).getPossession() != turn && Countries.get(select).getArmies() > 1) {
@@ -640,6 +706,10 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Processes a conquest of one country by another.
+     */
+
     // Revised processConquest() function:
     private void processConquest() {
         Player conqueringPlayer = Players.get(Countries.get(select).getPossession());
@@ -669,6 +739,11 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Checks if a player has been defeated, removing them from the game if so.
+     *
+     * @param conqueredPlayer The player to check for defeat.
+     */
 
     private void checkPlayerDefeat(Player conqueredPlayer) {
         if (conqueredPlayer.getCountries().isEmpty()) {
@@ -688,7 +763,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
+    /**
+     * Handles card giving after a successful conquest.
+     */
 
     private void handleCard() {
         getCard = true;
@@ -698,6 +775,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
+    /**
+     * Checks for a player's defeat and handles game victory conditions.
+     */
     private void checkPlayerDefeat() {
         Player defeatedPlayer = Players.get(Countries.get(active).getPossession());
         if (defeatedPlayer.getCountries().isEmpty()) {
@@ -718,6 +798,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Checks for overall game victory conditions.
+     */
 
     public void checkGameVictory() {
         if (Objects.equals(Players.get(turn).getCountries(), 48)) {
@@ -737,9 +820,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
-
-
+    /**
+     * Prompts the player to cash in their cards if they exceed a certain limit.
+     */
 
     private void promptForCashIn() {
         JOptionPane.showMessageDialog(frame,
@@ -759,6 +842,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Handles the finalization of a conquest, including transferring ownership and troops.
+     */
 
     private void finalizeConquest() {
         Players.get(Countries.get(select).getPossession()).conquered(Countries.get(active));
@@ -775,6 +861,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Places armies onto a selected country.
+     */
 
     private void placeArmies() {
         if (income <= 0) {
@@ -793,6 +882,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
+    /**
+     * Handles custom buttons, including attack, fortify, and end turn actions.
+     */
 
     public void handleCustomButtons() {
         if ((a) && (!fortified)) {
@@ -815,6 +907,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Ends the current player's turn and prepares the next player.
+     */
 
     public void endTurn() {
         turn++;
@@ -835,6 +930,11 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Executes the turn of an AI player, including attacks and fortifications.
+     *
+     * @param aiPlayer The AIPlayer instance taking its turn.
+     */
 
     private void aiTurn(AIPlayer aiPlayer) {
         aiPlayer.takeTurn(this); // Execute AI's turn
@@ -858,7 +958,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
                         if (attackerWins) {
                             resultMessage += "AI wins the attack!";
                             country.attack(neighbor); // Attack directly
-                            
+
 
                             if (neighbor.isEmpty()) {
                                 neighbor.conqueredBy(aiPlayer.getPlayer());
@@ -885,6 +985,12 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         endTurn(); // End AI's turn
     }
 
+    /**
+     * Rolls a die, generating a random integer between 1 and 6.
+     *
+     * @return A randomly generated integer between 1 and 6.
+     */
+
     private int rollDice() {
         return random.nextInt(6) + 1; // Return a number between 1 and 6
     }
@@ -892,6 +998,10 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+
+    /**
+     * Displays a dialog informing whose turn it is.
+     */
 
     private void showTurnDialog() {
 
@@ -915,10 +1025,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
-
-
-
+    /**
+     * Resets various states specific to the current turn.
+     */
 
     public void resetTurnState() {
         attack = false;
@@ -933,9 +1042,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
-
-
-
+    /**
+     * Allows the current player to view their cards.
+     */
 
 
     public void viewCards() {
@@ -949,6 +1058,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     }
 
 
+    /**
+     * Selects cards for cash-in.
+     */
 
     private void selectCards() {
         if (cashIn == 4) {
@@ -977,6 +1089,12 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         }
     }
 
+
+
+    /**
+     * Cashes in the selected cards, if possible, and updates the player's income.
+     */
+
     public void cashInCards() {
         if (cash1 == -1 || cash2 == -1 || cash3 == -1) {
             return;
@@ -994,12 +1112,22 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         }
     }
 
+
+    /**
+     * Stops viewing cards.
+     */
+
     private void stopViewingCards() {
         if (Players.get(Countries.get(select).getPossession()).getCardsN() < 5) {
             view = false;
             done = false;
         }
     }
+
+
+    /**
+     * Waits for the current dialog to close.
+     */
 
     private void waitForDialog() {
         while (frame.isVisible()) {
@@ -1009,6 +1137,11 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Handles mouse movement events, managing highlights and cursor changes.
+     *
+     * @param e The MouseEvent triggered by mouse movement.
+     */
 
     public void mouseMoved(MouseEvent e) {
         if(!view){
@@ -1165,6 +1298,12 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         mouseMoved(e);
     }
 
+
+    /**
+     * Renders the game graphics, including current screen state.
+     *
+     * @param g The Graphics instance to render with.
+     */
     public void paint(Graphics g){
         g.drawImage(screen, 0, 0, null); //painting the buffered image
     }
@@ -1173,6 +1312,9 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Buffers the current game state, rendering various UI elements and states.
+     */
 
     public void buffer() {
         Graphics2D graphic = screen.createGraphics();
@@ -1276,6 +1418,15 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         repaint();
     }
 
+
+
+
+    /**
+     * Updates the game state and renders specific information messages.
+     *
+     * @param graphic The Graphics2D context to render information text.
+     */
+
     private void updateGameState(Graphics2D graphic) {
         if (income != 0) {
             // Inform the player they need to deploy more armies
@@ -1304,6 +1455,11 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Displays the cards held by the current player, rendering them onto the screen.
+     *
+     * @param graphic The Graphics2D context for rendering.
+     */
 
     private void displayCards(Graphics2D graphic) {
         if (Players.get(turn).getCardsN() == 0) {
@@ -1352,6 +1508,14 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         }
     }
 
+
+
+    /**
+     * Highlights cards currently held by the player.
+     *
+     * @param graphic The Graphics2D context for rendering.
+     */
+
     private void highlightCards(Graphics2D graphic) {
         if (isActive) {
             graphic.setColor(Color.yellow);
@@ -1361,11 +1525,26 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
         }
     }
 
+
+    /**
+     * Highlights selected cards in the player's hand.
+     *
+     * @param graphic The Graphics2D context for rendering.
+     */
+
     private void highlightSelectedCards(Graphics2D graphic) {
         highlightSelectedCard(cash1, graphic);
         highlightSelectedCard(cash2, graphic);
         highlightSelectedCard(cash3, graphic);
     }
+
+
+    /**
+     * Highlights a specific card by its index.
+     *
+     * @param cardIndex The index of the card to highlight.
+     * @param graphic The Graphics2D context for rendering.
+     */
 
     private void highlightSelectedCard(int cardIndex, Graphics2D graphic) {
         if (cardIndex != -1) {
@@ -1378,6 +1557,14 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Resizes an image to specified dimensions.
+     *
+     * @param image The Image to resize.
+     * @param width The desired width.
+     * @param height The desired height.
+     * @return A resized BufferedImage instance.
+     */
 
     public static BufferedImage resize(Image image, int width, int height) { //code found from internet. supposedly resizes images
         return Card.resize(image, width, height);
@@ -1385,6 +1572,12 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
 
 
+    /**
+     * Displays information text in a given graphics context.
+     *
+     * @param text The text to display.
+     * @param graphics The Graphics2D context to render into.
+     */
 
 
     public void postInfo(String text, Graphics2D graphics) {
