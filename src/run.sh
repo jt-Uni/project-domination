@@ -5,7 +5,7 @@ cd /Users/rafiksongoku/Documents/project-domination
 
 # Run the Java application with the agent, and redirect the output to a log file
 /Users/rafiksongoku/Library/Java/JavaVirtualMachines/openjdk-22/Contents/Home/bin/java \
--javaagent:"/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=49399:/Applications/IntelliJ IDEA.app/Contents/bin" \
+-javaagent:"/Applications/IntelliJ IDEA.app/Contents/lib/idea_rt.jar=50331:/Applications/IntelliJ IDEA.app/Contents/bin" \
 -Dfile.encoding=UTF-8 \
 -Dsun.stdout.encoding=UTF-8 \
 -Dsun.stderr.encoding=UTF-8 \

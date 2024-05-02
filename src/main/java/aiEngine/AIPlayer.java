@@ -18,7 +18,7 @@ import java.util.*;
 /**
  * The AIPlayer class represents an AI-controlled player in the World Conquest game.
  * This class extends the Player class and provides different AI behaviors based on difficulty levels.
-  */
+ */
 
 public class AIPlayer extends Player {
     private String difficulty;
