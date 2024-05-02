@@ -1198,7 +1198,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
                 graphic.setColor(Color.white);
                 graphic.fillOval(Countries.get(c).giveBorder().x + (Countries.get(c).giveBorder().width/2) - 6, Countries.get(c).giveBorder().y + Countries.get(c).giveBorder().height + 4, 12, 12);
 
-                graphic.setFont(new Font("Urbana", Font.PLAIN, 12));
+                graphic.setFont(new Font("Urbana", Font.PLAIN, 14));
                 graphic.setColor(Color.black);
                 graphic.drawString(Countries.get(c).getArmies() + "", Countries.get(c).giveBorder().x + (Countries.get(c).giveBorder().width/2) - 4, Countries.get(c).giveBorder().y + Countries.get(c).giveBorder().height + 15);
             }
@@ -1241,6 +1241,7 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
 
             // Draw button labels
             graphic.setFont(new Font("Urbana", Font.PLAIN, 14));
+            graphic.setColor(Color.black); // Set font color to black
             graphic.drawString("Attack", (int)((dim.getWidth()/1920.0) * 1665), (int)((dim.getHeight()/1080.0) * 410));
             graphic.drawString("View Cards", (int)((dim.getWidth()/1920.0) * 1775), (int)((dim.getHeight()/1080.0) * 410));
             graphic.drawString("Fortify", (int)((dim.getWidth()/1920.0) * 1665), (int)((dim.getHeight()/1080.0) * 510));
