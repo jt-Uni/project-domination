@@ -1,35 +1,50 @@
-package org.example;
+package org.coreTest;
 
 import core.*;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import javax.swing.*;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.awt.*;
-import java.lang.reflect.Method;
 import java.awt.event.ActionEvent;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
+
+
+
+
+/**
+ * This class tests the functionality of the {@link StartScreen} class.
+ */
 public class StartScreenTest {
 
     private StartScreen startScreen;
 
+
+
+    /**
+     * Initializes a new {@link StartScreen} instance before each test.
+     */
     @BeforeEach
     public void setUp() {
         startScreen = new StartScreen(); // Initialize the StartScreen instance
     }
 
+
+    /**
+     * Tests the creation of the {@link StartScreen} instance.
+     */
     @Test
     public void testStartScreenCreation() {
         assertNotNull(startScreen, "StartScreen object should not be null");
         assertTrue(startScreen.isVisible(), "StartScreen window should be visible");
     }
 
+
+    /**
+     * Tests the player configuration setup on the {@link StartScreen}.
+     */
     @Test
     public void testPlayersConfiguration() {
         // Setup configurations directly
@@ -66,6 +81,12 @@ public class StartScreenTest {
         }
     }
 
+
+
+    /**
+     * Tests if the game starts successfully after pressing the start button.
+     */
+
     @Test
     public void testStarted() {
         // Create the StartScreen instance
@@ -81,6 +102,9 @@ public class StartScreenTest {
         assertEquals(startScreen.started(), true, "Game should be started after pressing 'Start'");
     }
 
+
+
+
     private void waitForStart() {
         while (!startScreen.started()) {
             try {
@@ -89,5 +113,5 @@ public class StartScreenTest {
                 Thread.currentThread().interrupt(); // Restore interrupted status
             }
         }
-    }    // Additional tests as needed...
+    }
 }

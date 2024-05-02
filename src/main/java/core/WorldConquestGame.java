@@ -49,8 +49,8 @@ public class WorldConquestGame extends JFrame implements MouseListener, MouseMot
     String x, y;
     public ArrayList<Country> Countries;
     public ArrayList<Player> Players;
-    ArrayList<Card> Cards;
-    ArrayList<Integer> Rewards;
+    public ArrayList<Card> Cards;
+    public ArrayList<Integer> Rewards;
     int select;
     int active;
     public int turn;

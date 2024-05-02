@@ -1,4 +1,4 @@
-package org.example;
+package org.coreTest;
 
 import core.*;
 import org.junit.jupiter.api.Test;
@@ -6,8 +6,19 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.Method;
 
+
+
+
+/**
+ * Unit tests for the GameApp class, focusing on its main method and initialization.
+ */
 public class GameAppTest {
 
+
+    /**
+     * Tests the main method of the GameApp class by invoking it directly using reflection.
+     * Verifies key game state attributes after initialization.
+     */
     @Test
     public void testGameAppMain() {
         // Use reflection to invoke the main method of GameApp
@@ -29,6 +40,14 @@ public class GameAppTest {
         }
     }
 
+
+
+    /**
+     * Attempts to retrieve a WorldConquestGame instance.
+     * This is a placeholder function, assuming there's a direct way to track the game instance.
+     *
+     * @return a WorldConquestGame instance, or null if unavailable.
+     */
     private WorldConquestGame getRiskGameInstance() {
         // This assumes there's a way to retrieve the RiskGame instance directly
         // or a global variable tracking it, which might not exist directly.
@@ -38,5 +57,5 @@ public class GameAppTest {
         return null;
     }
 
-    // Additional tests for different scenarios, such as invalid inputs or exceptions, can be included here.
+
 }

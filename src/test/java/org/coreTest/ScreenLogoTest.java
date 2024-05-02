@@ -1,27 +1,48 @@
-package org.example;
+package org.coreTest;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import core.*;
 import java.awt.image.BufferedImage;
-import javax.swing.*;
 import java.awt.*;
 
+
+
+
+
+
+/**
+ * This class tests the functionality of the {@link ScreenLogo} class.
+ */
 public class ScreenLogoTest {
 
     private ScreenLogo screenLogo;
 
+
+
+    /**
+     * Initializes a new {@link ScreenLogo} instance before each test.
+     */
     @BeforeEach
     public void setUp() {
         screenLogo = new ScreenLogo(); // Initialize the ScreenLogo instance
     }
 
+
+    /**
+     * Tests the creation of the {@link ScreenLogo} instance.
+     */
     @Test
     public void testScreenLogoCreation() {
         assertNotNull(screenLogo, "ScreenLogo object should not be null");
     }
 
+
+
+    /**
+     * Tests the buffer creation of the {@link ScreenLogo}.
+     */
     @Test
     public void testBuffer() {
         BufferedImage logo = screenLogo.Logo;
@@ -30,6 +51,10 @@ public class ScreenLogoTest {
         assertEquals(600, logo.getHeight(), "Logo height should match the initialized dimension");
     }
 
+
+    /**
+     * Tests the paint method of the {@link ScreenLogo} class.
+     */
     @Test
     public void testPaint() {
         BufferedImage bufferImage = new BufferedImage(700, 600, BufferedImage.TYPE_INT_RGB);
@@ -38,8 +63,7 @@ public class ScreenLogoTest {
         screenLogo.paint(g); // Call paint method directly
         assertNotNull(bufferImage, "Painted image should not be null");
 
-        // Optionally, you can add checks to ensure the painted content is accurate.
-        // This can include pixel checks or comparing to an expected image.
+
     }
 
 

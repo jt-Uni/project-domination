@@ -4,17 +4,23 @@ import aiEngine.AIPlayer;
 import core.Country;
 import core.WorldConquestGame;
 import core.Player;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
-
 import java.awt.Color;
 import java.util.Set;
 import java.util.HashSet;
 import java.util.ArrayList;
 
+
+
+
+
+
+
+/**
+ * This class contains unit tests for AIPlayer functionality.
+ */
 public class AIPlayerTest {
 
     private WorldConquestGame mockGame;
@@ -23,6 +29,10 @@ public class AIPlayerTest {
     private AIPlayer extremelyHardAI;
     private ArrayList<Country> mockCountries;
 
+
+    /**
+     * Sets up mock objects and test scenarios before each test run.
+     */
     @BeforeEach
     public void setup() {
         // Initialize mock countries
@@ -41,6 +51,12 @@ public class AIPlayerTest {
         extremelyHardAI = new AIPlayer("Hardcore AI", 3, Color.GREEN, "Extremely Hard");
     }
 
+
+
+
+    /**
+     * Tests the AIPlayer's ability to take turns at each difficulty level.
+     */
     @Test
     public void testTakeTurn() {
         // Test taking a turn with each AI difficulty
@@ -54,6 +70,13 @@ public class AIPlayerTest {
         assertTrue(mockGame.end, "Extremely Hard AI should end its turn.");
     }
 
+
+
+
+
+    /**
+     * Tests the specific actions of the Easy AI.
+     */
     @Test
     public void testEasyAIActions() {
         // Test actions specific to the Easy AI
@@ -63,6 +86,11 @@ public class AIPlayerTest {
         assertTrue(mockGame.end, "Easy AI should end its turn.");
     }
 
+
+
+    /**
+     * Tests the specific actions of the Hard AI.
+     */
     @Test
     public void testHardAIActions() {
         // Test actions specific to the Hard AI
@@ -72,6 +100,11 @@ public class AIPlayerTest {
         assertTrue(mockGame.end, "Hard AI should end its turn.");
     }
 
+
+
+    /**
+     * Tests the specific actions of the Extremely Hard AI.
+     */
     @Test
     public void testExtremelyHardAIActions() {
         // Test actions specific to the Extremely Hard AI
@@ -81,6 +114,12 @@ public class AIPlayerTest {
         assertTrue(mockGame.end, "Extremely Hard AI should end its turn.");
     }
 
+
+
+
+    /**
+     * Tests if the Easy AI places armies randomly.
+     */
     @Test
     public void testPlaceArmiesRandomly() {
         // Check if Easy AI places armies randomly
@@ -90,6 +129,10 @@ public class AIPlayerTest {
 
 
 
+
+    /**
+     * Tests if the Hard AI plans attacks effectively.
+     */
     @Test
     public void testHardAIPlanning() {
         // Check if Hard AI plans attacks effectively
@@ -97,6 +140,12 @@ public class AIPlayerTest {
         assertTrue(mockCountries.get(1).getPossession() == 2, "Hard AI should conduct planned attacks.");
     }
 
+
+
+
+    /**
+     * Tests if the Extremely Hard AI focuses on continent control.
+     */
     @Test
     public void testContinentControl() {
         // Check if Extremely Hard AI focuses on continent control
